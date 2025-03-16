@@ -1,5 +1,0 @@
-From 12 and 15, Minimizer chooses 12
-From 20 and 30, Minimizer chooses 20
-From 12 and 20, Maximizer chooses 20
-[12, 15, 20, 30]
-The best score for Maximizer is 20

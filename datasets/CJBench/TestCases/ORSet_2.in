@@ -1,7 +1,0 @@
-5
-ADD dog
-ADD cat
-ADD bird
-REMOVE cat
-REMOVE bird
-dog

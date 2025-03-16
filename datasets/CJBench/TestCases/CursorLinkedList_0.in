@@ -1,9 +1,0 @@
-append A
-append B
-append C
-print
-get 1
-indexOf B
-removeByIndex 1
-print
-exit

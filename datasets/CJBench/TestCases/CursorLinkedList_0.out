@@ -1,8 +1,0 @@
-Appended: A
-Appended: B
-Appended: C
-A -> B -> C -> null
-Value at index 1: B
-Index of B: 1
-Removed value at index 1
-A -> C -> null

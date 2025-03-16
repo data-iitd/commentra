@@ -1,6 +1,0 @@
-insert 30
-insert 40
-inOrder
-clear
-inOrder
-isEmpty

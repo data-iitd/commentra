@@ -1,4 +1,0 @@
-Lookup key1: false
-Lookup key3: true
-Add Set: [key1, key2, key3]
-Remove Set: [key1, key2]

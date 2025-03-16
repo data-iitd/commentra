@@ -1,7 +1,0 @@
-Inserted: 10
-Inserted: 20
-Inserted: 15
-In-Order: [10, 15, 20]
-Extracted Min: 10
-In-Order: [15, 20]
-Is Empty: false

@@ -1,7 +1,0 @@
-append X
-append Y
-get 5
-indexOf Z
-removeByIndex 3
-print
-exit

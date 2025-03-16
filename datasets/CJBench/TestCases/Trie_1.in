@@ -1,9 +1,0 @@
-8
-insert hello
-insert world
-insert helios
-search hello
-delete hello
-search hello
-countWords
-countWithPrefix hel

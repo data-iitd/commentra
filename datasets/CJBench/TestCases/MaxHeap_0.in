@@ -1,7 +1,0 @@
-insert 10
-insert 20 InfoB
-insert 15
-getMax
-extractMax
-size
-isEmpty

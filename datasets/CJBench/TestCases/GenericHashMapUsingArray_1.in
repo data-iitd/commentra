@@ -1,8 +1,0 @@
-7
-PUT apple red
-PUT banana yellow
-GET apple
-REMOVE banana
-CONTAINS banana
-SIZE
-PRINT

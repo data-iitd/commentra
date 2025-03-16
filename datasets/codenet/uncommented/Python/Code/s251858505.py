@@ -1,1 +1,0 @@
-print(sum(map(lambda x, y:x==y, input(), input())))

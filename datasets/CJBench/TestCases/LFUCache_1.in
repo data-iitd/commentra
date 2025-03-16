@@ -1,8 +1,0 @@
-3
-6
-PUT 1 A
-PUT 2 B
-PUT 3 C
-GET 1
-PUT 4 D
-GET 2
