@@ -1,0 +1,14 @@
+#include<stdio.h>  # Include the standard input-output library
+
+int main(void):
+	int n, x, min, m, i  # Declare variables to store input values and loop counter
+	scanf("%d %d %d", &n, &x, &min)  # Read three integers from standard input
+	x -= min  # Subtract the minimum value from x
+	for i in range(1, n):  # Start a loop from 1 to n-1
+		scanf("%d", &m)  # Read the next integer
+		x -= m  # Subtract the current integer from x
+		if min > m:  # Check if the current integer is less than the current min
+			min = m  # Update min to the current integer if true
+	print(n + x / min)  # Print the result
+	return 0  # Return 0 to indicate successful execution
+

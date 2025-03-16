@@ -1,0 +1,16 @@
+Scanner sc = new Scanner(System.in);
+System.out.println("Enter time 1 in format HH:MM");
+String time1 = sc.nextLine();
+String[] time1Array = time1.split(":");
+int h1 = Integer.parseInt(time1Array[0]);
+int m1 = Integer.parseInt(time1Array[1]);
+m1 += h1 * 60;
+System.out.println("Enter time 2 in format HH:MM");
+String time2 = sc.nextLine();
+String[] time2Array = time2.split(":");
+int h2 = Integer.parseInt(time2Array[0]);
+int m2 = Integer.parseInt(time2Array[1]);
+m2 += h2 * 60;
+m2 = m1 - m2;
+m2 %= 1440;
+System.out.println(String.format("%02d:%02d", m2 / 60, m2 % 60));

@@ -1,0 +1,20 @@
+package main
+
+import "fmt"
+
+func main() {
+	var N, D int
+	var ans, rem int
+
+	fmt.Scan(&N, &D)
+
+	ans = N / (D*2 + 1)
+	rem = N % (D*2 + 1)
+
+	if rem != 0 {
+		ans = ans + 1
+	}
+
+	fmt.Println(ans)
+}
+

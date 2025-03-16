@@ -1,0 +1,10 @@
+insert 10
+insert 5
+insert 20
+print
+delete 10
+print
+search 20
+search 15
+isEmpty
+exit

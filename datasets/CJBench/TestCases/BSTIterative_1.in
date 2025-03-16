@@ -1,0 +1,9 @@
+add 15
+add 10
+add 20
+add 25
+find 20
+remove 20
+find 20
+display
+exit

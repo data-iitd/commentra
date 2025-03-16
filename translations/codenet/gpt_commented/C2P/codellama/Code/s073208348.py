@@ -1,0 +1,785 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+#define ll long long
+#define rep(i,l,r) for(ll i=(l);i<(r);i++)
+#define max(p,q) ((p)>(q)?(p):(q))
+
+#define INF 1000000000
+
+#define V 100010
+#define E 200010
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000
+
+#define INF 1000000000

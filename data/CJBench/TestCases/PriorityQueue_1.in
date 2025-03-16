@@ -1,0 +1,13 @@
+3
+insert 30
+insert 40
+insert 50
+insert 60
+peek
+remove
+peek
+remove
+peek
+remove
+isEmpty
+exit

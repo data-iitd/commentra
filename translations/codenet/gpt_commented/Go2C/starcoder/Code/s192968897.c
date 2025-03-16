@@ -1,0 +1,30 @@
+
+
+
+#include <stdio.h>
+#include <string.h>
+#include <stdbool.h>
+#include <ctype.h>
+
+int main() {
+	char s[100000];
+	scanf("%s", s);
+	int l = strlen(s);
+	char ans[100000] = "AC";
+	int cnt = 0;
+	for (int i = 1; i < l; i++) {
+		if (isupper(s[i])) {
+			if (i == 1 || i == l-1 || s[i]!= 'C') {
+				ans[0] = 'W';
+				ans[1] = 'A';
+			}
+			cnt++;
+		}
+	}
+	if (cnt!= 1) {
+		ans[0] = 'W';
+		ans[1] = 'A';
+	}
+	printf("%s\n", ans);
+}
+

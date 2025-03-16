@@ -1,0 +1,35 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    int n, i = 1, k = 0, p = 1;
+    bool flag = true;
+    vector<int> a(1000, 0);
+
+    cin >> n;
+
+    while (k <= n) {
+        i += k;
+
+        if (i >= n) {
+            while (i >= n) i -= n;
+        }
+
+        a[i]++;
+        k++;
+    }
+
+    for (i = 0; i < n; ++i) {
+        if (a[i] == 0) {
+            flag = false;
+            break;
+        }
+    }
+
+    if (flag) cout << "YES" << endl;
+    else cout << "NO" << endl;
+
+    return 0;
+}
+

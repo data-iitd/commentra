@@ -1,0 +1,1 @@
+# Translate the above C code to Python and end with comment "<END-OF-CODE>".

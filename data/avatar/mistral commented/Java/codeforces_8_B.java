@@ -1,0 +1,50 @@
+import java.util.Scanner ; // Importing the Scanner class for reading input
+
+public class Main { // Defining the Main class
+    public static void main ( String [ ] args ) { // Defining the main method
+        Scanner scan = new Scanner ( System.in ) ; // Creating a new Scanner object for reading input from the console
+
+        int i , j , x = 0 , y = 0 , k = 0 , dx , dy ; // Declaring and initializing variables
+        boolean flag = true ; // Declaring and initializing a boolean variable
+        String s ; // Declaring a String variable
+        char [ ] ch = new char [ 100 ] ; // Declaring and initializing a character array of size 100
+        int [ ] [ ] co = new int [ 2 ] [ 101 ] ; // Declaring and initializing a 2D integer array of size 2 x 101
+
+        s = scan.next ( ) ; // Reading the input string from the console
+        ch = s.toCharArray ( ) ; // Converting the String to a character array
+        co [ 0 ] [ k ] = x ; co [ 1 ] [ k ] = y ; // Initializing the first element of the array with x and y values
+        ++ k ; // Incrementing the size of the array
+
+        for ( i=0 ; i<s.length() ; ++i ) { // Loop to iterate through each character in the string
+            switch ( ch [ i ] ) { // Switch statement to handle each character based on its value
+                case 'L' : --x ; // Move x to the left
+                    break ;
+                case 'R' : ++x ; // Move x to the right
+                    break ;
+                case 'U' : ++y ; // Move y up
+                    break ;
+                case 'D' : --y ; // Move y down
+                    break ;
+            }
+            co [ 0 ] [ k ] = x ; co [ 1 ] [ k ] = y ; // Updating the current position in the array
+            ++k ; // Incrementing the size of the array
+        }
+
+        for ( i=0 ; i<k-3 ; ++i ) { // Outer loop to iterate through all elements except the last three
+            for ( j=i+3 ; j<k ; ++j ) { // Inner loop to compare the current element with the next three elements
+                dx = co [ 0 ] [ i ] - co [ 0 ] [ j ] ; // Calculate the difference in x-coordinates
+                dy = co [ 1 ] [ i ] - co [ 1 ] [ j ] ; // Calculate the difference in y-coordinates
+                if ( dx < 0 ) dx *= ( -1 ) ; // Making dx positive if it's negative
+                if ( dy < 0 ) dy *= ( -1 ) ; // Making dy positive if it's negative
+                if ( ( dx <= 1 && dy == 0 ) || ( dy <= 1 && dx == 0 ) ) { // Checking if the difference is within 1 unit in either x or y direction
+                    flag = false ; // Setting the flag to false if a difference of 1 unit is found
+                    break ; // Exiting the inner loop if a difference of 1 unit is found
+                }
+            }
+            if ( ! flag ) break ; // Exiting the outer loop if a difference of 1 unit is found in any of the inner loops
+        }
+
+        if ( flag ) System.out.println ( "OK" ) ; // Printing "OK" if no difference of 1 unit is found
+        else System.out.println ( "BUG" ) ; // Printing "BUG" if a difference of 1 unit is found
+    }
+}

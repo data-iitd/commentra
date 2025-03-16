@@ -1,0 +1,22 @@
+
+import java.util.Scanner;
+
+public class s894183124{
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int n = scanner.nextInt();
+        String s = scanner.next();
+        System.out.println(countABC(s));
+    }
+
+    private static int countABC(String s) {
+        int count = 0;
+        for (int i = 0; i < s.length() - 2; i++) {
+            if (s.substring(i, i + 3).equals("ABC")) {
+                count++;
+            }
+        }
+        return count;
+    }
+}
+

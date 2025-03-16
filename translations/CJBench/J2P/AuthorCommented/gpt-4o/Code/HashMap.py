@@ -1,0 +1,136 @@
+class Node:
+    def __init__(self, key, value):
+        self.key = key
+        self.value = value
+        self.next = None
+
+    def get_key(self):
+        return self.key
+
+    def get_value(self):
+        return self.value
+
+    def set_value(self, value):
+        self.value = value
+
+    def get_next(self):
+        return self.next
+
+    def set_next(self, next_node):
+        self.next = next_node
+
+
+class LinkedList:
+    def __init__(self):
+        self.head = None
+
+    def insert(self, key, value):
+        existing_node = self.find_key(key)
+        if existing_node is not None:
+            existing_node.set_value(value)
+            return False
+        new_node = Node(key, value)
+        new_node.set_next(self.head)
+        self.head = new_node
+        return True
+
+    def delete(self, key):
+        if self.head is None:
+            return False
+        if (key is None and self.head.get_key() is None) or (self.head.get_key() is not None and self.head.get_key() == key):
+            self.head = self.head.get_next()
+            return True
+        current = self.head
+        while current.get_next() is not None:
+            if (key is None and current.get_next().get_key() is None) or (current.get_next().get_key() is not None and current.get_next().get_key() == key):
+                current.set_next(current.get_next().get_next())
+                return True
+            current = current.get_next()
+        return False
+
+    def find_key(self, key):
+        current = self.head
+        while current is not None:
+            if (key is None and current.get_key() is None) or (current.get_key() is not None and current.get_key() == key):
+                return current
+            current = current.get_next()
+        return None
+
+    def display(self):
+        current = self.head
+        elements = []
+        while current is not None:
+            elements.append(f"{current.get_key()}={current.get_value()}")
+            current = current.get_next()
+        return " -> ".join(elements) if elements else "null"
+
+
+class HashMap:
+    def __init__(self, hash_size):
+        self.hash_size = hash_size
+        self.buckets = [LinkedList() for _ in range(hash_size)]
+        self.size = 0
+
+    def compute_hash(self, key):
+        if key is None:
+            return 0
+        hash_code = hash(key) % self.hash_size
+        return hash_code if hash_code >= 0 else hash_code + self.hash_size
+
+    def insert(self, key, value):
+        hash_index = self.compute_hash(key)
+        if self.buckets[hash_index].insert(key, value):
+            self.size += 1
+
+    def delete(self, key):
+        hash_index = self.compute_hash(key)
+        if self.buckets[hash_index].delete(key):
+            self.size -= 1
+
+    def search(self, key):
+        hash_index = self.compute_hash(key)
+        node = self.buckets[hash_index].find_key(key)
+        return node.get_value() if node is not None else None
+
+    def display(self):
+        for i in range(self.hash_size):
+            print(f"Bucket {i}: {self.buckets[i].display()}")
+
+    def get_size(self):
+        return self.size
+
+
+def main():
+    import sys
+    input = sys.stdin.read
+    data = input().splitlines()
+    
+    hash_size = int(data[0])
+    hash_map = HashMap(hash_size)
+
+    operations = int(data[1])
+    
+    for i in range(2, 2 + operations):
+        input_line = data[i].split()
+        command = input_line[0]
+        if command == "PUT":
+            hash_map.insert(input_line[1], input_line[2])
+        elif command == "GET":
+            value = hash_map.search(input_line[1])
+            print(value if value is not None else "NOT FOUND")
+        elif command == "REMOVE":
+            hash_map.delete(input_line[1])
+        elif command == "CONTAINS":
+            print("YES" if hash_map.search(input_line[1]) is not None else "NO")
+        elif command == "SIZE":
+            print(hash_map.get_size())
+        elif command == "PRINT":
+            hash_map.display()
+        else:
+            print("Invalid operation")
+
+
+if __name__ == "__main__":
+    main()
+
+# <END-OF-CODE>

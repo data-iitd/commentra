@@ -1,0 +1,22 @@
+#include <stdio.h>
+#include <math.h>
+
+public class Main {
+    public static void main(String[] args) {
+        // Include necessary headers
+        // This code uses the standard input/output library and the math library for mathematical constants and functions
+
+        double r;
+        // Read the input value for the radius of the circle
+        scanf("%lf", &r);
+
+        // Calculate the area of the circle (πr^2) and the circumference (2πr)
+        double area = r * r * M_PI;
+        double circumference = 2 * M_PI * r;
+
+        // Print the results to the standard output
+        printf("%lf %lf\n", area, circumference);
+        return 0;
+    }
+}
+

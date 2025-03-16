@@ -1,0 +1,37 @@
+import sys
+
+def main():
+    # Create a Scanner object for input and a PrintWriter for output
+    inp = sys.stdin.readline
+    out = sys.stdout.write
+    
+    # Read two integers from input
+    a, b = map(int, inp().split())
+    c = 0  # Initialize counter for the number of operations
+    
+    # Check for the special case where both a and b are 1
+    if a == 1 and b == 1:
+        out('0\n')  # Output 0 operations needed
+    else:
+        # Loop until both a and b are non-positive
+        while a >= 1 or b >= 1:
+            # If a is greater than or equal to b, perform operation on a
+            if a >= b:
+                b += 1  # Increment b
+                a -= 2  # Decrement a by 2
+            else:
+                # If b is greater than a, perform operation on b
+                a += 1  # Increment a
+                b -= 2  # Decrement b by 2
+            
+            # Check if either a or b has become non-positive
+            if a <= 0 or b <= 0:
+                c += 1  # Increment operation counter and break
+                break
+            c += 1  # Increment operation counter
+        
+        # Output the total number of operations performed
+        out(f'{c}\n')
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,21 @@
+Enter root's data:
+Enter the number of children for 10:
+Enter data for child 1 of 10:
+Enter the number of children for 20:
+Enter data for child 2 of 10:
+Enter the number of children for 30:
+
+Tree Display:
+10 => 20 30 .
+20 => .
+30 => .
+
+Size of the tree: 3
+Maximum value in the tree: 30
+Height of the tree: 1
+
+Enter a value to search:
+Is value present: false
+
+Level Order Traversal:
+10 20 30

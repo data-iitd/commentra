@@ -1,0 +1,6 @@
+1
+4
+PUT 1 A
+PUT 2 B
+GET 1
+GET 2

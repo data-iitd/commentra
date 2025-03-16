@@ -1,0 +1,29 @@
+
+import java.util.Scanner;
+
+public class s736909850{
+   public static void main(String[] args) {
+      // Declare variables to hold the number of sheep and wolves
+      int sheep;
+      int wolf;
+
+      // Create a Scanner object to read user input
+      Scanner scanner = new Scanner(System.in);
+
+      // Read the number of sheep and wolves from user input
+      sheep = scanner.nextInt();
+      wolf = scanner.nextInt();
+
+      // Check if the number of wolves is greater than or equal to the number of sheep
+      if (wolf >= sheep) {
+         // If there are more wolves than sheep, it's unsafe
+         System.out.println("unsafe");
+      } else {
+         // If there are fewer wolves than sheep, it's safe
+         System.out.println("safe");
+      }
+
+      // Close the Scanner object to release system resources
+      scanner.close();
+   }
+}

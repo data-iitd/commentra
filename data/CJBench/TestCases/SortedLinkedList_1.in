@@ -1,0 +1,11 @@
+insert 1
+insert 1
+delete 1
+print
+delete 1
+print
+isEmpty
+delete 5
+insert 10
+print
+exit

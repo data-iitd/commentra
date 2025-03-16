@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdbool.h>
+
+// Function to check if a given string is a palindrome
+bool isPalindrome(char *s) {
+    int length = strlen(s);
+    // Loop through the first half of the string
+    for (int i = 0; i < length / 2; i++) {
+        // Compare characters from the start and end of the string
+        if (s[i] != s[length - 1 - i]) {
+            return false; // If they don't match, return false
+        }
+    }
+    return true; // If all characters matched, return true
+}
+
+int main() {
+    char s[100]; // Declare a string variable to hold user input
+    scanf("%s", s); // Read input from the user
+
+    // Check if the entire string is a palindrome and if the first half is also a palindrome
+    if (isPalindrome(s) && isPalindrome(strndup(s, strlen(s) / 2))) {
+        printf("Yes\n"); // Output "Yes" if both conditions are true
+    } else {
+        printf("No\n"); // Output "No" if either condition is false
+    }
+
+    return 0; // Return 0 to indicate successful execution
+}
+
+// <END-OF-CODE>

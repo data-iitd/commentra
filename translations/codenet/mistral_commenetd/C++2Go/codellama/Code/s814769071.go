@@ -1,0 +1,40 @@
+
+package main
+
+import (
+	"fmt"
+	"math"
+)
+
+func main() {
+	// Initialize variables
+	var n, k int64
+	fmt.Scan(&n, &k)
+	MOD := int64(1e9 + 7)
+
+	// Calculate the maximum number of unique elements in a subset of size k from 1 to n
+	mx := n * (n + 1) / 2 - (n - k) * (n - k + 1) / 2
+
+	// Calculate the minimum number of unique elements in a subset of size k from 1 to n
+	mn := k * (k - 1) / 2
+
+	// Initialize result variable
+	res := int64(0)
+
+	// Iterate through all possible subset sizes from k to n+1
+	for i := k; i <= n+1; i++ {
+		// Calculate the number of unique elements in the current subset
+		res += mx - mn + 1
+
+		// Update the maximum and minimum number of unique elements for the next iteration
+		mx += n - int64(i)
+		mn += int64(i)
+
+		// Update the result variable
+		res %= MOD
+	}
+
+	// Print the final result
+	fmt.Println(res)
+}
+

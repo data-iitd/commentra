@@ -1,0 +1,46 @@
+#include <iostream>
+#include <cstdlib>
+#include <cstdio>
+#include <cmath>
+#include <cstring>
+#include <string>
+#include <vector>
+#include <map>
+#include <set>
+#include <algorithm>
+#include <climits>
+#include <cfloat>
+#include <queue>
+#include <stack>
+#include <deque>
+#include <utility>
+#include <iterator>
+#include <bitset>
+using namespace std;
+
+int sub(int a, int b) {
+    int min = min(a, b);
+    int max = max(a, b);
+    int result = 0;
+    while (min > 0) {
+        result += max / min;
+        max = max % min;
+        int curr_min = min(min, max);
+        int curr_max = max(min, max);
+        min = curr_min;
+        max = curr_max;
+    }
+    return result;
+}
+
+int main() {
+    int n;
+    cin >> n;
+    for (int i = 0; i < n; i++) {
+        int a, b;
+        cin >> a >> b;
+        cout << sub(a, b) << endl;
+    }
+    return 0;
+}
+

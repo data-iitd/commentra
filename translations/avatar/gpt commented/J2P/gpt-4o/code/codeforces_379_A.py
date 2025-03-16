@@ -1,0 +1,26 @@
+# Importing the sys module for reading input
+import sys
+
+def main():
+    # Reading two integers from the user
+    a = int(sys.stdin.readline().strip())  # The initial amount
+    b = int(sys.stdin.readline().strip())  # The divisor
+    
+    # Initializing the result with the value of 'a'
+    res = a 
+    
+    # Loop to perform the division and accumulate the result
+    while a >= b:
+        # Add the quotient of a divided by b to the result
+        res += (a // b)
+        
+        # Update 'a' to be the sum of the quotient and the remainder
+        a = (a // b) + (a % b)
+    
+    # Output the final result
+    print(res)
+
+if __name__ == "__main__":
+    main()
+
+# <END-OF-CODE>

@@ -1,0 +1,21 @@
+public class Main {
+  public static void main(String[] args) {
+    int a, b, c, d;  // Declare four integer variables
+
+    // Read two integer values from the standard input and store them in a and b
+    java.util.Scanner scanner = new java.util.Scanner(System.in);
+    a = scanner.nextInt();
+    b = scanner.nextInt();
+
+    // Calculate the product of a and b, and store it in c
+    c = a * b;
+
+    // Calculate the perimeter of a rectangle with sides a and b, and store it in d
+    d = 2 * a + 2 * b;
+
+    // Print the values of c and d to the standard output
+    System.out.println(c + " " + d);
+
+    // Return 0 to indicate successful execution
+  }
+}

@@ -1,0 +1,128 @@
+// Package main is the entry point of the program
+package main;
+
+import java.util.*;
+import java.io.*;
+
+// mainFn is the main function of the program
+public class Main {
+	// main is the entry point of the program
+	public static void main(String[] args) {
+		// Get the number of elements in the input array
+		int n = getInt();
+		// Get the input array
+		int[] ls = getIntSlice(n);
+		// Create a reversed copy of the input array
+		int[] lsRev = new int[n];
+		// Copy the input array to the reversed copy
+		System.arraycopy(ls, 0, lsRev, 0, n);
+		// Sort the input array in ascending order
+		Arrays.sort(ls);
+		// Sort the reversed copy of the array in descending order
+		Arrays.sort(lsRev, Collections.reverseOrder());
+
+		// Initialize the answer variable
+		int ans = 0;
+		// Iterate through all pairs of elements in the array
+		for (int i = 0; i < n; i++) {
+			for (int j = i + 1; j < n; j++) {
+				// Find the minimum and maximum elements of the current pair
+				int p = Math.min(ls[i], ls[j]);
+				int q = Math.max(ls[i], ls[j]);
+				// Calculate the difference between the maximum and minimum elements
+				int x = q - p;
+				int y = q + p;
+				// Find the indices of the elements greater than x and less than y in the sorted array and reversed array respectively
+				int l = Arrays.binarySearch(ls, x);
+				int r = Arrays.binarySearch(lsRev, y, 0, n, true);
+				// Calculate the sum of the difference between the indices of the greater elements in the sorted array and reversed array
+				int sum = r - l;
+				// Check if the current pair lies within the range [l, r]
+				if (i >= l && i <= r) {
+					sum--;
+				}
+				if (j >= l && j <= r) {
+					sum--;
+				}
+				// Ensure that the sum is not negative
+				sum = Math.max(0, sum);
+				// Add the sum to the answer variable
+				ans += sum;
+			}
+		}
+		// Divide the answer by 3 and print it
+		ans /= 3;
+		puts(ans);
+	}
+
+	// min returns the minimum of two integers
+	public static int min(int a, int b) {
+		if (a < b) {
+			return a;
+		}
+		return b;
+	}
+
+	// max returns the maximum of two integers
+	public static int max(int a, int b) {
+		if (a > b) {
+			return a;
+		}
+		return b;
+	}
+
+	// -----------------------------------------
+
+	// Initialize some variables for reading and writing input/output
+	private static final Scanner scanner = new Scanner(System.in);
+	private static final PrintWriter writer = new PrintWriter(System.out);
+
+	// main is the entry point of the program
+	public static void main(String[] args) {
+		// Set the buffer size for reading input
+		//int buf = 200001;
+		//scanner.useDelimiter(new String(new char[buf]).replace("\0", " ").toCharArray());
+		// Set the splitting function for reading input
+		scanner.useDelimiter(new String(new char[200001]).replace("\0", " ").toCharArray());
+		// Call the main function
+		mainFn();
+		// Flush the writer buffer
+		writer.flush();
+	}
+
+	// getInt reads an integer from the standard input
+	public static int getInt() {
+		scanner.next();
+		// Convert the input string to an integer and return it
+		return Integer.parseInt(scanner.next());
+	}
+
+	// getIntSlice reads an array of integers from the standard input
+	public static int[] getIntSlice(int n) {
+		// Allocate memory for the array
+		int[] is = new int[n];
+		// Read each element of the array from the standard input
+		for (int i = 0; i < n; i++) {
+			is[i] = getInt();
+		}
+		// Return the array
+		return is;
+	}
+
+	// getString reads a string from the standard input
+	public static String getsString() {
+		scanner.next();
+		// Return the input string
+		return scanner.next();
+	}
+
+	// puts writes the given arguments to the standard output, followed by a newline character
+	public static void puts(Object... args) {
+		// Write the arguments to the writer buffer
+		for (Object arg : args) {
+			writer.print(arg);
+		}
+		writer.println();
+	}
+}
+

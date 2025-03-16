@@ -1,0 +1,73 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+int n, m;
+vector<int> e[100001];
+
+void printEdge(vector<int> e[100001]) {
+	for (int i = 1; i < n+1; i++) {
+		cout << i << ": ";
+		for (int j = 0; j < e[i].size(); j++) {
+			cout << e[i][j] << " ";
+		}
+		cout << endl;
+	}
+}
+
+int dfs(int v, vector<bool> &visited) {
+	// visited[v] = true;
+	// cout << v << " " << visited[v] << endl;
+
+	bool comp = true;
+	for (int i = 1; i < n+1; i++) {
+		if (!visited[i]) {
+			comp = false;
+		}
+	}
+
+	if (comp) {
+		return 1;
+	}
+
+	int count = 0;
+	for (int i = 0; i < e[v].size(); i++) {
+		int ne = e[v][i];
+		// cout << "ne=" << ne << endl;
+		if (visited[ne]) {
+			continue;
+		}
+		visited[ne] = true;
+		// if (cmp, _ := dfs(ne, visited, count); cmp) {
+		// 	count++;
+		// }
+		int rst = dfs(ne, visited);
+		// cout << rst << endl;
+		// count += dfs(ne, visited);
+		count += rst;
+		visited[ne] = false;
+	}
+	return count;
+}
+
+int main() {
+	cin >> n >> m;
+
+	for (int i = 1; i < n+1; i++) {
+		e[i].clear();
+	}
+	for (int i = 0; i < m; i++) {
+		int a, b;
+		cin >> a >> b;
+		e[a].push_back(b);
+		e[b].push_back(a);
+	}
+	// printEdge(e);
+
+	vector<bool> visited(n+1, false);
+	visited[1] = true;
+	int count = dfs(1, visited);
+	cout << count << endl;
+}
+

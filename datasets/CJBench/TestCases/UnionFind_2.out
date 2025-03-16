@@ -1,0 +1,5 @@
+Find(0) -> Root: 0
+Find(3) -> Root: 3
+Find(6) -> Root: 6
+Find(7) -> Root: 7
+Number of disjoint sets: 4

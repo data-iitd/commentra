@@ -1,0 +1,52 @@
+package main
+
+import (
+	"bufio"
+	"fmt"
+	"os"
+	"strings"
+)
+
+func main() {
+	// Create a Scanner object to read input from the console
+	scanner := bufio.NewScanner(os.Stdin)
+	
+	// Read three words from the input, remove non-alphabetic characters, and convert them to lowercase
+	scanner.Scan()
+	word1 := strings.ToLower(strings.ReplaceAll(scanner.Text(), "[^a-zA-Z]", ""))
+	scanner.Scan()
+	word2 := strings.ToLower(strings.ReplaceAll(scanner.Text(), "[^a-zA-Z]", ""))
+	scanner.Scan()
+	word3 := strings.ToLower(strings.ReplaceAll(scanner.Text(), "[^a-zA-Z]", ""))
+	
+	// Generate all possible permutations of the three words
+	perm1 := word1 + word2 + word3
+	perm2 := word1 + word3 + word2
+	perm3 := word2 + word1 + word3
+	perm4 := word2 + word3 + word1
+	perm5 := word3 + word2 + word1
+	perm6 := word3 + word1 + word2
+	
+	// Read the number of students (test cases)
+	scanner.Scan()
+	students := 0
+	fmt.Sscanf(scanner.Text(), "%d", &students)
+	
+	// Loop through each student's test case
+	for i := 0; i < students; i++ {
+		// Read the test case input, remove non-alphabetic characters, and convert to lowercase
+		scanner.Scan()
+		testCase := strings.ToLower(strings.ReplaceAll(scanner.Text(), "[^a-zA-Z]", ""))
+		
+		// Check if the test case matches any of the generated permutations
+		if testCase == perm1 || testCase == perm2 || 
+		   testCase == perm3 || testCase == perm4 || 
+		   testCase == perm5 || testCase == perm6 { 
+			// If it matches, print "ACC" (Accepted)
+			fmt.Println("ACC") 
+		} else { 
+			// If it doesn't match, print "WA" (Wrong Answer)
+			fmt.Println("WA") 
+		} 
+	} 
+}

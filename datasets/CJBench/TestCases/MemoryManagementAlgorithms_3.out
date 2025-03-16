@@ -1,0 +1,5 @@
+Memory Allocation Results:
+Process 0 -> Block 1
+Process 1 -> Block 4
+Process 2 -> Block 4
+Process 3 -> No Allocation

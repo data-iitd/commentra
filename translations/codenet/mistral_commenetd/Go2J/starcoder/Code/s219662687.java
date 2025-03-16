@@ -1,0 +1,99 @@
+// Package declaration and importing necessary packages
+package main;
+
+import java.util.Arrays;
+import java.util.Scanner;
+
+// Main function declaration and initialization of constants
+public class Main {
+	public static void main(String[] args) {
+		final int INF = (int) Math.pow(10, 11); // Large constant value for initializing arrays
+
+		// Reading input values from standard input
+		int A = nextInt();
+		int B = nextInt();
+		int Q = nextInt();
+
+		// Initializing arrays s and t with size A+2 and B+2 respectively
+		// The first and last elements are initialized with -INF and INF respectively
+		int[] s = new int[A+2];
+		s[0], s[A+1] = -INF, INF;
+
+		// Reading A elements of array s from standard input
+		for (int i = 1; i <= A; i++) {
+			s[i] = nextInt();
+		}
+
+		// Initializing array t with size B+2
+		// The first and last elements are initialized with -INF and INF respectively
+		int[] t = new int[B+2];
+		t[0], t[B+1] = -INF, INF;
+
+		// Reading B elements of array t from standard input
+		for (int i = 1; i <= B; i++) {
+			t[i] = nextInt();
+		}
+
+		// Processing each query
+		for (int i = 0; i < Q; i++) {
+			// Reading query value x from standard input
+			int x = nextInt();
+
+			// Finding the indices b and d of array s and t respectively
+			// where s[b] and t[d] are the smallest elements greater than x
+			int b = Arrays.binarySearch(s, x);
+			int d = Arrays.binarySearch(t, x);
+
+			// Computing the minimum distance between x and any pair of elements S and T
+			// from arrays s and t respectively
+			int res = INF;
+			for (int S : new int[]{s[b-1], s[b]}) {
+				for (int T : new int[]{t[d-1], t[d]}) {
+					// Computing the absolute difference between S and x, and T and S
+					int d1 = Math.abs(S-x);
+					int d2 = Math.abs(T-S);
+
+					// Updating the minimum distance if the current pair has a smaller distance
+					res = Math.min(res, Math.min(d1, d2));
+				}
+			}
+
+			// Printing the minimum distance for the current query
+			System.out.println(res);
+		}
+	}
+
+	// Input reading helper functions
+	private static Scanner sc = new Scanner(System.in);
+
+	private static int nextInt() {
+		sc.next();
+		return Integer.parseInt(sc.nextLine());
+	}
+
+	private static double nextDouble() {
+		sc.next();
+		return Double.parseDouble(sc.nextLine());
+	}
+
+	private static String nextString() {
+		sc.next();
+		return sc.nextLine();
+	}
+}
+
+// Helper functions for array manipulation and arithmetic operations
+public class Main {
+	public static int abs(int x) {
+		return Math.abs(x);
+	}
+
+	public static int min(int x, int y) {
+		return Math.min(x, y);
+	}
+
+	public static int max(int x, int y) {
+		return Math.max(x, y);
+	}
+}
+

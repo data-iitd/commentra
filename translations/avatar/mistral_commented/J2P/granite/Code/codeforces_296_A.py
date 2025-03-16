@@ -1,0 +1,29 @@
+
+
+import sys
+
+def main():
+    n = int(input())
+    array = [0] * 1001
+    for i in range(n):
+        index = int(input())
+        array[index] += 1
+    countMax = -1
+    for i in range(1, len(array)):
+        if countMax < array[i]:
+            countMax = array[i]
+    if n % 2 == 0:
+        if countMax <= n / 2:
+            print("YES")
+        else:
+            print("NO")
+    else:
+        if countMax <= n / 2 + 1:
+            print("YES")
+        else:
+            print("NO")
+
+if __name__ == "__main__":
+    main()
+
+These comments should provide a clear understanding of the logic behind each block of code.

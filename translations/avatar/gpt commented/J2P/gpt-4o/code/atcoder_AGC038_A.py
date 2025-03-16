@@ -1,0 +1,25 @@
+import sys
+
+def main():
+    # Read the dimensions of the grid and the parameters A and B
+    H, W, A, B = map(int, sys.stdin.readline().split())
+    
+    # Check if the grid can accommodate the required number of 0s and 1s
+    if W < 2 * A or H < 2 * B:
+        print(-1)  # Print -1 if the grid is too small
+        return  # Exit the program
+    
+    # Generate the grid based on the parameters A and B
+    for i in range(H):  # Iterate over each row
+        for j in range(W):  # Iterate over each column
+            # Determine whether to write '0' or '1' based on the current position
+            if (i < B and j < A) or (i >= B and j >= A):
+                print("0", end="")  # Write '0' for specified conditions
+            else:
+                print("1", end="")  # Write '1' otherwise
+        print()  # Move to the next line after finishing a row
+
+if __name__ == "__main__":
+    main()
+
+# <END-OF-CODE>

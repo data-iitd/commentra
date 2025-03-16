@@ -1,0 +1,30 @@
+package com.company;
+
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+        int m = in.nextInt();
+        System.out.println(solution(n, m));
+    }
+
+    // solution function takes two integers, n and m, as input.
+    // It adjusts both n and m by subtracting 2 from each.
+    // It then checks if the adjusted values are less than 0, and if so, it sets them to 1.
+    // Finally, it returns the product of the adjusted n and m.
+    public static int solution(int n, int m) {
+        n = n - 2;
+        m = m - 2;
+        if (n < 0) {
+            n = 1;
+        }
+        if (m < 0) {
+            m = 1;
+        }
+        return n * m;
+    }
+}
+

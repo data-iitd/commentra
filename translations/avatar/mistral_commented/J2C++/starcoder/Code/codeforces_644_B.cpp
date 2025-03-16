@@ -1,0 +1,41 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+
+    int n, b;
+    cin >> n >> b;
+
+    long ans[n];
+    queue <long> q;
+
+    for (int i = 0; i < n; i++) {
+        int t, d;
+        cin >> t >> d;
+
+        while (!q.empty() && q.front() <= t) {
+            q.pop();
+        }
+
+        if (q.size() <= b) {
+            if (q.empty()) {
+                ans[i] = t + d;
+            } else {
+                ans[i] = q.back() + d;
+            }
+            q.push(ans[i]);
+        } else {
+            ans[i] = -1;
+        }
+    }
+
+    for (int i = 0; i < n; ++i) {
+        cout << ans[i] << " ";
+    }
+
+    return 0;
+}
+

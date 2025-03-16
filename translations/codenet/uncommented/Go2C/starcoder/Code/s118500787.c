@@ -1,0 +1,22 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main() {
+	char S[100000], T[100000];
+	scanf("%s%s", S, T);
+	int max = 0;
+	for (int i = 0; i <= strlen(S) - strlen(T); i++) {
+		int c = 0;
+		for (int j = 0; j < strlen(T); j++) {
+			if (S[i + j] == T[j]) {
+				c++;
+			}
+		}
+		if (max < c) {
+			max = c;
+		}
+	}
+	printf("%d\n", strlen(T) - max);
+}
+

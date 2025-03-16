@@ -1,0 +1,22 @@
+# Read the number of elements N and the maximum distance X
+N, X = map(int, input().split())
+
+# Read the lengths of the segments into a vector L
+L = list(map(int, input().split()))
+
+# Initialize the index i and the distance d
+i = 0
+d = 0
+
+# Loop through the segments to calculate the total distance
+for i in range(N):
+    # Add the current segment length to the total distance
+    d = d + L[i]
+
+    # If the total distance exceeds X, break the loop
+    if d > X:
+        break
+
+# Output the number of segments used
+print(i+1)
+

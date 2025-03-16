@@ -1,0 +1,13 @@
+Error: Queue is empty
+Enqueued: 50
+Enqueued: 60
+[50, 60]
+Front element: 50
+Dequeued: 50
+[60]
+Is empty: false
+Rear element: 60
+Enqueued: 70
+Enqueued: 80
+Size: 3
+[60, 70, 80]

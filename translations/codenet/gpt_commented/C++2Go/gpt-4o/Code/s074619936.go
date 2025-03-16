@@ -1,0 +1,40 @@
+package main
+
+import (
+	"fmt"
+	"strconv"
+)
+
+func main() {
+	// Declare a variable to hold input string and the sum of digits
+	var str string
+	var sum int
+
+	// Infinite loop to continuously accept input until "0" is entered
+	for {
+		// Read input from the user
+		fmt.Scan(&str)
+
+		// Check if the input is "0", if so, exit the loop
+		if str == "0" {
+			break
+		}
+
+		// Initialize sum to 0 for the new input string
+		sum = 0
+
+		// Loop through each character in the input string
+		for i := 0; i < len(str); i++ {
+			// Convert the character to a string and then to an integer
+			num, _ := strconv.Atoi(string(str[i]))
+
+			// Add the integer value to the sum
+			sum += num
+		}
+
+		// Output the sum of the digits for the current input string
+		fmt.Println(sum)
+	}
+}
+
+// <END-OF-CODE>

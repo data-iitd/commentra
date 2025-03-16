@@ -1,0 +1,109 @@
+package main
+
+import (
+    "bufio"
+    "fmt"
+    "os"
+    "sort"
+    "strconv"
+    "strings"
+)
+
+// Structure to hold edge information
+type Edge struct {
+    s, g, c int
+}
+
+// Structure to represent the graph
+type Graph struct {
+    vcnt, ecnt int
+    e          [200010]Edge
+    id         [100010]int
+}
+
+// Function to read the graph from input
+func readgraph() {
+    var n int
+    // Read the number of vertices
+    fmt.Scanf("%d", &n)
+    // Read edges and construct the graph
+    for i := 0; i < n-1; i++ {
+        var x, y, c int
+        fmt.Scanf("%d%d%d", &x, &y, &c)
+        // Add edge from x to y
+        g.e[2*i].s = x
+        g.e[2*i].g = y
+        g.e[2*i].c = c
+        // Add edge from y to x (undirected graph)
+        g.e[2*i+1].s = y
+        g.e[2*i+1].g = x
+        g.e[2*i+1].c = c
+    }
+    g.vcnt = n // Set vertex count
+    g.ecnt = 2*n - 2 // Set edge count (undirected edges)
+    // Sort edges based on start and end vertices
+    sort.Slice(g.e[:g.ecnt], func(i, j int) bool {
+        return g.e[i].s < g.e[j].s
+    })
+
+    var p int
+    // Create an index for edges for each vertex
+    for i := 0; i < g.vcnt; i++ {
+        for p < g.ecnt && g.e[p].s < i {
+            p++
+        }
+        g.id[i] = p // Store the index of the first edge for vertex i
+    }
+    g.id[g.vcnt] = g.ecnt // Sentinel value for the last vertex
+}
+
+// Function to perform DFS and find the diameter of the tree
+var tyokkeitemp []int // Temporary array to store distances during DFS
+
+// Recursive DFS function to explore the tree
+func tyokkeidfs(s int) {
+    for i := g.id[s]; i < g.id[s+1]; i++ {
+        // If the vertex has not been visited
+        if tyokkeitemp[g.e[i].g] == 0 {
+            // Update the distance and continue DFS
+            tyokkeitemp[g.e[i].g] = tyokkeitemp[s] + g.e[i].c
+            tyokkeidfs(g.e[i].g)
+        }
+    }
+}
+
+// Function to calculate the diameter of the tree
+func tyokkei() int {
+    // Allocate memory for distance array
+    tyokkeitemp = make([]int, g.vcnt+10)
+    tyokkeitemp[0] = 1 // Start DFS from vertex 0
+    tyokkeidfs(0) // First DFS to find the farthest vertex
+
+    var M, Mi int // Variables to track maximum distance and corresponding vertex
+    for i := 0; i < g.vcnt; i++ {
+        // Find the vertex with the maximum distance
+        if tyokkeitemp[i] > M {
+            M = tyokkeitemp[i]
+            Mi = i
+        }
+    }
+    
+    // Reset distances for the second DFS
+    for i := 0; i < g.vcnt; i++ {
+        tyokkeitemp[i] = 0
+    }
+    tyokkeitemp[Mi] = 1 // Start DFS from the farthest vertex found
+    tyokkeidfs(Mi) // Second DFS to find the diameter
+
+    // Find the maximum distance from the second DFS
+    for i := 0; i < g.vcnt; i++ {
+        M = max(M, tyokkeitemp[i])
+    }
+    return M - 1 // Return the diameter (subtract 1 for edge count)
+}
+
+func main() {
+    readgraph() // Read the graph input
+    fmt.Printf("%d\n", tyokkei()) // Calculate and print the diameter of the tree
+}
+

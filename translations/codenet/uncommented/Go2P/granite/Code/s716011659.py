@@ -1,0 +1,19 @@
+
+import sys
+
+def main():
+    n = int(input())
+    arrA = list(map(int, input().split()))
+
+    cumSumA = [0] * (n + 1)
+    cumSumA[0] = 0
+    for i, a in enumerate(arrA):
+        cumSumA[i + 1] = cumSumA[i] + a
+
+    ans = sys.maxsize
+    for i in range(1, n):
+        if abs(cumSumA[n] - cumSumA[i] * 2) < ans:
+            ans = abs(cumSumA[n] - cumSumA[i] * 2)
+
+    print(int(ans))
+

@@ -1,0 +1,105 @@
+
+class Main:
+    # Node class representing each entry in the cache
+    class Node:
+        def __init__(self, key, value, frequency):
+            self.key = key
+            self.value = value
+            self.frequency = frequency
+            self.previous = None
+            self.next = None
+
+    def __init__(self, capacity):
+        if capacity <= 0:
+            raise ValueError("Capacity must be greater than zero.")
+        self.capacity = capacity
+        self.cache = {}
+        self.head = None
+        self.tail = None
+
+    # Method to retrieve a value by key from the cache
+    def get(self, key):
+        node = self.cache.get(key)
+        if node is None:
+            return None
+        self.remove_node(node)
+        node.frequency += 1
+        self.add_node_with_updated_frequency(node)
+        return node.value
+
+    # Method to add or update a key-value pair in the cache
+    def put(self, key, value):
+        if key in self.cache:
+            node = self.cache[key]
+            node.value = value
+            node.frequency += 1
+            self.remove_node(node)
+            self.add_node_with_updated_frequency(node)
+        else:
+            if len(self.cache) >= self.capacity:
+                del self.cache[self.head.key]
+                self.remove_node(self.head)
+            node = Main.Node(key, value, 1)
+            self.add_node_with_updated_frequency(node)
+            self.cache[key] = node
+
+    # Method to add a node to the linked list based on its frequency
+    def add_node_with_updated_frequency(self, node):
+        if self.tail is not None and self.head is not None:
+            temp = self.head
+            while temp is not None:
+                if temp.frequency > node.frequency:
+                    if temp == self.head:
+                        node.next = temp
+                        temp.previous = node
+                        self.head = node
+                        break
+                    else:
+                        node.next = temp
+                        node.previous = temp.previous
+                        temp.previous.next = node
+                        temp.previous = node
+                        break
+                else:
+                    temp = temp.next
+                    if temp is None:
+                        self.tail.next = node
+                        node.previous = self.tail
+                        node.next = None
+                        self.tail = node
+                        break
+        else:
+            self.tail = node
+            self.head = self.tail
+
+    # Method to remove a node from the linked list
+    def remove_node(self, node):
+        if node.previous is not None:
+            node.previous.next = node.next
+        else:
+            self.head = node.next
+        if node.next is not None:
+            node.next.previous = node.previous
+        else:
+            self.tail = node.previous
+
+# Main method to run the LFU Cache operations
+if __name__ == "__main__":
+    import sys
+
+    capacity = int(input())
+    operations = int(input())
+    lfu_cache = Main(capacity)
+
+    for _ in range(operations):
+        operation = input()
+        if operation == "PUT":
+            key, value = map(int, input().split())
+            lfu_cache.put(key, value)
+            print(f"Added: ({key}, {value})")
+        elif operation == "GET":
+            key = int(input())
+            result = lfu_cache.get(key)
+            print(f"Retrieved: {result if result is not None else 'null'}")
+
+# End of code

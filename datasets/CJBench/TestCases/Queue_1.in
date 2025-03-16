@@ -1,0 +1,12 @@
+3
+insert 100
+insert 200
+insert 300
+insert 400
+print
+remove
+remove
+remove
+remove
+isEmpty
+exit

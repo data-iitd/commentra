@@ -1,0 +1,53 @@
+
+#include <stdio.h>
+#include <limits.h>
+
+int main() {
+    // Read input values: n (number of elements) and x (a multiplier)
+    int n, x;
+    scanf("%d %d", &n, &x);
+    
+    // Read the list of integers 'a' from input
+    int a[n];
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &a[i]);
+    }
+    
+    // Initialize a 2D array 'b' with INT_MAX values to store minimum values
+    int b[n][n];
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            b[i][j] = INT_MAX;
+        }
+    }
+    
+    // Fill the 2D array 'b' with minimum values from 'a'
+    for (int i = 0; i < n; i++) {
+        int m = a[i];  // Start with the current element
+        for (int j = 0; j < n; j++) {
+            int k = i - j;  // Calculate the index to wrap around
+            if (k < 0) {
+                k += n;  // Wrap around if index is negative
+            }
+            m = (m < a[k])? m : a[k];  // Update m to be the minimum value found
+            b[j][i] = m;  // Store the minimum value in the 2D array 'b'
+        }
+    }
+    
+    // Initialize a large value for comparison
+    int m = INT_MAX;
+    
+    // Calculate the minimum sum of elements in each row of 'b' plus the weighted index
+    for (int i = 0; i < n; i++) {
+        int sum = 0;
+        for (int j = 0; j < n; j++) {
+            sum += b[j][i];  // Sum the elements in the current row of 'b'
+        }
+        m = (m < sum + x * i)? m : sum + x * i;  // Update m with the minimum found
+    }
+    
+    // Print the final minimum value
+    printf("%d\n", m);
+    
+    return 0;
+}

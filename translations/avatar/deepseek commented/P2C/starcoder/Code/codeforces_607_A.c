@@ -1,0 +1,40 @@
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int n;
+    scanf("%d", &n);
+    int *l = (int *)malloc(sizeof(int) * 1000010);
+    int *dp = (int *)malloc(sizeof(int) * 1000010);
+    for (int i = 0; i < 1000010; i++) {
+        l[i] = 0;
+        dp[i] = 0;
+    }
+    for (int i = 0; i < n; i++) {
+        int a, b;
+        scanf("%d %d", &a, &b);
+        l[a] = b;
+    }
+    if (l[0] > 0) {
+        dp[0] = 1;
+    }
+    int mx = 0;
+    for (int i = 1; i < 1000010; i++) {
+        if (l[i] == 0) {
+            dp[i] = dp[i - 1];
+        } else {
+            if (l[i] >= i) {
+                dp[i] = 1;
+            } else {
+                dp[i] = dp[i - l[i] - 1] + 1;
+            }
+        }
+        if (dp[i] > mx) {
+            mx = dp[i];
+        }
+    }
+    printf("%d\n", n - mx);
+    return 0;
+}
+

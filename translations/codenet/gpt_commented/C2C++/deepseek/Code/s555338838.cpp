@@ -1,0 +1,39 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    // Declare variables
+    int key, i, j, len, a[101];
+    
+    // Read the length of the array
+    cin >> len;
+    
+    // Read the elements of the array
+    for(i = 0; i < len; i++) 
+        cin >> a[i];
+
+    // Perform insertion sort
+    for(j = 1; j < len; j++) {
+        // Print the current state of the array
+        for(i = 0; i < len; i++) 
+            cout << (i != 0 ? " " : "") << a[i];
+        cout << endl; // Move to the next line after printing the array
+        
+        // Store the current element to be positioned
+        key = a[j];
+        
+        // Shift elements of the sorted segment to the right
+        for(i = j - 1; i >= 0 && a[i] > key; i--) 
+            a[i + 1] = a[i];
+        
+        // Place the key in its correct position
+        a[i + 1] = key;
+    }
+
+    // Print the sorted array
+    for(i = 0; i < len; i++) 
+        cout << (i != 0 ? " " : "") << a[i];
+    cout << endl; // Move to the next line after printing the sorted array
+    
+    return 0; // End of the program
+}

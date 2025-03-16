@@ -1,0 +1,13 @@
+#include <stdio.h>
+
+int main() {
+    int t, s, q;
+    scanf("%d %d %d", &t, &s, &q);
+    int ans = 0;
+    while (s < t) {
+        s *= q;
+        ans += 1;
+    }
+    printf("%d\n", ans);
+    return 0;
+}

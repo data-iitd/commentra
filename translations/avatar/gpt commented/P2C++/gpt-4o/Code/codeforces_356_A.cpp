@@ -1,0 +1,57 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+int main() {
+    // Read the values of n and m from input, where n is the number of elements and m is the number of operations
+    int n, m;
+    cin >> n >> m;
+
+    // Initialize an output vector with zeros, which will store the final results
+    vector<int> out(n, 0);
+
+    // Create a vector 'comp' that holds values from 2 to n+1 (inclusive)
+    vector<int> comp(n);
+    for (int i = 0; i < n; ++i) {
+        comp[i] = i + 2;
+    }
+
+    // Process each of the m operations
+    for (int i = 0; i < m; ++i) {
+        // Read the values of l, r, and x for the current operation
+        int l, r, x;
+        cin >> l >> r >> x;
+
+        // Start from the left index l
+        int t = l;
+
+        // Continue processing while t is within the range [l, r]
+        while (t <= r) {
+            // Get the next value from the 'comp' vector
+            int next_val = comp[t - 1];
+
+            // If the current position in 'out' is still 0 and t is not equal to x
+            if (out[t - 1] == 0 && t != x) {
+                // Set the output at position t-1 to x
+                out[t - 1] = x;
+            }
+
+            // Update the 'comp' vector at position t-1 based on the current value of t and x
+            comp[t - 1] = (t >= x) ? (r + 1) : x;
+
+            // Move to the next index as determined by next_val
+            t = next_val;
+        }
+    }
+
+    // Print the final output vector, unpacking the values to display them in a single line
+    for (int i = 0; i < n; ++i) {
+        cout << out[i] << (i < n - 1 ? " " : "");
+    }
+    cout << endl;
+
+    return 0;
+}
+
+// <END-OF-CODE>

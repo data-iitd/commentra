@@ -1,0 +1,50 @@
+#include <stdio.h> 
+#include <stdlib.h> 
+
+int main() { 
+    // Create a Scanner object to read input from the console
+    int n; 
+    scanf("%d", &n); 
+    
+    // Arrays to keep track of the number of male and female friends per day
+    int FfriendPerDay[367]; // Array for female friends
+    int MfriendPerDay[367]; // Array for male friends
+    
+    // Variable to store the maximum number of friends present on any day
+    int answer = 0; 
+    
+    // Loop through each friend to gather their availability
+    for (int i = 0; i < n; i++) { 
+        // Read the gender of the friend (M for male, F for female)
+        char c; 
+        scanf("%c", &c); 
+        // Read the start day (a) and end day (b) of availability
+        int a, b; 
+        scanf("%d %d", &a, &b); 
+        
+        // Loop through the days from a to b
+        for (int j = a; j <= b; j++) { 
+            // Increment the count for male or female friends based on gender
+            if (c == 'M') 
+                MfriendPerDay[j]++; 
+            else 
+                FfriendPerDay[j]++; 
+            
+            // Check which gender has more friends on that day and update the answer
+            if (MfriendPerDay[j] < FfriendPerDay[j]) { 
+                // If females are more, check if their count is greater than the current answer
+                if (MfriendPerDay[j] > answer) 
+                    answer = MfriendPerDay[j]; 
+            } else { 
+                // If males are more or equal, check if their count is greater than the current answer
+                if (FfriendPerDay[j] > answer) 
+                    answer = FfriendPerDay[j]; 
+            } 
+        } 
+    }
+    
+    // Output the maximum number of friends present on any day multiplied by 2
+    printf("%d\n", answer * 2); 
+    return 0; 
+} 
+

@@ -1,0 +1,38 @@
+import sys
+
+# Read the number of elements in the array P from the standard input
+N = int(input().strip())
+
+# Initialize an integer array P of size N
+P = list(map(lambda x: int(x) - 1, input().strip().split()))
+
+# Create an empty HashMap to store the indices of the array P corresponding to each unique element
+map_ = {}
+
+# Iterate through each element of the array P and add its index to the HashMap
+for i, value in enumerate(P):
+    map_[value] = i
+
+# Create an empty ArrayList to store the indices of the non-decreasing subsequences
+nglist = []
+
+# Iterate through each index i of the array P, where i < N - 1
+for i in range(N - 1):
+    # If the index i corresponds to a smaller element than the next index, add its index to the ArrayList
+    if map_[i] > map_[i + 1]:
+        nglist.append(i)
+
+# If there are no non-decreasing subsequences, print 0 and exit the program
+if not nglist:
+    print(0)
+    sys.exit()
+
+# Calculate the answer by finding the minimum length of a non-decreasing subsequence
+ans = min(N - nglist[0] - 1, nglist[-1] + 1)
+
+# Iterate through each pair of consecutive indices in the ArrayList nglist and update the answer if necessary
+for i in range(len(nglist) - 1):
+    ans = min(nglist[i] + 1 + N - nglist[i + 1] - 1, ans)
+
+# Print the answer
+print(ans)

@@ -1,0 +1,8 @@
+add 10
+add 20
+add 30
+add 40
+createLoop 2 4
+detectLoop
+print
+exit

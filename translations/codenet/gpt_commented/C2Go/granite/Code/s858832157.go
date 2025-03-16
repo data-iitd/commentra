@@ -1,0 +1,32 @@
+
+package main
+
+import "fmt"
+
+func main() {
+    // Initialize a counter variable 'i' to track the case number and an 'Input' variable to store user input
+    i := 1
+    var Input int
+
+    // Start an infinite loop to continuously accept user input
+    for {
+        // Read an integer input from the user
+        fmt.Scan(&Input)
+
+        // Check if the input is zero, which indicates the end of input
+        if Input == 0 {
+            // Exit the loop if the input is zero
+            break
+        }
+
+        // Print the case number and the input value
+        fmt.Printf("Case %d: %d\n", i, Input)
+
+        // Increment the case number for the next iteration
+        i++
+    }
+
+    // Return 0 to indicate successful completion of the program
+    return 0
+}
+

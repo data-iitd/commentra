@@ -1,0 +1,17 @@
+
+#include <stdio.h> // Step 1: Include necessary headers for input/output operations
+#include <stdlib.h> // Step 1: Include necessary headers for memory allocation and deallocation
+#include <math.h>   // Step 1: Include headers for mathematical operations
+
+int main(){ // Step 3: Read input values
+  int a, b, c, d; // Declare variables to store the input values
+  scanf("%d %d %d %d", &a, &b, &c, &d); // Read the four integer values from the user
+
+  // Step 4: Perform calculations
+  int area = (a - c) * (b - d); // Calculate the area of the rectangle using the given coordinates
+
+  // Step 5: Output the result
+  printf("%d\n", area); // Print the calculated area to the console
+
+  return 0; // Step 6: Return 0 to indicate successful execution of the program
+}

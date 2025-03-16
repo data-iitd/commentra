@@ -1,0 +1,130 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+// Segment structure represents a segment tree data structure
+typedef struct {
+    int n, h, i, chunk;
+    int *unit;
+    int **bucket;
+} Segment;
+
+// Function to initialize the Segment struct with the given size n
+void init(Segment *seg, int n) {
+    seg->n = n;
+    seg->unit = (int *)malloc(sizeof(int));
+    seg->unit[0] = 1;
+    seg->bucket = (int **)malloc(sizeof(int *));
+    seg->bucket[0] = (int *)malloc(n * sizeof(int));
+
+    // Calculate the chunk size for the segment tree
+    int chunk = 8;
+    for (int i = 0; n > 1; i++) {
+        n = (n - 1) / chunk + 1;
+        seg->bucket = (int **)realloc(seg->bucket, (i + 2) * sizeof(int *));
+        seg->bucket[i + 1] = (int *)malloc(n * sizeof(int));
+        seg->unit = (int *)realloc(seg->unit, (i + 2) * sizeof(int));
+        seg->unit[i + 1] = seg->unit[i] * chunk;
+    }
+    seg->h = (sizeof(seg->unit) / sizeof(seg->unit[0]));
+    seg->chunk = chunk;
+}
+
+// Function to update the segment tree with the given index and value
+void maximize(Segment *seg, int index, int value) {
+    // Update the leaf node with the given index and value
+    seg->bucket[0][index] = value;
+
+    // Propagate the update to the parent nodes
+    for (seg->i = 0; seg->i < seg->h - 1; seg->i++) {
+        int s = index - index % seg->chunk;
+        int t = s + seg->chunk;
+        if (t > seg->n) {
+            t = seg->n;
+        }
+        int parent = index / seg->chunk;
+        int max = 0;
+        for (int i = s; i < t; i++) {
+            if (max < seg->bucket[seg->i][i]) {
+                max = seg->bucket[seg->i][i];
+            }
+        }
+        seg->bucket[seg->i + 1][parent] = max;
+        index /= seg->chunk;
+    }
+}
+
+// Function to return the index of the maximum value in the current segment
+int top(Segment *seg) {
+    int index = 0;
+    for (seg->i = seg->h - 2; seg->i >= 0; seg->i--) {
+        int s = index * seg->chunk;
+        int t = s + seg->chunk;
+        if (t > seg->n) {
+            t = seg->n;
+        }
+        for (int i = s; i < t; i++) {
+            if (seg->bucket[seg->i][i] == seg->bucket[seg->i + 1][index]) {
+                index = i;
+                break;
+            }
+        }
+    }
+    return index;
+}
+
+// Main function is the entry point of the program
+int main(int argc, char *argv[]) {
+    // Open the standard input file if a command-line argument is provided
+    FILE *fp = stdin;
+    if (argc > 1) {
+        fp = fopen(argv[1], "r");
+        if (!fp) {
+            perror("Failed to open file");
+            return EXIT_FAILURE;
+        }
+    }
+
+    // Read the first two integers from the input
+    int n, m;
+    fscanf(fp, "%d %d", &n, &m);
+
+    // Initialize the Segment struct with the given size n
+    Segment seg;
+    init(&seg, n);
+
+    // Process the input data by maximizing the segments
+    for (int i = 0; i < n; i++) {
+        int value;
+        fscanf(fp, "%d", &value);
+        maximize(&seg, i, value);
+    }
+    for (int i = 0; i < m; i++) {
+        maximize(&seg, top(&seg), seg.bucket[seg.h - 1][0] >> 1);
+    }
+
+    // Calculate the answer
+    long long ans = 0;
+    for (int i = 0; i < n; i++) {
+        ans += seg.bucket[0][i];
+    }
+
+    // Print the answer to the output
+    printf("%lld\n", ans);
+
+    // Free allocated memory
+    for (int i = 0; i < seg.h; i++) {
+        free(seg.bucket[i]);
+    }
+    free(seg.bucket);
+    free(seg.unit);
+
+    // Close the file if it was opened
+    if (fp != stdin) {
+        fclose(fp);
+    }
+
+    return 0;
+}
+
+// <END-OF-CODE>

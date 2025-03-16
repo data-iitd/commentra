@@ -1,0 +1,3 @@
+Pattern matches:
+ab: [0, 2, 4, 6]
+ba: [1, 3, 5]

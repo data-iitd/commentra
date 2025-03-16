@@ -1,0 +1,61 @@
+
+
+import sys
+
+def search_pattern(text, pattern):
+    state_transition_table = compute_state_transition_table(pattern)
+    finite_automata = FiniteAutomata(state_transition_table)
+    matches = set()
+    for i in range(len(text)):
+        finite_automata.consume(text[i])
+        if finite_automata.state == len(pattern):
+            matches.add(i - len(pattern) + 1)
+    return matches
+
+def compute_state_transition_table(pattern):
+    state_transition_table = [[0 for _ in range(256)] for _ in range(len(pattern) + 1)]
+    for state in range(len(pattern) + 1):
+        for x in range(256):
+            state_transition_table[state][x] = get_next_state(pattern, len(pattern), state, x)
+    return state_transition_table
+
+def get_next_state(pattern, pattern_length, state, x):
+    if state < pattern_length and x == ord(pattern[state]):
+        return state + 1
+    for ns in range(state, 0, -1):
+        if ord(pattern[ns - 1]) == x:
+            match = True
+            for i in range(0, ns - 1):
+                if pattern[i]!= pattern[state - ns + i + 1]:
+                    match = False
+                    break
+            if match:
+                return ns
+    return 0
+
+class FiniteAutomata:
+    def __init__(self, state_transition_table):
+        self.state = 0
+        self.state_transition_table = state_transition_table
+
+    def consume(self, input):
+        self.state = self.state_transition_table[self.state][ord(input)]
+
+    @property
+    def state(self):
+        return self._state
+
+    @state.setter
+    def state(self, value):
+        self._state = value
+
+if __name__ == "__main__":
+    text = sys.stdin.readline().strip()
+    pattern = sys.stdin.readline().strip()
+    matches = search_pattern(text, pattern)
+    if not matches:
+        print("No match found.")
+    else:
+        print("Pattern found at indices:", ", ".join(map(str, matches)))
+
+Translate the above Python code to C++ and end with comment "

@@ -1,0 +1,7 @@
+Added: 10
+Added: 20
+Added: 30
+Added: 40
+Loop created between positions 2 and 4
+Loop detected: true
+10 -> 20 -> 30 -> 40 -> 20 -> 30 -> 40 -> 20 -> 30 -> 40 -> 20 -> 30 -> 40 -> 20 -> 30 -> 40 -> 20 -> 30 -> 40 -> 20 -> ... (loop detected)

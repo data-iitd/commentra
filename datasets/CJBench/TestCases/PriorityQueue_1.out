@@ -1,0 +1,11 @@
+Inserted: 30
+Inserted: 40
+Inserted: 50
+Error: Queue is full
+Peek: 50
+Removed: 50
+Peek: 40
+Removed: 40
+Peek: 30
+Removed: 30
+Is empty: true

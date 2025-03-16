@@ -1,0 +1,42 @@
+
+package main
+
+import (
+    "bufio"
+    "fmt"
+    "os"
+    "strconv"
+)
+
+func main() {
+    // Declare variables to store input value and average
+    var a float64
+    var ave float64 = 0
+    var i int
+    
+    // Create a new scanner to read input from the user
+    scanner := bufio.NewScanner(os.Stdin)
+    
+    // Loop to read 5 input values
+    for i = 0; i < 5; i++ {
+        // Read a double value from user input
+        scanner.Scan()
+        a, _ = strconv.ParseFloat(scanner.Text(), 64)
+        
+        // Check if the input value is less than or equal to 40
+        if a <= 40 {
+            // If so, add 40 to the average instead of the input value
+            ave += 40
+        } else {
+            // Otherwise, add the input value to the average
+            ave += a
+        }
+    }
+    
+    // Calculate the average by dividing the total by the number of inputs (5)
+    ave /= 5.0
+    
+    // Print the calculated average, formatted as an integer
+    fmt.Printf("%.0f\n", ave)
+}
+

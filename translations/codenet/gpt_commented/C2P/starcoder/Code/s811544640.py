@@ -1,0 +1,21 @@
+# <START-OF-CODE>
+
+# Declare three integer variables a, b, and c
+a = 0
+b = 0
+c = 0
+
+# Read three integers from user input
+a = int(input())
+b = int(input())
+c = int(input())
+
+# Check if b is greater than the product of a and c
+if b > a * c:
+    # If true, print the value of c
+    print(c)
+else:
+    # If false, print the result of b divided by a
+    print(b / a)
+
+# 

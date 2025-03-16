@@ -1,0 +1,74 @@
+#include <iostream>
+#include <vector>
+#include <string>
+#include <sstream>
+
+using namespace std;
+
+// Function prototypes
+int checkSubNumbers(int N, int P, const string& S);
+int checkTwoOrFive(int N, int P, const string& S);
+int checkNotTwoNorFive(int N, int P, const string& S);
+
+int main() {
+    int N, P;
+    string S;
+
+    // Read N, P, and S from input
+    cin >> N >> P >> S;
+
+    // Call the checkSubNumbers function and print the result
+    int answer = checkSubNumbers(N, P, S);
+    cout << answer << endl;
+
+    return 0;
+}
+
+// checkSubNumbers determines whether P is 2 or 5 and calls the appropriate helper function.
+int checkSubNumbers(int N, int P, const string& S) {
+    if (P == 2 || P == 5) {
+        return checkTwoOrFive(N, P, S); // If P is 2 or 5, call checkTwoOrFive.
+    } else {
+        return checkNotTwoNorFive(N, P, S); // Otherwise, call checkNotTwoNorFive.
+    }
+}
+
+// checkTwoOrFive iterates over the string S from the end to the beginning, checking if the last digit of each substring is divisible by P.
+int checkTwoOrFive(int N, int P, const string& S) {
+    int answer = 0;
+    for (int i = N - 1; i >= 0; i--) {
+        int n = S[i] - '0'; // Convert the current character to an integer.
+        if (n % P == 0) { // Check if the integer is divisible by P.
+            answer += i + 1; // If it is, add the position to the answer.
+        }
+    }
+    return answer;
+}
+
+// checkNotTwoNorFive uses a rolling hash approach to efficiently determine the number of substrings of S that are divisible by P.
+int checkNotTwoNorFive(int N, int P, const string& S) {
+    int multiplier = 1; // 10^i % P
+    int answer = 0;
+    vector<int> remainderLookup(P, 0); // Create a vector to store the counts of remainders.
+    int prevRemainder = -1;
+    int digit, remainder, count;
+
+    for (int i = N - 1; i >= 0; i--) {
+        digit = S[i] - '0'; // Convert the current character to an integer.
+        if (prevRemainder == -1) { // If it's the first digit, calculate the remainder directly.
+            remainder = digit % P;
+        } else { // Otherwise, use the rolling hash approach.
+            remainder = ((multiplier * digit) % P + prevRemainder) % P;
+        }
+        if (remainder == 0) { // If the remainder is 0, increment the answer.
+            answer++;
+        }
+        count = remainderLookup[remainder]; // Get the current count of this remainder.
+        answer += count; // Add the count to the answer.
+        count++; // Increment the count.
+        remainderLookup[remainder] = count; // Update the count in the vector.
+        prevRemainder = remainder; // Update the previous remainder.
+        multiplier = (multiplier * 10) % P; // Update the multiplier for the next iteration.
+    }
+    return answer;
+}

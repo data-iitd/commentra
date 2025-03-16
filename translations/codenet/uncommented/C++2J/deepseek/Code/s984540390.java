@@ -1,0 +1,17 @@
+public class Main {
+    public static void main(String[] args) {
+        java.util.Scanner scanner = new java.util.Scanner(System.in);
+        long h = scanner.nextLong();
+        long ans = 0;
+        long cnt = 1;
+        while (h != 1) {
+            if (h % 2 != 0) {
+                h--;
+            }
+            h /= 2;
+            cnt *= 2;
+            ans += cnt;
+        }
+        System.out.println(ans + 1);
+    }
+}

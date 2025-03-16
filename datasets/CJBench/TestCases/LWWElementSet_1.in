@@ -1,0 +1,9 @@
+4
+ADD keyA 10 ADDS
+ADD keyB 15 ADDS
+REMOVE keyA 20 REMOVALS
+ADD keyC 25 ADDS
+3
+keyA
+keyB
+keyC

@@ -1,0 +1,38 @@
+package main
+
+import "fmt"
+
+func rememberTheNumber(nums []int, i int, operations []string, ans []int) {
+	if i >= 3 {
+		return
+	}
+	for j := 0; j < 4; j++ {
+		for k := j + 1; k < 4; k++ {
+			if nums[j] != -1 && nums[k] != -1 {
+				s := nums[j]
+				nums[j] = -1
+				t := nums[k]
+				if operations[i] == "+" {
+					nums[k] = s + t
+				} else if operations[i] == "*" {
+					nums[k] = s * t
+				}
+				if i == 2 && nums[k] < ans[0] {
+					ans[0] = nums[k]
+				}
+				rememberTheNumber(nums, i+1, operations, ans)
+				nums[j] = s
+				nums[k] = t
+			}
+		}
+	}
+}
+
+func main() {
+	nums := []int{1, 2, 3, 4}
+	operations := []string{"+", "-", "*"}
+	ans := []int{10000000000000000000000000}
+	rememberTheNumber(nums, 0, operations, ans)
+	fmt.Println(ans[0])
+}
+

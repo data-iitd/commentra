@@ -1,0 +1,31 @@
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    long mod = ( long ) 1e9 + 7 ;
+    int n, k, q, l, r, i, j;
+    scanf ( "%d %d", &n, &k ) ;
+    int *len = ( int * ) malloc ( sizeof ( int ) * n ) ;
+    q = 0 ;
+    l = 1 ;
+    while ( l <= n ) {
+        r = n / ( n / l ) ;
+        len [ q ++ ] = r - l + 1 ;
+        l = r + 1 ;
+    }
+    long *dp = ( long * ) malloc ( sizeof ( long ) * k * ( q + 1 ) ) ;
+    for ( j = 1 ; j <= q ; j ++ ) {
+        dp [ j ] = len [ j - 1 ] + dp [ j - 1 ] ;
+    }
+    for ( i = 1 ; i < k ; i ++ ) {
+        for ( j = 1 ; j <= q ; j ++ ) {
+            dp [ i * ( q + 1 ) + j ] = dp [ i * ( q + 1 ) + j - 1 ] + dp [ ( i - 1 ) * ( q + 1 ) + q - j + 1 ] * len [ j - 1 ] ;
+            dp [ i * ( q + 1 ) + j ] %= mod ;
+        }
+    }
+    printf ( "%ld\n", dp [ k * ( q + 1 ) - 1 ] ) ;
+    free ( len ) ;
+    free ( dp ) ;
+    return 0;
+}

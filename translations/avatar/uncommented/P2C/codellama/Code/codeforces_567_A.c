@@ -1,0 +1,37 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main ( ) {
+    int inp;
+    scanf ( "%d", &inp );
+    int * lista = ( int * ) malloc ( inp * sizeof ( int ) );
+    for ( int i = 0; i < inp; i++ ) {
+        scanf ( "%d", &lista [ i ] );
+    }
+    for ( int i = 0; i < inp; i++ ) {
+        if ( i == 0 ) {
+            printf ( "%d %d\n", lista [ i + 1 ] - lista [ i ], lista [ inp - 1 ] - lista [ i ] );
+            continue;
+        }
+        else if ( i == inp - 1 ) {
+            printf ( "%d %d\n", lista [ inp - 1 ] - lista [ inp - 2 ], lista [ inp - 1 ] - lista [ 0 ] );
+            continue;
+        }
+        else if ( lista [ i ] - lista [ i - 1 ] > lista [ i + 1 ] - lista [ i ] ) {
+            printf ( "%d ", lista [ i + 1 ] - lista [ i ] );
+        }
+        else {
+            printf ( "%d ", lista [ i ] - lista [ i - 1 ] );
+        }
+        if ( lista [ inp - 1 ] - lista [ i ] > lista [ i ] - lista [ 0 ] ) {
+            printf ( "%d\n", lista [ inp - 1 ] - lista [ i ] );
+        }
+        else {
+            printf ( "%d\n", lista [ i ] - lista [ 0 ] );
+        }
+    }
+    free ( lista );
+    return 0;
+}
+

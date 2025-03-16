@@ -1,0 +1,31 @@
+public class Main {
+    public static void main(String[] args) {
+        // Declare variables for the number of coins of each type and the target value
+        int A, B, C, X;
+        int kosu = 0; // Counter for the number of combinations that meet the target value
+
+        // Input the number of coins of each type and the target value
+        java.util.Scanner scanner = new java.util.Scanner(System.in);
+        A = scanner.nextInt(); // Number of 10 yen coins
+        B = scanner.nextInt(); // Number of 2 yen coins
+        C = scanner.nextInt(); // Number of 1 yen coins
+        X = scanner.nextInt(); // Target value in yen
+
+        // Convert the target value from yen to the number of 50 yen coins
+        X = X / 50;
+
+        // Iterate through all possible combinations of coins
+        for(int i = 0; i <= A; i++) { // Loop through the number of 10 yen coins
+            for(int j = 0; j <= B; j++) { // Loop through the number of 2 yen coins
+                for(int k = 0; k <= C; k++) { // Loop through the number of 1 yen coins
+                    // Check if the current combination of coins equals the target value
+                    if(X == (10 * i) + (2 * j) + k) 
+                        kosu++; // Increment the counter if the combination matches
+                }
+            }
+        }
+
+        // Output the total number of combinations that meet the target value
+        System.out.println(kosu);
+    }
+}

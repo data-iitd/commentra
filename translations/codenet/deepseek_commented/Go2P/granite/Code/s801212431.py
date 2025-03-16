@@ -1,0 +1,17 @@
+
+import sys
+
+def main():
+    S = input()
+
+    # Initialize counters for '0's and '1's
+    l0, l1 = 0, 0
+    for c in S:
+        if c == '0':
+            l0 += 1
+        else:
+            l1 += 1
+    print(2 * min(l0, l1))
+
+if __name__ == "__main__":
+    main()

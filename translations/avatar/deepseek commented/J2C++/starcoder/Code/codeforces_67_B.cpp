@@ -1,0 +1,153 @@
+#include <iostream>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
+#include <cmath>
+#include <ctime>
+#include <cctype>
+#include <cassert>
+#include <algorithm>
+#include <vector>
+#include <string>
+#include <map>
+#include <set>
+#include <queue>
+#include <stack>
+#include <deque>
+#include <utility>
+#include <bitset>
+using namespace std;
+
+#define rep(i,a,b) for(int i=(a);i<(b);++i)
+#define iter(it,c) for(__typeof((c).begin()) it=(c).begin();it!=(c).end();++it)
+#define riter(it,c) for(__typeof((c).rbegin()) it=(c).rbegin();it!=(c).rend();++it)
+#define all(c) (c).begin(),(c).end()
+#define sz(c) ((int)(c).size())
+#define pb push_back
+#define mp make_pair
+#define x first
+#define y second
+#define sqr(x) ((x)*(x))
+#define sqrt(x) sqrt(double(x))
+#define abs(x) abs(double(x))
+#define pii pair<int,int>
+#define pdd pair<double,double>
+#define pll pair<long long,long long>
+#define vi vector<int>
+#define vll vector<long long>
+#define vpii vector<pii>
+#define vpll vector<pll>
+#define vvi vector<vi>
+#define vvll vector<vll>
+#define vvpii vector<vpii>
+#define vvpll vector<vpll>
+#define vvvvi vector<vvvi>
+#define vvvvll vector<vvvll>
+#define vvvvpii vector<vvvpii>
+#define vvvvpll vector<vvvpll>
+#define vvvvvvi vector<vvvvvi>
+#define vvvvvvll vector<vvvvvll>
+#define vvvvvvpii vector<vvvvvpii>
+#define vvvvvvpll vector<vvvvvpll>
+#define vvvvvvvvi vector<vvvvvvvi>
+#define vvvvvvvvll vector<vvvvvvvll>
+#define vvvvvvvvpii vector<vvvvvvvpii>
+#define vvvvvvvvpll vector<vvvvvvvpll>
+#define vvvvvvvvvvi vector<vvvvvvvvvi>
+#define vvvvvvvvvvll vector<vvvvvvvvvll>
+#define vvvvvvvvvvpii vector<vvvvvvvvvpii>
+#define vvvvvvvvvvpll vector<vvvvvvvvvpll>
+#define vvvvvvvvvvvvi vector<vvvvvvvvvvvi>
+#define vvvvvvvvvvvvll vector<vvvvvvvvvvvll>
+#define vvvvvvvvvvvvpii vector<vvvvvvvvvvvpii>
+#define vvvvvvvvvvvvpll vector<vvvvvvvvvvvpll>
+#define vvvvvvvvvvvvvvi vector<vvvvvvvvvvvvvi>
+#define vvvvvvvvvvvvvvll vector<vvvvvvvvvvvvvll>
+#define vvvvvvvvvvvvvvpii vector<vvvvvvvvvvvvvpii>
+#define vvvvvvvvvvvvvvpll vector<vvvvvvvvvvvvvpll>
+#define vvvvvvvvvvvvvvvvi vector<vvvvvvvvvvvvvvvi>
+#define vvvvvvvvvvvvvvvvll vector<vvvvvvvvvvvvvvvll>
+#define vvvvvvvvvvvvvvvvpii vector<vvvvvvvvvvvvvvvpii>
+#define vvvvvvvvvvvvvvvvpll vector<vvvvvvvvvvvvvvvpll>
+#define vvvvvvvvvvvvvvvvvvi vector<vvvvvvvvvvvvvvvvvi>
+#define vvvvvvvvvvvvvvvvvvll vector<vvvvvvvvvvvvvvvvvll>
+#define vvvvvvvvvvvvvvvvvvpii vector<vvvvvvvvvvvvvvvvvpii>
+#define vvvvvvvvvvvvvvvvvvpll vector<vvvvvvvvvvvvvvvvvpll>
+#define vvvvvvvvvvvvvvvvvvvvi vector<vvvvvvvvvvvvvvvvvvvi>
+#define vvvvvvvvvvvvvvvvvvvvll vector<vvvvvvvvvvvvvvvvvvvll>
+#define vvvvvvvvvvvvvvvvvvvvpii vector<vvvvvvvvvvvvvvvvvvvpii>
+#define vvvvvvvvvvvvvvvvvvvvpll vector<vvvvvvvvvvvvvvvvvvvpll>
+#define vvvvvvvvvvvvvvvvvvvvvvi vector<vvvvvvvvvvvvvvvvvvvvvi>
+#define vvvvvvvvvvvvvvvvvvvvvvll vector<vvvvvvvvvvvvvvvvvvvvvll>
+#define vvvvvvvvvvvvvvvvvvvvvvpii vector<vvvvvvvvvvvvvvvvvvvvvpii>
+#define vvvvvvvvvvvvvvvvvvvvvvpll vector<vvvvvvvvvvvvvvvvvvvvvpll>
+#define vvvvvvvvvvvvvvvvvvvvvvvvi vector<vvvvvvvvvvvvvvvvvvvvvvvi>
+#define vvvvvvvvvvvvvvvvvvvvvvvvll vector<vvvvvvvvvvvvvvvvvvvvvvvll>
+#define vvvvvvvvvvvvvvvvvvvvvvvvpii vector<vvvvvvvvvvvvvvvvvvvvvvvpii>
+#define vvvvvvvvvvvvvvvvvvvvvvvvpll vector<vvvvvvvvvvvvvvvvvvvvvvvpll>
+#define vvvvvvvvvvvvvvvvvvvvvvvvvvi vector<vvvvvvvvvvvvvvvvvvvvvvvvvi>
+#define vvvvvvvvvvvvvvvvvvvvvvvvvvll vector<vvvvvvvvvvvvvvvvvvvvvvvvvll>
+#define vvvvvvvvvvvvvvvvvvvvvvvvvvpii vector<vvvvvvvvvvvvvvvvvvvvvvvvvpii>
+#define vvvvvvvvvvvvvvvvvvvvvvvvvvpll vector<vvvvvvvvvvvvvvvvvvvvvvvvvpll>
+#define vvvvvvvvvvvvvvvvvvvvvvvvvvvvi vector<vvvvvvvvvvvvvvvvvvvvvvvvvvvi>
+#define vvvvvvvvvvvvvvvvvvvvvvvvvvvvll vector<vvvvvvvvvvvvvvvvvvvvvvvvvvvll>
+#define vvvvvvvvvvvvvvvvvvvvvvvvvvvvpii vector<vvvvvvvvvvvvvvvvvvvvvvvvvvvpii>
+#define vvvvvvvvvvvvvvvvvvvvvvvvvvvvpll vector<vvvvvvvvvvvvvvvvvvvvvvvvvvvpll>
+#define vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvi vector<vvvvvvvvvvvvvvvvvvvvvvvvvvvvvi>
+#define vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvll vector<vvvvvvvvvvvvvvvvvvvvvvvvvvvvvll>
+#define vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvpii vector<vvvvvvvvvvvvvvvvvvvvvvvvvvvvvpii>
+#define vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvpll vector<vvvvvvvvvvvvvvvvvvvvvvvvvvvvvpll>
+#define vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvi vector<vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvi>
+#define vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvll vector<vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvll>
+#define vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvpii vector<vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvpii>
+#define vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvpll vector<vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvpll>
+#define vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvi vector<vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvi>
+#define vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvll vector<vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvll>
+#define vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvpii vector<vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvpii>
+#define vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvpll vector<vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvpll>
+#define vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvi vector<vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvi>
+#define vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvll vector<vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvll>
+#define vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvpii vector<vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvpii>
+#define vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvpll vector<vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvpll>
+#define vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvi vector<vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvi>
+#define vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvll vector<vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvll>
+#define vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvpii vector<vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvpii>
+#define vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvpll vector<vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvpll>
+#define vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvi vector<vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvi>
+#define vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvll vector<vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvll>
+#define vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvpii vector<vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvpii>
+#define vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvpll vector<vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvpll>
+#define vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvi vector<vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvi>
+#define vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvll vector<vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvll>
+#define vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvpii vector<vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvpii>
+#define vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvpll vector<vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvpll>
+#define vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvi vector<vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvi>
+#define vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvll vector<vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvll>
+#define vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvpii vector<vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvpii>
+#define vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvpll vector<vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvpll>
+#define vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvi vector<vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvi>
+#define vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvll vector<vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvll>
+#define vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvpii vector<vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvpii>
+#define vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvpll vector<vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvpll>
+#define vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvi vector<vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvi>
+#define vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvll vector<vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvll>
+#define vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvpii vector<vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvpii>
+#define vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvpll vector<vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvpll>
+#define vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvi vector<vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvi>
+#define vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvll vector<vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvll>
+#define vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvpii vector<vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvpii>
+#define vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvpll vector<vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvpll>
+#define vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvi vector<vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvi>
+#define vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvll vector<vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvll>
+#define vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvpii vector<vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvpii>
+#define vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvpll vector<vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvpll>
+#define vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvi vector<vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvi>
+#define vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvll vector<vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvll>
+#define vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvpii vector<vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvpii>
+#define vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvpll vector<vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvpll>
+#define vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvi vector<vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvi>
+#define vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvll vector<vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvll>
+#define vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvpii vector<vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvpii>
+#define vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvpll vector<vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvpll>
+#define vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvi vector<vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvi>
+#define vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvll vector<vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv

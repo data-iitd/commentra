@@ -1,0 +1,57 @@
+package main
+
+import (
+	"fmt"
+	"math"
+	"os"
+	"strconv"
+)
+
+func main() {
+	// Declare variables to hold scores and lengths
+	var a, t, h, lt, lh, tt, hh, l int
+
+	// Read the number of rounds
+	fmt.Scan(&a)
+
+	// Declare strings to hold names of players
+	var taro, hana string
+
+	// Loop through each round
+	for i := 0; i < a; i++ {
+		// Read the names of the players for the current round
+		fmt.Scan(&taro, &hana)
+
+		// Get the lengths of the names
+		lt = len(taro)
+		lh = len(hana)
+
+		// Determine the longer name length
+		if lt > lh {
+			l = lt // Taro's name is longer
+		} else {
+			l = lh // Hana's name is longer or they are equal
+		}
+
+		// Initialize scores for this round
+		tt = 0
+		hh = 0
+
+		// Compare the names and update scores based on the comparison
+		if taro > hana {
+			t = t + 3 // Taro wins this round
+		} else if hana > taro {
+			h = h + 3 // Hana wins this round
+		} else if hana == taro {
+			h = h + 1 // Tie: both get 1 point
+			t = t + 1 // Tie: both get 1 point
+		}
+	}
+
+	// Output the final scores of Taro and Hana
+	fmt.Println(t, h)
+
+	// End of the program
+	os.Exit(0)
+}
+

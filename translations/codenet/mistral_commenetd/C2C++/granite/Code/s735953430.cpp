@@ -1,0 +1,48 @@
+
+#include <iostream>
+#include <cmath>
+#include <string>
+
+using namespace std;
+
+int main() {
+  int X, N;
+  cin >> X >> N;
+
+  if( N==0 ){
+    cout << X << endl;
+    return 0;
+  }
+
+  int plus[256];
+  int minus[256];
+  for(int i=0;i<256;i++){
+    plus[i] = i;
+    minus[i] = (-1*i);
+  }
+
+  for(int i=0;i<N;i++){
+    int j;
+    cin >> j;
+    plus[j] = 0;
+  }
+
+  int i_min=0;
+  int min = 1000;
+
+  for(int i=255;i>=0;i--){
+    if( plus[i] == 0 && i>0 ){
+      continue;
+    }
+    int k = X-plus[i];
+    if(k<0){ k *= -1; }
+    if( k<=min ){
+      min = k;
+      i_min = i;
+    }
+  }
+
+  cout << i_min << endl;
+
+  return 0;
+}

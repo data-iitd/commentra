@@ -1,0 +1,43 @@
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int n, i, value, result, pos, flag;
+    scanf("%d", &n); // Read the number of elements in the list `a`
+    int *a = (int *)malloc(n * sizeof(int)); // Allocate memory for the list `a`
+    
+    for (i = 0; i < n; i++) {
+        scanf("%d", &value); // Read each integer value
+        a[i] = value; // Add the value to the list `a`
+    }
+    
+    if (a[0] > 15) {
+        result = 15; // If the first element is greater than 15, set result to 15
+    } else {
+        for (i = 1; i < n; i++) {
+            if (a[i] - a[i - 1] > 15) {
+                pos = i - 1; // Find the position where the difference is greater than 15
+                flag = 1; // Set flag to 1 indicating such a position is found
+                break; // Exit the loop
+            }
+        }
+        if (flag == 1) {
+            result = a[pos] + 15; // Set result to the element at pos plus 15
+        } else {
+            result = a[n - 1] + 15; // Otherwise, set result to the last element plus 15
+        }
+    }
+    
+    if (result > 90) {
+        result = 90; // If result is greater than 90, set it to 90
+    }
+    
+    printf("%d\n", result); // Print the final result
+    
+    free(a); // Free the memory allocated for the list `a`
+    
+    return 0;
+}
+

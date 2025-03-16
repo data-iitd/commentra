@@ -1,0 +1,139 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#include<math.h>
+#include<stdbool.h>
+
+#define ll long long
+#define ull unsigned long long
+#define pb push_back
+#define pf push_front
+#define mp make_pair
+#define ff first
+#define ss second
+#define sz(x) (int)(x).size()
+#define all(x) (x).begin(),(x).end()
+#define rall(x) (x).rbegin(),(x).rend()
+#define it iterator
+#define vi vector<int>
+#define vll vector<ll>
+#define vvi vector<vi>
+#define vpi vector<pair<int,int> >
+#define vpl vector<pair<ll,ll> >
+#define vpii vector<pair<int,pi> >
+#define vplll vector<pair<ll,pll> >
+#define pii pair<int,int>
+#define pll pair<ll,ll>
+#define ppi pair<pair<int,int>,int>
+#define ppl pair<pair<ll,ll>,ll>
+#define ppii pair<pair<int,int>,pi>
+#define pplll pair<pair<ll,ll>,pll>
+#define pi pair<int,pi>
+#define pl pair<ll,pll>
+#define pii pair<int,pii>
+#define plll pair<ll,ppl>
+#define piii pair<int,piii>
+#define pllll pair<ll,ppll>
+#define ppiii pair<pair<int,int>,piii>
+#define ppllll pair<pair<ll,ll>,ppll>
+#define ppiiii pair<pair<int,int>,piiii>
+#define pplllll pair<pair<ll,ll>,pplll>
+#define ppiiiii pair<pair<int,int>,piiiii>
+#define ppllllll pair<pair<ll,ll>,ppllll>
+#define ppiiiiii pair<pair<int,int>,piiiiii>
+#define pplllllll pair<pair<ll,ll>,pplllll>
+#define ppiiiiiii pair<pair<int,int>,piiiiiii>
+#define ppllllllll pair<pair<ll,ll>,ppllllll>
+#define ppiiiiiiii pair<pair<int,int>,piiiiiiii>
+#define pplllllllll pair<pair<ll,ll>,pplllllll>
+#define ppiiiiiiiii pair<pair<int,int>,piiiiiiiii>
+#define ppllllllllll pair<pair<ll,ll>,ppllllllll>
+#define ppiiiiiiiiii pair<pair<int,int>,piiiiiiiiii>
+#define pplllllllllll pair<pair<ll,ll>,pplllllllll>
+#define ppiiiiiiiiiii pair<pair<int,int>,piiiiiiiiiii>
+#define ppllllllllllll pair<pair<ll,ll>,ppllllllllll>
+#define ppiiiiiiiiiiii pair<pair<int,int>,piiiiiiiiiiii>
+#define pplllllllllllll pair<pair<ll,ll>,pplllllllllll>
+#define ppiiiiiiiiiiiii pair<pair<int,int>,piiiiiiiiiiiii>
+#define ppllllllllllllll pair<pair<ll,ll>,ppllllllllllll>
+#define ppiiiiiiiiiiiiii pair<pair<int,int>,piiiiiiiiiiiiii>
+#define pplllllllllllllll pair<pair<ll,ll>,pplllllllllllll>
+#define ppiiiiiiiiiiiiiii pair<pair<int,int>,piiiiiiiiiiiiiii>
+#define ppllllllllllllllll pair<pair<ll,ll>,ppllllllllllllll>
+#define ppiiiiiiiiiiiiiiii pair<pair<int,int>,piiiiiiiiiiiiiiii>
+#define pplllllllllllllllll pair<pair<ll,ll>,pplllllllllllllll>
+#define ppiiiiiiiiiiiiiiiii pair<pair<int,int>,piiiiiiiiiiiiiiiii>
+#define ppllllllllllllllllll pair<pair<ll,ll>,ppllllllllllllllll>
+#define ppiiiiiiiiiiiiiiiiii pair<pair<int,int>,piiiiiiiiiiiiiiiiii>
+#define pplllllllllllllllllll pair<pair<ll,ll>,pplllllllllllllllll>
+#define ppiiiiiiiiiiiiiiiiiii pair<pair<int,int>,piiiiiiiiiiiiiiiiiii>
+#define ppllllllllllllllllllll pair<pair<ll,ll>,ppllllllllllllllllll>
+#define ppiiiiiiiiiiiiiiiiiiii pair<pair<int,int>,piiiiiiiiiiiiiiiiiiii>
+#define pplllllllllllllllllllll pair<pair<ll,ll>,pplllllllllllllllllll>
+#define ppiiiiiiiiiiiiiiiiiiiii pair<pair<int,int>,piiiiiiiiiiiiiiiiiiiii>
+#define ppllllllllllllllllllllll pair<pair<ll,ll>,ppllllllllllllllllllll>
+#define ppiiiiiiiiiiiiiiiiiiiiii pair<pair<int,int>,piiiiiiiiiiiiiiiiiiiiii>
+#define pplllllllllllllllllllllll pair<pair<ll,ll>,pplllllllllllllllllllll>
+#define ppiiiiiiiiiiiiiiiiiiiiiii pair<pair<int,int>,piiiiiiiiiiiiiiiiiiiiiii>
+#define ppllllllllllllllllllllllll pair<pair<ll,ll>,ppllllllllllllllllllllll>
+#define ppiiiiiiiiiiiiiiiiiiiiiiii pair<pair<int,int>,piiiiiiiiiiiiiiiiiiiiiiii>
+#define pplllllllllllllllllllllllll pair<pair<ll,ll>,pplllllllllllllllllllllll>
+#define ppiiiiiiiiiiiiiiiiiiiiiiiii pair<pair<int,int>,piiiiiiiiiiiiiiiiiiiiiiiii>
+#define ppllllllllllllllllllllllllll pair<pair<ll,ll>,ppllllllllllllllllllllllll>
+#define ppiiiiiiiiiiiiiiiiiiiiiiiiii pair<pair<int,int>,piiiiiiiiiiiiiiiiiiiiiiiiii>
+#define pplllllllllllllllllllllllllll pair<pair<ll,ll>,pplllllllllllllllllllllllll>
+#define ppiiiiiiiiiiiiiiiiiiiiiiiiiii pair<pair<int,int>,piiiiiiiiiiiiiiiiiiiiiiiiiii>
+#define ppllllllllllllllllllllllllllll pair<pair<ll,ll>,ppllllllllllllllllllllllllll>
+#define ppiiiiiiiiiiiiiiiiiiiiiiiiiiii pair<pair<int,int>,piiiiiiiiiiiiiiiiiiiiiiiiiiii>
+#define pplllllllllllllllllllllllllllll pair<pair<ll,ll>,pplllllllllllllllllllllllllll>
+#define ppiiiiiiiiiiiiiiiiiiiiiiiiiiiii pair<pair<int,int>,piiiiiiiiiiiiiiiiiiiiiiiiiiiii>
+#define ppllllllllllllllllllllllllllllll pair<pair<ll,ll>,ppllllllllllllllllllllllllllll>
+#define ppiiiiiiiiiiiiiiiiiiiiiiiiiiiiii pair<pair<int,int>,piiiiiiiiiiiiiiiiiiiiiiiiiiiiii>
+#define pplllllllllllllllllllllllllllllll pair<pair<ll,ll>,pplllllllllllllllllllllllllllll>
+#define ppiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii pair<pair<int,int>,piiiiiiiiiiiiiiiiiiiiiiiiiiiiiii>
+#define ppllllllllllllllllllllllllllllllll pair<pair<ll,ll>,ppllllllllllllllllllllllllllllll>
+#define ppiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii pair<pair<int,int>,piiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii>
+#define pplllllllllllllllllllllllllllllllll pair<pair<ll,ll>,pplllllllllllllllllllllllllllllll>
+#define ppiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii pair<pair<int,int>,piiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii>
+#define ppllllllllllllllllllllllllllllllllll pair<pair<ll,ll>,ppllllllllllllllllllllllllllllllll>
+#define ppiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii pair<pair<int,int>,piiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii>
+#define pplllllllllllllllllllllllllllllllllll pair<pair<ll,ll>,pplllllllllllllllllllllllllllllllll>
+#define ppiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii pair<pair<int,int>,piiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii>
+#define ppllllllllllllllllllllllllllllllllllll pair<pair<ll,ll>,ppllllllllllllllllllllllllllllllllll>
+#define ppiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii pair<pair<int,int>,piiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii>
+#define pplllllllllllllllllllllllllllllllllllll pair<pair<ll,ll>,pplllllllllllllllllllllllllllllllllll>
+#define ppiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii pair<pair<int,int>,piiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii>
+#define ppllllllllllllllllllllllllllllllllllllll pair<pair<ll,ll>,ppllllllllllllllllllllllllllllllllllll>
+#define ppiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii pair<pair<int,int>,piiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii>
+#define pplllllllllllllllllllllllllllllllllllllll pair<pair<ll,ll>,pplllllllllllllllllllllllllllllllllllll>
+#define ppiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii pair<pair<int,int>,piiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii>
+#define ppllllllllllllllllllllllllllllllllllllllll pair<pair<ll,ll>,ppllllllllllllllllllllllllllllllllllllll>
+#define ppiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii pair<pair<int,int>,piiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii>
+#define pplllllllllllllllllllllllllllllllllllllllll pair<pair<ll,ll>,pplllllllllllllllllllllllllllllllllllllll>
+#define ppiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii pair<pair<int,int>,piiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii>
+#define ppllllllllllllllllllllllllllllllllllllllllll pair<pair<ll,ll>,ppllllllllllllllllllllllllllllllllllllllll>
+#define ppiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii pair<pair<int,int>,piiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii>
+#define pplllllllllllllllllllllllllllllllllllllllllll pair<pair<ll,ll>,pplllllllllllllllllllllllllllllllllllllllll>
+#define ppiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii pair<pair<int,int>,piiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii>
+#define ppllllllllllllllllllllllllllllllllllllllllllll pair<pair<ll,ll>,ppllllllllllllllllllllllllllllllllllllllllll>
+#define ppiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii pair<pair<int,int>,piiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii>
+#define pplllllllllllllllllllllllllllllllllllllllllllll pair<pair<ll,ll>,pplllllllllllllllllllllllllllllllllllllllllll>
+#define ppiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii pair<pair<int,int>,piiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii>
+#define ppllllllllllllllllllllllllllllllllllllllllllllll pair<pair<ll,ll>,ppllllllllllllllllllllllllllllllllllllllllllll>
+#define ppiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii pair<pair<int,int>,piiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii>
+#define pplllllllllllllllllllllllllllllllllllllllllllllll pair<pair<ll,ll>,pplllllllllllllllllllllllllllllllllllllllllllll>
+#define ppiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii pair<pair<int,int>,piiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii>
+#define ppllllllllllllllllllllllllllllllllllllllllllllllll pair<pair<ll,ll>,ppllllllllllllllllllllllllllllllllllllllllllllll>
+#define ppiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii pair<pair<int,int>,piiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii>
+#define pplllllllllllllllllllllllllllllllllllllllllllllllll pair<pair<ll,ll>,pplllllllllllllllllllllllllllllllllllllllllllllll>
+#define ppiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii pair<pair<int,int>,piiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii>
+#define ppllllllllllllllllllllllllllllllllllllllllllllllllll pair<pair<ll,ll>,ppllllllllllllllllllllllllllllllllllllllllllllllll>
+#define ppiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii pair<pair<int,int>,piiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii>
+#define pplllllllllllllllllllllllllllllllllllllllllllllllllll pair<pair<ll,ll>,pplllllllllllllllllllllllllllllllllllllllllllllllll>
+#define ppiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii pair<pair<int,int>,piiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii>
+#define ppllllllllllllllllllllllllllllllllllllllllllllllllllll pair<pair<ll,ll>,ppllllllllllllllllllllllllllllllllllllllllllllllllll>
+#define ppiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii pair<pair<int,int>,piiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii>
+#define pplllllllllllllllllllllllllllllllllllllllllllllllllllll pair<pair<ll,ll>,pplllllllllllllllllllllllllllllllllllllllllllllllllll>
+#define ppiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii pair<pair<int,int>,piiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii>
+#define ppllllllllllllllllllllllllllllllllllllllllllllllllllllll pair<pair<ll,ll>,ppllllllllllllllllllllllllllllllllllllllllllllllllllll>
+#define ppiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii

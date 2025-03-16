@@ -1,0 +1,32 @@
+
+// Read in five integers from the standard input
+var princess, dragon, t, f, c int
+fmt.Scanf("%d %d %d %d %d", &princess, &dragon, &t, &f, &c)
+
+// Check if the dragon is smaller than or equal to the princess
+// If so, print 0 and exit the program
+if dragon <= princess {
+    fmt.Println(0)
+    os.Exit(0)
+}
+
+// Initialize a variable result to 0
+result := 0
+
+// Calculate an initial position based on t and princess
+position := t * princess
+
+// Enter a while loop that continues as long as the position is less than c
+for position < c {
+    // Increment result by 1
+    result++
+
+    // Update the position by adding the given terms
+    position += princess * position / dragon
+    position += princess * f
+    position += princess * position / (dragon - princess)
+}
+
+// Once the loop terminates, print the final value of result
+fmt.Println(result)
+

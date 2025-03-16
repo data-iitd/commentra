@@ -1,0 +1,29 @@
+
+
+import datetime # Importing datetime module for date and time operations
+
+def check_leap(y): # Function to check if a year is a leap year
+    return y % 400 == 0 or (y % 4 == 0 and y % 100!= 0) # Returning True if the year is a leap year
+
+def main():
+    y = int(input("Enter a year: ")) # Reading the year from the user input
+    leap = check_leap(y) # Checking if the year is a leap year
+    sum = 0 # Initializing sum to accumulate days
+    mod = 0 # Declaring mod for some modulo operation
+
+    # Starting a loop from the next year after 'y' to find the first year where the sum of days is a multiple of 7
+    for i in range(y + 1, 10000): # Looping through years from the next year after 'y' to a large number
+        if check_leap(i): # Checking if the current year is a leap year
+            sum += 366 # Adding 366 days for leap years
+        else:
+            sum += 365 # Adding 365 days for non-leap years
+        if sum % 7 == 0: # Checking if the sum of days is a multiple of 7
+            if (check_leap(i) and leap) or (not check_leap(i) and not leap): # Checking if the current year's leap status matches the initial leap status
+                print(i) # Printing the year if it matches
+                return # Exiting the program after printing the year
+            else:
+                continue # Continuing the loop if the leap status does not match
+
+if __name__ == "__main__":
+    main() # Calling the main function
+

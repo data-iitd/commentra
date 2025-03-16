@@ -1,0 +1,113 @@
+#include <iostream>
+#include <vector>
+#include <map>
+#include <set>
+#include <queue>
+#include <algorithm>
+#include <string>
+#include <cmath>
+#include <cstdio>
+#include <iomanip>
+#include <fstream>
+#include <cassert>
+#include <cstring>
+#include <unordered_set>
+#include <unordered_map>
+#include <numeric>
+#include <ctime>
+#include <bitset>
+#include <complex>
+#include <random>
+
+using namespace std;
+
+// Structure to store the left, right, and value of a ban
+class Ban {
+    public:
+        int l;
+        int r;
+        int val;
+
+        Ban() {}
+
+        Ban(int l_, int r_, int val_) {
+            l = l_;
+            r = r_;
+            val = val_;
+        }
+};
+
+// Namespace for sparse table operations
+class Sp {
+    public:
+        static const int LIM = 20; 
+        static const int N = 2e5 + 7;
+
+        static int mn[LIM][N];
+        static int pw[N];
+
+        // Initialize the sparse table with the given array
+        static void init(vector<int> a) {
+            int n = (int)a.size();
+            for (int i = 0; i < n; i++) {
+                mn[0][i] = a[i]; 
+            }
+            for (int i = 0; i + 1 < LIM; i++) {
+                for (int j = 0; j + (1 << (i + 1)) <= n; j++) {
+                    mn[i + 1][j] = max(mn[i][j], mn[i][j + (1 << i)]);
+                }
+            }
+            pw[1] = 0;
+            for (int i = 2; i < N; i++) {
+                pw[i] = pw[i / 2] + 1;
+            }
+        } 
+
+        // Query the sparse table for the minimum value in the range [l, r)
+        static int get(int l, int r) {
+            r++;
+            int p = pw[r - l];
+            return min(mn[p][l], mn[p][r - (1 << p)]);
+        }
+}
+
+// Main function to execute the program
+public static void main(String[] args) {
+    ios_base::sync_with_stdio(false);
+    cin.tie(0);
+
+    int n;
+    cin >> n;
+    vector<int> a(n);
+    for (auto &t : a) {
+        cin >> t;
+    }
+    vector<int> dl(n);
+    for (int i = 0; i < n; i++) {
+        if (a[i] > i) {
+            cout << -1 << endl;
+            return;
+        }
+        dl[i] = i - a[i];
+    }
+    int ans = 0;
+    vector<Ban> bans;
+    for (int i = 0; i < n; i++) {
+        int r = i;
+        while (r + 1 < n && a[r] + 1 == a[r + 1]) {
+            r++;
+        }
+        ans += a[r];
+        i = r;
+        bans.push_back(new Ban(r - a[r], r, r - a[r]));
+    }
+    Sp.init(dl);
+    for (auto t : bans) {
+        if (Sp.get(t.l, t.r) > t.val) {
+            cout << - 1 << endl;
+            return;
+        }
+    }
+    cout << ans << endl;
+}
+

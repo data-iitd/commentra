@@ -1,0 +1,6 @@
+Inserted: 30
+Inserted: 40
+In-Order: [30, 40]
+Heap cleared
+In-Order: []
+Is Empty: true

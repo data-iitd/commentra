@@ -1,0 +1,14 @@
+enqueue 10
+enqueue 20
+enqueue 30
+print
+peekFront
+peekRear
+size
+dequeue
+dequeue
+print
+isEmpty
+dequeue
+isEmpty
+exit

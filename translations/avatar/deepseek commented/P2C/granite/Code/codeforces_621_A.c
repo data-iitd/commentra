@@ -1,0 +1,61 @@
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int n;
+    scanf("%d", &n);  // Read the number of elements in the list
+    int *lst = (int *)malloc(n * sizeof(int));  // Allocate memory for the list of integers
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &lst[i]);  // Read the list of integers
+    }
+
+    // Sort the list in ascending order
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - i - 1; j++) {
+            if (lst[j] > lst[j + 1]) {
+                int temp = lst[j];
+                lst[j] = lst[j + 1];
+                lst[j + 1] = temp;
+            }
+        }
+    }
+
+    // Reverse the list to get descending order
+    for (int i = 0; i < n / 2; i++) {
+        int temp = lst[i];
+        lst[i] = lst[n - i - 1];
+        lst[n - i - 1] = temp;
+    }
+
+    // Initialize a counter for odd numbers
+    int od = 0;
+    for (int i = 0; i < n; i++) {
+        if (lst[i] % 2 == 1) {  // Check if the number is odd
+            od++;
+        }
+    }
+
+    // Initialize sum to accumulate the result
+    int sum = 0;
+    int ok = 0;  // Initialize a flag to track if an odd number has been added
+
+    // Iterate through the list to process each number
+    for (int i = 0; i < n; i++) {
+        if (lst[i] % 2 == 0) {  // Check if the number is even
+            sum += lst[i];  // Add even numbers to sum
+        } else {
+            if (ok || od > 1) {  // Check if an odd number can be added
+                sum += lst[i];  // Add odd number to sum
+                od--;  // Decrement the count of odd numbers
+                ok =!ok;  // Toggle the flag
+            }
+        }
+    }
+
+    printf("%d", sum);  // Print the final sum
+
+    free(lst);  // Free the memory allocated for the list
+    return 0;
+}

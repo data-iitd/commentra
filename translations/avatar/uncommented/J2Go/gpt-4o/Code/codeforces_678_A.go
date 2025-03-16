@@ -1,0 +1,18 @@
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	var n, k int
+	fmt.Scan(&n, &k)
+	n++
+	z := 0
+	if n%k != 0 {
+		z = k - n%k
+	}
+	fmt.Println(n + z)
+}
+
+// <END-OF-CODE>

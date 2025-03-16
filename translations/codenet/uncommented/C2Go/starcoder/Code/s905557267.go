@@ -1,0 +1,123 @@
+package main
+
+import (
+	"fmt"
+	"os"
+	"bufio"
+	"strconv"
+)
+
+func min(a, b int) int {
+	if a <= b {
+		return a
+	}
+	return b
+}
+
+func Chain(b []int, n int) int {
+	var i, j int
+	var count int
+	var color int
+	var a []int
+	
+	a = make([]int, n)
+	for i = 0; i < n; i++ {
+		a[i] = b[i]
+	}
+	
+	for i = 0; i < n - 4; i++ {
+		if a[i]!= 0 && a[i] == a[i + 1] && a[i] == a[i + 2] && a[i] == a[i + 3] {
+			//fmt.Printf("-----\n")
+			//for j = 0; j < n; j++ {
+			//	fmt.Printf("%d\n", a[j])
+			//}
+			//fmt.Printf("-----\n")
+			
+			count = 0
+			color = a[i]
+			
+			for j = i; a[j] == color; j++ {
+				a[j] = 0
+				count++
+			}
+			
+			for j = 0; i + j + count < 10000; j++ {
+				a[i + j] = a[i + j + count]
+				a[i + j + count] = 0
+			}
+			
+			//fmt.Printf("-----\n")
+			//for j = 0; j < n; j++ {
+			//	fmt.Printf("%d\n", a[j])
+			//}
+			//fmt.Printf("-----\n")
+			//fmt.Scanln()
+			
+			i = 0
+		}
+		
+	}
+	
+	count = 0
+	for count < n && a[count]!= 0 {
+		count++
+	}
+	
+	if count == 4 && a[0] == a[1] && a[0] == a[2] && a[0] == a[3] {
+		return 0
+	}
+	
+	return count
+}
+
+func main() {
+	var n int
+	var i, j int
+	var a []int
+	var ans int
+	var color int
+	
+	reader := bufio.NewReader(os.Stdin)
+	for {
+		fmt.Fscanf(reader, "%d", &n)
+		if n == 0 {
+			break
+		}
+		ans = n
+		
+		a = make([]int, n)
+		for i = 0; i < n; i++ {
+			fmt.Fscanf(reader, "%d", &a[i])
+		}
+		
+		for i = 0; i < n - 4; i++ {
+			var count [3]int
+			for j = i; j < i + 4; j++ {
+				if a[j] - 1 >= 0 {
+					count[a[j] - 1]++
+				}
+			}
+			
+			color = 0
+			for j = 0; j < 3; j++ {
+				if count[j] >= 3 {
+					color = j + 1
+					break
+				}
+			}
+			
+			if color!= 0 {
+				for j = i; j < i + 4; j++ {
+					var buf int
+					buf = a[j]
+					a[j] = color
+					ans = min(ans, Chain(a, n))
+					a[j] = buf
+				}
+			}
+		}
+		
+		fmt.Printf("%d\n", ans)
+	}
+}
+

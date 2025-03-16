@@ -1,0 +1,34 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <math.h>
+#include <stdbool.h>
+
+int main()
+{
+    char s[100000];
+    int n;
+    scanf("%s", s);
+    scanf("%d", &n);
+    int ans = 0;
+    for(int i = 0; i < n; i++)
+    {
+        char x[100000];
+        scanf("%s", x);
+        int a = 0, b = 0;
+        for(int j = 0; j < strlen(s); j++)
+        {
+            if(s[j] == x[0]) a++;
+            else if(s[j] == x[1]) b++;
+            else
+            {
+                ans += min(a, b);
+                a = 0;
+                b = 0;
+            }
+        }
+        ans += min(a, b);
+    }
+    printf("%d", ans);
+    return 0;
+}

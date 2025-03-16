@@ -1,0 +1,66 @@
+
+import sys
+
+class Node:
+    def __init__(self):
+        self.child = {}
+        self.suffix_link = None
+        self.output_link = None
+        self.pattern_ind = -1
+
+class Trie:
+    def __init__(self, patterns):
+        self.root = Node()
+        self.patterns = patterns
+        self.build_trie()
+        self.build_suffix_and_output_links()
+
+    def build_trie(self):
+        for i, pattern in enumerate(self.patterns):
+            current = self.root
+            for ch in pattern:
+                current = current.child.setdefault(ch, Node())
+            current.pattern_ind = i
+
+    def build_suffix_and_output_links(self):
+        queue = [self.root]
+        while queue:
+            current = queue.pop(0)
+            for ch, child in current.child.items():
+                suffix = current.suffix_link
+                while suffix!= self.root and ch not in suffix.child:
+                    suffix = suffix.suffix_link
+                if ch in suffix.child:
+                    suffix = suffix.child[ch]
+                child.suffix_link = suffix
+                if suffix.pattern_ind!= -1:
+                    child.output_link = suffix
+                else:
+                    child.output_link = suffix.output_link
+                queue.append(child)
+
+    def search(self, text):
+        matches = {pattern: [] for pattern in self.patterns}
+        current = self.root
+        for i, ch in enumerate(text):
+            while current!= self.root and ch not in current.child:
+                current = current.suffix_link
+            if ch in current.child:
+                current = current.child[ch]
+            temp = current
+            while temp:
+                if temp.pattern_ind!= -1:
+                    matches[self.patterns[temp.pattern_ind]].append(i - len(self.patterns[temp.pattern_ind]) + 1)
+                temp = temp.output_link
+        return matches
+
+if __name__ == "__main__":
+    text = sys.stdin.readline().strip()
+    pattern_count = int(sys.stdin.readline().strip())
+    patterns = [sys.stdin.readline().strip() for _ in range(pattern_count)]
+    trie = Trie(patterns)
+    result = trie.search(text)
+    print("Pattern matches:")
+    for pattern in patterns:
+        print(f"{pattern}: {result[pattern]}")
+

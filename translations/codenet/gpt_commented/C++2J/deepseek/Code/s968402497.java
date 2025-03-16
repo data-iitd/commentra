@@ -1,0 +1,28 @@
+public class Main {
+    public static void main(String[] args) {
+        java.util.Scanner scanner = new java.util.Scanner(System.in);
+        int tc = scanner.nextInt();
+        int n = scanner.nextInt();
+        int m = scanner.nextInt();
+        
+        if (n > m) {
+            int temp = n;
+            n = m;
+            m = temp;
+        }
+        
+        boolean fl = false;
+        
+        for (int i = 1; i <= m; i++) {
+            if (i * tc >= n && i * tc <= m) {
+                System.out.println("OK");
+                fl = true;
+                break;
+            }
+        }
+        
+        if (!fl) {
+            System.out.println("NG");
+        }
+    }
+}

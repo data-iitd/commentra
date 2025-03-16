@@ -1,0 +1,27 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+int main() {
+    int A, B, C, D;
+    const int m = 998244353;
+
+    cin >> A >> B >> C >> D;
+
+    vector<vector<long long>> d(C + 1, vector<long long>(D + 1, 0));
+
+    d[A][B] = 1;
+
+    for (int i = A; i <= C; ++i) {
+        for (int j = B; j <= D; ++j) {
+            d[i][j] += (d[i][j - 1] * i + d[i - 1][j] * j - d[i - 1][j - 1] * (i - 1) * (j - 1)) % m;
+            d[i][j] = (d[i][j] + m) % m;
+        }
+    }
+
+    cout << d[C][D] << endl;
+
+    return 0;
+}
+

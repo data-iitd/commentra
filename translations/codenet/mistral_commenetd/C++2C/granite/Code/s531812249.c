@@ -1,0 +1,40 @@
+
+#include<stdio.h>
+#include<math.h>
+#include<stdlib.h>
+#include<string.h>
+#include<iomanip>
+#include<vector>
+#include<algorithm>
+#include<queue>
+#include<string>
+#include<iostream>
+#define PI 3.14159265358979
+typedef  long long ll;
+#define rep(i,n) for(int i=0;i<n;i++) // Macro for repetition of a loop n times
+#include<set>
+
+//---------------------------------------------
+
+int main(void) // Main function
+{
+    int n,m; // Declare variables n and m of type int
+
+    scanf("%d %d",&n,&m); // Read input values of n and m from standard input
+
+    //n gu m ki
+
+    int ans =0; // Initialize answer variable ans to 0
+
+    // gu gu
+    ans+= n*(n-1)/2; // Calculate the sum of numbers from 1 to n-1 and add it to the answer
+
+    //kiki
+    ans +=m*(m-1)/2; // Calculate the sum of numbers from 1 to m-1 and add it to the answer
+
+    printf("%d\n",ans); // Print the answer to the standard output
+
+
+
+
+}

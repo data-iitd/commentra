@@ -1,0 +1,10 @@
+Inserted: 100
+Inserted: 200
+Inserted: 300
+Queue is full
+Queue: [100, 200, 300]
+Removed: 100
+Removed: 200
+Removed: 300
+Error: Queue is empty, cannot remove element
+Is empty: true

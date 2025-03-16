@@ -1,0 +1,44 @@
+import java.util.HashSet;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        int s, x, d = 2; // Initialize variables: s for input, x for calculations, d for depth
+        Scanner scanner = new Scanner(System.in);
+        s = scanner.nextInt(); // Read an integer input from the user
+        HashSet<Integer> a = new HashSet<>(); // Create a set to store unique values of s
+        a.add(s); // Insert the initial value of s into the set
+
+        // Start an infinite loop to process the value of s
+        while (true) {
+            // Check if s is even
+            if (s % 2 == 0) {
+                x = s / 2; // If even, calculate the next value as half of s
+                // Check if the new value x already exists in the set
+                if (a.contains(x)) {
+                    System.out.println(d); // If it exists, print the depth and exit
+                    return;
+                }
+                a.add(x); // Insert the new value x into the set
+            } else {
+                // If s is odd, calculate the next value using the formula 3*s + 1
+                x = 3 * s + 1; 
+                // Check if the new value x already exists in the set
+                if (a.contains(x)) {
+                    System.out.println(d); // If it exists, print the depth and exit
+                    return;
+                }
+                a.add(x); // Insert the new value x into the set
+            }
+            s = x; // Update s to the new value x for the next iteration
+            d++; // Increment the depth counter
+        }
+
+        // This line will never be reached due to the infinite loop
+        // System.out.println(d); // Print the depth (not reached)
+
+        // return 0; // Not needed in Java
+    }
+}
+
+// <END-OF-CODE>

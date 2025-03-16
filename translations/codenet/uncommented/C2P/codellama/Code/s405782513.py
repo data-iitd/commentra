@@ -1,0 +1,23 @@
+#include <stdio.h>
+
+def main():
+    c = [0] * 3
+    while True:
+        try:
+            for i in range(3):
+                c[i] = int(input())
+            card = [0] * 10
+            for i in range(3):
+                card[c[i] - 1] = 1
+            count = 0
+            sum = c[0] + c[1]
+            for i in range(10):
+                if card[i] == 0 and sum + i + 1 <= 20:
+                    count += 1
+            if count >= 4:
+                print("YES")
+            else:
+                print("NO")
+        except EOFError:
+            break
+

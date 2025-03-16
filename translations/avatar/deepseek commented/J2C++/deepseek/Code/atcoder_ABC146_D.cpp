@@ -1,0 +1,47 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+struct Edge {
+    int id;
+    int to;
+    Edge(int id, int to) : id(id), to(to) {}
+};
+
+int n;
+vector<vector<Edge>> g;
+vector<int> ans;
+
+void dfs(int to, int color, int parent) {
+    int k = 1;
+    for (auto& e : g[to]) {
+        if (e.to == parent) continue;
+        if (k == color) k++;
+        ans[e.id] = k;
+        dfs(e.to, k, to);
+        k++;
+    }
+}
+
+int main() {
+    cin >> n;
+    g.resize(n);
+    ans.resize(n - 1);
+    for (int i = 0; i < n - 1; i++) {
+        int a, b;
+        cin >> a >> b;
+        a--; b--;
+        g[a].emplace_back(i, b);
+        g[b].emplace_back(i, a);
+    }
+    dfs(0, -1, -1);
+    int max_color = *max_element(ans.begin(), ans.end());
+    cout << max_color << endl;
+    for (int c : ans) {
+        cout << c << endl;
+    }
+    return 0;
+}
+

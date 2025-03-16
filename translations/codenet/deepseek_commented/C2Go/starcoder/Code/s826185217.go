@@ -1,0 +1,22 @@
+<<<<<<< HEAD
+=======
+package main
+>>>>>>> 98c87cb78a (data updated)
+
+import "fmt"
+
+func main() {
+	var a, b, c, d int
+	fmt.Scanf("%d%d%d%d", &a, &b, &c, &d)
+	if a+b > c+d {
+		fmt.Println("Left")
+	} else if a+b < c+d {
+		fmt.Println("Right")
+	} else {
+		fmt.Println("Balanced")
+	}
+}
+<<<<<<< HEAD
+
+=======
+>>>>>>> 98c87cb78a (data updated)

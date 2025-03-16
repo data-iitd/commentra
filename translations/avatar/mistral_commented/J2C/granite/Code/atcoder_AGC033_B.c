@@ -1,0 +1,68 @@
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main ( ) {
+    int h, w, n, sr, sc, usafe, dsafe, lsafe, rsafe;
+    char s[100001], t[100001];
+    bool end = false;
+
+    scanf ( "%d %d %d", &h, &w, &n ) ;
+    scanf ( "%d %d", &sr, &sc ) ;
+    scanf ( "%s", s ) ;
+    scanf ( "%s", t ) ;
+
+    usafe = 1;
+    dsafe = h;
+
+    for ( int i = n - 1 ; i >= 0 ; i -- ) {
+        if ( s[i] == 'U' ) {
+            usafe ++ ;
+        } else if ( s[i] == 'D' ) {
+            dsafe -- ;
+        }
+        if ( usafe > dsafe ) {
+            end = true;
+            break;
+        }
+        if ( i > 0 ) {
+            if ( t[i - 1] == 'U' ) {
+                dsafe = dsafe < h? dsafe + 1 : h;
+            } else if ( t[i - 1] == 'D' ) {
+                usafe = usafe > 1? usafe - 1 : 1;
+            }
+        }
+    }
+
+    lsafe = 1;
+    rsafe = w;
+
+    for ( int i = n - 1 ; i >= 0 ; i -- ) {
+        if ( s[i] == 'L' ) {
+            lsafe ++ ;
+        } else if ( s[i] == 'R' ) {
+            rsafe -- ;
+        }
+        if ( lsafe > rsafe ) {
+            end = true;
+            break;
+        }
+        if ( i > 0 ) {
+            if ( t[i - 1] == 'L' ) {
+                rsafe = rsafe < w? rsafe + 1 : w;
+            } else if ( t[i - 1] == 'R' ) {
+                lsafe = lsafe > 1? lsafe - 1 : 1;
+            }
+        }
+    }
+
+    if ( sr >= usafe && sr <= dsafe && sc >= lsafe && sc <= rsafe &&! end ) {
+        printf ( "YES\n" ) ;
+    } else {
+        printf ( "NO\n" ) ;
+    }
+
+    return 0;
+}
+

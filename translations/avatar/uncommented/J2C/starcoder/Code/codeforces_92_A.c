@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    int n, k, i, req;
+    scanf("%d %d", &n, &k);
+    i = 1;
+    req = 1;
+    while (k - req >= 0)
+    {
+        if (k - req >= 0)
+        {
+            k = k - req;
+        }
+        else
+        {
+            break;
+        }
+        i++;
+        if (i % n!= 0)
+        {
+            req = i % n;
+        }
+        else
+        {
+            req = n;
+        }
+    }
+    printf("%d", k);
+    return 0;
+}

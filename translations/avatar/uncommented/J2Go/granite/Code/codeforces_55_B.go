@@ -1,0 +1,59 @@
+
+package main
+
+import (
+	"bufio"
+	"fmt"
+	"os"
+	"strconv"
+	"strings"
+)
+
+var min int64 = 9223372036854775807
+
+func main() {
+	reader := bufio.NewReader(os.Stdin)
+	var arr []int64
+	for i := 0; i < 4; i++ {
+		num, _ := reader.ReadString('\n')
+		num = strings.TrimSpace(num)
+		n, _ := strconv.ParseInt(num, 10, 64)
+		arr = append(arr, n)
+	}
+	ops := make([]string, 3)
+	for i := 0; i < 3; i++ {
+		op, _ := reader.ReadString('\n')
+		op = strings.TrimSpace(op)
+		ops[i] = op
+	}
+	util(arr, ops, 0)
+	fmt.Println(min)
+}
+
+func util(arr []int64, ops []string, idx int) {
+	if idx == 3 {
+		if arr[0] < min {
+			min = arr[0]
+		}
+		return
+	}
+	for i := 0; i < len(arr); i++ {
+		for j := i + 1; j < len(arr); j++ {
+			var a []int64
+			for k := 0; k < len(arr); k++ {
+				if k!= j && k!= i {
+					a = append(a, arr[k])
+				}
+			}
+			var res int64
+			if idx < 3 && ops[idx] == "+" {
+				res = arr[i] + arr[j]
+			} else {
+				res = arr[i] * arr[j]
+			}
+			a = append(a, res)
+			util(a, ops, idx+1)
+		}
+	}
+}
+

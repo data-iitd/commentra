@@ -1,0 +1,2 @@
+
+str = input ( ). replace ( ',', '.' ). split ( '.' ) [ 0 ] + '.' + input ( ). replace ( ',', '.' ). split ( '.' ) [ 1 ] dotIndex = str. find ( '.' ) if str [ dotIndex - 1 ] == '9' : print ( "GOTO Vasilisa." ) elif int ( str [ dotIndex + 1 ] ) > 4 : print ( int ( str. replace ( '.', '' ) ) + 1 ) else : print ( str. replace ( '.', '' ) ) 

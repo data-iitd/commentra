@@ -1,0 +1,29 @@
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	var n, d int
+	fmt.Scan(&n, &d)
+	nums := make([]int, n)
+
+	for i := 0; i < n; i++ {
+		fmt.Scan(&nums[i])
+	}
+
+	result := 0
+	for i := 1; i < n; i++ {
+		a := nums[i-1] - nums[i]
+		if a >= 0 {
+			increment := a/d + 1
+			result += increment
+			nums[i] += increment * d
+		}
+	}
+
+	fmt.Println(result)
+}
+
+// <END-OF-CODE>

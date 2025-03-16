@@ -1,0 +1,12 @@
+Error: Queue is empty
+Enqueued: 5
+Enqueued: 10
+Error: Queue is full
+Dequeued: 5
+Enqueued: 20
+Front of queue: 10
+Current size: 2
+Is full: true
+Dequeued: 10
+Dequeued: 20
+Is empty: true

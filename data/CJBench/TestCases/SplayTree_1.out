@@ -1,0 +1,7 @@
+Inserted 100
+Inserted 200
+Inserted 150
+Found 200
+Deleted 150
+In-order traversal:
+[100, 200]

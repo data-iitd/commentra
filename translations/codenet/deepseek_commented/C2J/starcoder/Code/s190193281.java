@@ -1,0 +1,37 @@
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n, S[] = new int[N], T[] = new int[Q], c = 0;
+
+        // Read the size of array S
+        n = sc.nextInt();
+        for (int i = 0; i < n; i++) {
+            S[i] = sc.nextInt();
+        }
+
+        // Read the size of array T
+        int q = sc.nextInt();
+        for (int i = 0; i < q; i++) {
+            T[i] = sc.nextInt();
+            if (binarySearch(T[i]) == 1) c++;
+        }
+
+        // Print the count of elements in T that are also in S
+        System.out.println(c);
+    }
+
+    // Function to perform binary search on array S
+    public static int binarySearch(int key) {
+        int left = 0, right = n, mid;
+        while (left < right) {
+            mid = (left + right) / 2;
+            if (S[mid] == key) return 1;
+            else if (key < S[mid]) right = mid;
+            else left = mid + 1;
+        }
+        return 0;
+    }
+}

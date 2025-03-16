@@ -1,0 +1,24 @@
+<<<<<<< HEAD
+=======
+package main
+>>>>>>> 98c87cb78a (data updated)
+
+import "fmt"
+
+func main() {
+	var K, X int
+	// Read two integers, K and X, from the standard input
+	fmt.Scanf("%d %d", &K, &X)
+
+	// Loop from X-K+1 to X+K-1
+	for i := X - K + 1; i <= X+K-1; i++ {
+		fmt.Printf("%d", i)
+		// Print a space after each number except the last one
+		if i < X+K-1 {
+			fmt.Printf(" ")
+		}
+	}
+	// Print a newline character to move to the next line
+	fmt.Printf("\n")
+}
+

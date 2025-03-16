@@ -1,0 +1,9 @@
+16
+7
+PUT apple red
+PUT banana yellow
+GET apple
+CONTAINS banana
+DELETE apple
+SIZE
+KEYS

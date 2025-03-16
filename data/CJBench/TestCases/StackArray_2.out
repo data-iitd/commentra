@@ -1,0 +1,11 @@
+Enter commands (push <value>, pop, peek, size, isEmpty, exit):
+Pushed: 1
+Pushed: 2
+Pushed: 3
+Pushed: 4
+Pushed: 5
+Size: 5
+Popped: 5
+Popped: 4
+Popped: 3
+Size: 2

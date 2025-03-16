@@ -1,0 +1,94 @@
+package com.company;
+
+import java.util.Scanner;
+
+public class Main {
+
+    // Declare a global variable for the adjacency list representation of the graph
+    static int[][] e;
+    // Declare variables for the number of nodes (n) and edges (m)
+    static int n, m;
+
+    // Function to print the edges of the graph
+    static void printEdge(int[][] e) {
+        // Iterate through each node in the graph
+        for (int i = 1; i < n + 1; i++) {
+            System.out.print(i + ": "); // Print the node number
+            // Print all adjacent nodes (edges) for the current node
+            for (int v : e[i]) {
+                System.out.print(v + " ");
+            }
+            System.out.println(); // Move to the next line after printing all edges for the current node
+        }
+    }
+
+    // Depth-first search (DFS) function to explore the graph
+    static int dfs(int v, boolean[] visited) {
+        // Check if all nodes have been visited
+        boolean comp = true;
+        for (int i = 1; i < n + 1; i++) {
+            if (!visited[i]) {
+                comp = false; // If any node is not visited, set comp to false
+            }
+        }
+
+        // If all nodes have been visited, return 1 (indicating a complete component)
+        if (comp) {
+            return 1;
+        }
+
+        int count = 0; // Initialize count of connected nodes
+        // Explore all neighbors of the current node
+        for (int ne : e[v]) {
+            // Skip already visited nodes
+            if (visited[ne]) {
+                continue;
+            }
+            visited[ne] = true; // Mark the neighbor as visited
+            // Recursively call DFS for the neighbor and accumulate the count
+            int rst = dfs(ne, visited);
+            count += rst; // Increment the count with the result from the DFS call
+            visited[ne] = false; // Backtrack: unmark the neighbor as visited
+        }
+        return count; // Return the total count of connected nodes
+    }
+
+    public static void main(String[] args) {
+        // Read the number of nodes and edges from input
+        Scanner sc = new Scanner(System.in);
+        n = sc.nextInt();
+        m = sc.nextInt();
+
+        // Initialize the adjacency list for the graph
+        e = new int[n + 1][];
+        for (int i = 1; i < n + 1; i++) {
+            e[i] = new int[0]; // Create an empty array for each node
+        }
+        // Read the edges and populate the adjacency list
+        for (int i = 0; i < m; i++) {
+            int a = sc.nextInt();
+            int b = sc.nextInt(); // Read each edge
+            e[a] = append(e[a], b); // Add the edge to the adjacency list
+            e[b] = append(e[b], a); // Since the graph is undirected, add both directions
+        }
+        // Uncomment to print the edges of the graph
+        // printEdge(e);
+
+        // Initialize the visited array to keep track of visited nodes
+        boolean[] visited = new boolean[n + 1];
+        visited[1] = true; // Mark the starting node (node 1) as visited
+        int count = dfs(1, visited); // Perform DFS starting from node 1
+        System.out.println(count); // Print the count of connected nodes
+    }
+
+    // Function to append an element to an array
+    static int[] append(int[] arr, int element) {
+        int[] newArr = new int[arr.length + 1];
+        for (int i = 0; i < arr.length; i++) {
+            newArr[i] = arr[i];
+        }
+        newArr[arr.length] = element;
+        return newArr;
+    }
+}
+

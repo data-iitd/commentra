@@ -1,0 +1,61 @@
+#include <stdio.h> 
+#include <stdlib.h> 
+#include <string.h> 
+#include <math.h> 
+#include <stdbool.h> 
+
+// Declare a static TreeSet to hold long values (not used in this code)
+static TreeSet<Long> set; 
+
+int main(int argc, char *argv[]) { 
+    // Create a Scanner object for input and PrintWriter for output
+    Scanner in = new Scanner(System.in); 
+    PrintWriter pw = new PrintWriter(System.out); 
+    
+    // Read the number of elements
+    int n = in.nextInt(); 
+    
+    // Initialize an array to hold the input values
+    long a[n]; 
+    
+    // Populate the array with input values
+    for (int i = 0; i < n; i++) 
+        a[i] = in.nextLong(); 
+    
+    // Initialize a dp array to store the maximum values
+    long dp[n + 1]; 
+    
+    // Fill the dp array with -1 to indicate uninitialized values
+    for (int i = 0; i < n + 1; i++) 
+        dp[i] = -1; 
+    
+    // Set the last element of dp to the last element of a
+    dp[n - 1] = a[n - 1]; 
+    
+    // Fill the dp array with the maximum values from the end to the beginning
+    for (int i = n - 1; i >= 0; i--) { 
+        dp[i] = max(dp[i + 1], a[i]); 
+    } 
+    
+    // Iterate through the original array to calculate the output
+    for (int i = 0; i < n; i++) { 
+        // If the current element is greater than the next maximum, print 0
+        if (a[i] > dp[i + 1]) 
+            pw.print(0 + " "); 
+        // Otherwise, calculate and print the difference to the next maximum
+        else 
+            pw.print((dp[i + 1] - a[i] + 1) + " "); 
+    } 
+    
+    // Print a new line after all outputs
+    pw.println(); 
+    
+    // Close the PrintWriter
+    pw.close(); 
+} 
+
+// Debugging utility to print objects
+static void debug(Object... obj) { 
+    System.err.println(Arrays.deepToString(obj)); 
+} 
+

@@ -1,0 +1,82 @@
+package main
+
+import (
+	"container/heap"
+	"fmt"
+)
+
+type IntHeap []int
+
+func (h IntHeap) Len() int           { return len(h) }
+func (h IntHeap) Less(i, j int) bool { return h[i] < h[j] }
+func (h IntHeap) Swap(i, j int)      { h[i], h[j] = h[j], h[i] }
+
+func (h *IntHeap) Push(x interface{}) {
+	*h = append(*h, x.(int))
+}
+
+func (h *IntHeap) Pop() interface{} {
+	old := *h
+	n := len(old)
+	x := old[n-1]
+	*h = old[0 : n-1]
+	return x
+}
+
+func main() {
+	var q int
+	fmt.Scan(&q)
+
+	ans := [2]int{0, 0}
+	p1 := &IntHeap{}
+	p2 := &IntHeap{}
+	heap.Init(p1) // Create a min-heap for p1
+	heap.Init(p2) // Create a min-heap for p2
+
+	sumB := 0
+	sumP1 := 0
+	sumP2 := 0
+
+	for i := 0; i < q; i++ {
+		var queryType, value, additional int
+		fmt.Scan(&queryType)
+
+		if queryType == 2 {
+			if p1.Len() == p2.Len() {
+				fmt.Println(-(*p2)[0], sumP1-len(*p1)*-(*p2)[0]+len(*p2)*-(*p2)[0]-sumP2+sumB)
+			} else {
+				fmt.Println((*p1)[0], sumP1-len(*p1)*(*p1)[0]+len(*p2)*(*p1)[0]-sumP2+sumB)
+			}
+		} else {
+			fmt.Scan(&value, &additional)
+			sumB += additional
+
+			if p1.Len() == 0 {
+				heap.Push(p1, value)
+				sumP1 += value
+			} else if (*p1)[0] <= value {
+				heap.Push(p1, value)
+				sumP1 += value
+			} else {
+				heap.Push(p2, -value)
+				sumP2 += value
+			}
+
+			if p1.Len() < p2.Len() {
+				k := heap.Pop(p2).(int)
+				heap.Push(p1, -k)
+				sumP2 -= k
+				sumP1 += k
+			}
+
+			if p1.Len()-1 > p2.Len() {
+				k := heap.Pop(p1).(int)
+				heap.Push(p2, -k)
+				sumP1 -= k
+				sumP2 += k
+			}
+		}
+	}
+}
+
+// <END-OF-CODE>

@@ -1,0 +1,36 @@
+
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <sstream>
+#include <cstdio>
+#include <cstdlib>
+#include <cmath>
+#include <cctype>
+#include <cstring>
+#include <map>
+#include <set>
+#include <stack>
+#include <queue>
+using namespace std;
+
+int main() {
+    int K;
+    cin >> K;
+    if (K % 2 == 0 || K % 5 == 0) {
+        cout << -1 << endl;
+        return 0;
+    }
+    if (K % 7 == 0) K /= 7;
+    K *= 9;
+    int ans = 1;
+    int remainder = 10 % K;
+    while (remainder!= 1) {
+        ans++;
+        remainder = remainder * 10 % K;
+    }
+    cout << ans << endl;
+    return 0;
+}
+//END-OF-CODE

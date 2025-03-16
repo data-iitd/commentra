@@ -1,0 +1,47 @@
+
+// Import the Scanner class for user input
+import java.util.Scanner;
+
+// Import the Arrays class for sorting
+import java.util.Arrays;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        // Create a Scanner object for user input
+        Scanner sc = new Scanner(System.in);
+
+        // Get the number of elements in the array from user input
+        int N = sc.nextInt();
+
+        // Initialize an empty array 'n' of size N
+        int[] n = new int[N];
+
+        // Get the elements of the array from user input and store them in 'n'
+        for (int i = 0; i < N; i++) {
+            n[i] = sc.nextInt();
+        }
+
+        // Initialize variables 'a' and 'pos'
+        int a = 1;
+        int pos = 0;
+
+        // Iterate through the array 'n' starting from the second element
+        for (int i = 1; i < N; i++) {
+            // Check if the current element is greater than the previous one
+            if (n[pos] > n[i]) {
+                // Increment the variable 'a' if the condition is true
+                a += 1;
+                // Update the position of the previous greater element
+                pos = i;
+            }
+        }
+
+        // Print the value of 'a' as the output
+        System.out.println(a);
+
+        // Close the Scanner object
+        sc.close();
+    }
+}
+

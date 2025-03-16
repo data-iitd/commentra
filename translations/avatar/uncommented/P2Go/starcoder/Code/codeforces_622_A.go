@@ -1,0 +1,20 @@
+package main
+import "fmt"
+func main() {
+    var n, l, r, mid, idxcnt int
+    fmt.Scanf("%d", &n)
+    l = 1
+    r = n
+    for l < r {
+        mid = l + (r - l) / 2
+        idxcnt = mid * (mid + 1) / 2
+        if idxcnt < n {
+            l = mid + 1
+        } else {
+            r = mid
+        }
+    }
+    l -= 1
+    idxcnt = l * (l + 1) / 2
+    fmt.Println(n - idxcnt)
+}

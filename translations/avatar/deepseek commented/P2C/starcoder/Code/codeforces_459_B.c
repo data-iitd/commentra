@@ -1,0 +1,57 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    int n, a, b, ac, bc;
+    scanf("%d", &n);
+    int l1[n];
+    for (int i = 0; i < n; i++)
+    {
+        scanf("%d", &l1[i]);
+    }
+    qsort(l1, n, sizeof(int), compare);
+    a = l1[n - 1];
+    b = l1[0];
+    if (a == b)
+    {
+        ac = 0;
+        bc = 0;
+        for (int i = 0; i < n; i++)
+        {
+            if (l1[i] == a)
+            {
+                ac++;
+            }
+            if (l1[i] == b)
+            {
+                bc++;
+            }
+        }
+        printf("%d %d\n", a - b, ac * bc);
+    }
+    else
+    {
+        ac = 0;
+        bc = 0;
+        for (int i = 0; i < n; i++)
+        {
+            if (l1[i] == a)
+            {
+                ac++;
+            }
+            if (l1[i] == b)
+            {
+                bc++;
+            }
+        }
+        printf("%d %d\n", a - b, ac * bc);
+    }
+    return 0;
+}
+
+int compare(const void *a, const void *b)
+{
+    return *(int *)a - *(int *)b;
+}
+

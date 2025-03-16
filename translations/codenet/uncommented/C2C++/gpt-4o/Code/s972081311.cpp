@@ -1,0 +1,11 @@
+#include <iostream>
+
+int main() {
+    int n, sum;
+    std::cin >> n;
+    sum = (n * (n + 1)) / 2;
+    std::cout << sum << std::endl;
+    return 0;
+}
+
+// <END-OF-CODE>

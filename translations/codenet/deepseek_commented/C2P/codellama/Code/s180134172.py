@@ -1,0 +1,25 @@
+#include<stdio.h>
+signed main():
+    int n,k,p[99999],i,j,l,m,o=0;
+    # Read the number of elements (n) and the number of elements to sum (k)
+    scanf("%d %d",&n,&k);
+    # Read n integers and store them in the array p
+    for i in range(0,n):
+        scanf("%d",&p[i]);
+    # Perform selection sort on the array p
+    for i in range(0,n):
+        l=i;
+        for j in range(i+1,n):
+            if p[j]<p[l]:
+                l=j;
+        if l!=i:
+            m=p[i];
+            p[i]=p[l];
+            p[l]=m;
+    # Sum the first k elements of the sorted array
+    for i in range(0,k):
+        o +=p[i];
+    # Print the sum of the first k elements
+    printf("%d\n",o);
+    return(0);
+

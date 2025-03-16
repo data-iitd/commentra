@@ -1,0 +1,9 @@
+Inserted: 10
+Inserted: 5
+Inserted: 20
+List: [5, 10, 20]
+Deleted: 10
+List: [5, 20]
+Found: 20
+Not found: 15
+Is empty: false

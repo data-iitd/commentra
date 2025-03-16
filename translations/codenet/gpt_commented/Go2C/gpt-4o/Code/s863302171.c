@@ -1,0 +1,25 @@
+#include <stdio.h>
+
+int main() {
+    // Declare a variable to hold the input string
+    char n[4]; // Assuming the input will be at most 3 characters plus the null terminator
+    
+    // Read input from the user and store it in variable n
+    scanf("%3s", n);
+    
+    // Loop through the first three characters of the input string
+    for (int i = 0; i < 3; i++) {
+        // Check if the current character is '7'
+        if (n[i] == '7') {
+            // If '7' is found, print "Yes" and exit the program
+            printf("Yes\n");
+            return 0;
+        }
+    }
+    
+    // If '7' is not found in the first three characters, print "No"
+    printf("No\n");
+    return 0;
+}
+
+// <END-OF-CODE>

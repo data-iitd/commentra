@@ -1,0 +1,56 @@
+import sys
+import math
+from collections import defaultdict
+
+class Io:
+    def __init__(self):
+        self.reader = sys.stdin
+        self.writer = sys.stdout
+
+    def flush(self):
+        self.writer.flush()
+
+    def next_line(self):
+        return self.reader.readline().strip()
+
+    def next(self):
+        return self.next_line().split()
+
+    def int(self):
+        return int(self.next()[0])
+
+    def print_ln(self, *args):
+        print(*args, file=self.writer)
+
+def abs_value(a):
+    return a if a >= 0 else -a
+
+def min_value(*nums):
+    if len(nums) == 0:
+        raise ValueError("function min() requires at least one argument.")
+    return min(nums)
+
+def cum_sum(nums):
+    sums = [0]
+    for num in nums:
+        sums.append(sums[-1] + num)
+    return sums
+
+def main():
+    io = Io()
+    
+    n = io.int()
+    aa = [io.int() for _ in range(n)]
+    
+    cumsum = cum_sum(aa)
+    
+    ans = 2020202020
+    for i in range(1, len(cumsum) - 1):
+        ans = min_value(ans, abs_value(cumsum[-1] - cumsum[i] - (cumsum[i] - cumsum[0])))
+    
+    io.print_ln(ans)
+
+if __name__ == "__main__":
+    main()
+
+# <END-OF-CODE>

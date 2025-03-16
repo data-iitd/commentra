@@ -1,0 +1,13 @@
+pollFirst
+addLast 30
+addLast 40
+pollLast
+addFirst 50
+print
+peekFirst
+peekLast
+size
+pollFirst
+pollFirst
+isEmpty
+exit

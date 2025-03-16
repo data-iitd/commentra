@@ -1,0 +1,36 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+const long long mod = 1000000007; // Defining a constant value for modulus
+
+int main() { // Main method to start the program
+    int n, q;
+    cin >> n >> q; // Reading the first integer input representing the length of the string and the number of queries
+
+    string s;
+    cin >> s; // Reading the string
+
+    vector<pair<int, int>> range(q); // Declaring and initializing a vector of pairs to store the range of each query
+    for (int i = 0; i < q; i++) { // Loop to read the range of each query
+        cin >> range[i].first >> range[i].second; // Reading the starting and ending index of the range
+    }
+
+    vector<int> frag(n + 1, 0); // Declaring and initializing a vector to store the frequency of 'AC' substring
+    vector<int> rui(n + 1, 0); // Declaring and initializing a vector to store the running sum of 'AC' substring frequency
+
+    for (int i = 2; i <= n; i++) { // Loop to iterate through the string from index 2 to the end
+        if (s[i - 2] == 'A' && s[i - 1] == 'C') { // Checking if the current position is an 'AC' substring
+            frag[i]++; // Incrementing the frequency of 'AC' substring at the current position
+        }
+        rui[i] = rui[i - 1] + frag[i]; // Updating the running sum of 'AC' substring frequency
+    }
+
+    for (int i = 0; i < q; i++) { // Loop to iterate through each query
+        int left = range[i].first; // Storing the starting index of the current query range
+        int right = range[i].second; // Storing the ending index of the current query range
+        cout << rui[right] - rui[left] << endl; // Printing the result of the current query
+    }
+
+    return 0;
+}

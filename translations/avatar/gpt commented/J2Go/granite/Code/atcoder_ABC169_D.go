@@ -1,0 +1,45 @@
+
+package main
+
+import (
+	"bufio"
+	"fmt"
+	"os"
+	"strconv"
+)
+
+func main() {
+	// Create a scanner object to read input from the user
+	scanner := bufio.NewScanner(os.Stdin)
+	// Read a long integer input from the user
+	scanner.Scan()
+	n, _ := strconv.ParseInt(scanner.Text(), 10, 64)
+
+	// Calculate the integer square root of n
+	sqrt := int(n)
+	// Initialize the answer variable to count the number of prime factors
+	answer := 0
+
+	// Loop through all integers from 2 to the square root of n
+	for i := 2; i <= sqrt; i++ {
+		// Initialize a count for the number of times i divides n
+		count := 0
+		// While n is divisible by i, divide n by i and increment count
+		for n%int64(i) == 0 {
+			n /= int64(i)
+			count++
+		}
+		// For each count of prime factor i, calculate the number of unique factors
+		for j := 1; count-int64(j) >= 0; j++ {
+			count -= int64(j)
+			answer++
+		}
+	}
+	// If n is greater than 1, it means n is a prime number itself
+	if n > 1 {
+		answer++
+	}
+	// Print the total number of unique prime factors
+	fmt.Println(answer)
+}
+

@@ -1,0 +1,10 @@
+10
+8
+PUT apple red
+PUT banana yellow
+PUT grape purple
+GET apple
+REMOVE banana
+CONTAINS banana
+SIZE
+PRINT

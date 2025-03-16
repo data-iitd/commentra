@@ -1,0 +1,17 @@
+
+#include <iostream>
+#include <cmath>
+using namespace std;
+int main() {
+    int n;
+    cin >> n;
+    int t = 0;
+    for (int i = 0; i < n; i++) {
+        if ((i + 1) % 2 == 1) {
+            t += 1;
+        }
+    }
+    cout << (double)t / n << endl;
+    return 0;
+}
+// END-OF-CODE

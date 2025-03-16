@@ -1,0 +1,12 @@
+5
+insert 10
+insert 20
+insert 15
+peek
+remove
+getSize
+isEmpty
+remove
+remove
+isEmpty
+exit

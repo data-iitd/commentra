@@ -1,0 +1,143 @@
+#include <iostream>
+#include <string>
+#include <cstdlib>
+#include <cstring>
+
+struct node
+{
+    int key;
+    node *next;
+    node *prev;
+};
+
+node *head = nullptr; // Initialize head pointer to NULL
+
+node *makenode(int a)
+{
+    node *x; // Allocate memory for new node
+    x = new node;
+    x->key = a; // Set the key value of the new node
+    return x; // Return the new node
+}
+
+// Initialize the head node with a dummy node
+void init()
+{
+    head = makenode(0);
+    head->next = head;
+    head->prev = head;
+}
+
+void insert(int a)
+{
+    node *x; // Allocate memory for new node
+    x = makenode(a);
+    
+    // Insert new node at the end of the list
+    x->next = head->next;
+    head->next->prev = x;
+    head->next = x;
+    x->prev = head;
+}
+
+void deleteNode(int a)
+{
+    node *x, *prev;
+    x = head;
+    
+    // Search for the node to be deleted
+    while(x->next != head)
+    {
+        x = x->next;
+        if(x->key == a) // Found the node to be deleted
+        {
+            prev = x->prev; // Save the previous node
+            prev->next = x->next; // Update the previous node's next pointer
+            x->next->prev = prev; // Update the next node's prev pointer
+            delete x; // Free the memory occupied by the deleted node
+            break;
+        }
+    }
+}
+
+void deleteFirst()
+{
+    node *x;
+    x = head->next; // Save the second node in a temporary variable
+    
+    // Update the head pointer and the previous node's next pointer
+    head->next = x->next;
+    x->next->prev = head;
+    
+    // Free the memory occupied by the first node
+    delete x;
+}
+
+void deleteLast()
+{
+    node *x, *prev;
+    x = head;
+    
+    // Search for the second last node
+    while(x->next != head)
+    {
+        x = x->next;
+    }
+    
+    prev = x->prev; // Save the previous node
+    
+    // Update the previous node's next pointer and the head pointer's prev pointer
+    prev->next = nullptr;
+    head->prev = prev;
+    
+    // Free the memory occupied by the last node
+    delete x;
+}
+
+int main()
+{
+    int i, n, a;
+    std::string op;
+    node *x;
+    
+    init(); // Initialize the head node
+    
+    std::cin >> n; // Read the number of operations
+    
+    for(i=0; i<n; i++)
+    {
+        std::cin >> op; // Read the operation
+        
+        if(op == "insert") // If the operation is to insert a node
+        {
+            std::cin >> a; // Read the key value of the node to be inserted
+            insert(a); // Call the insert function
+        }
+        else if(op == "delete") // If the operation is to delete a node
+        {
+            std::cin >> a; // Read the key value of the node to be deleted
+            deleteNode(a); // Call the delete function
+        }
+        else if(op == "deleteFirst") // If the operation is to delete the first node
+        {
+            deleteFirst(); // Call the deleteFirst function
+        }
+        else if(op == "deleteLast") // If the operation is to delete the last node
+        {
+            deleteLast(); // Call the deleteLast function
+        }
+    }
+    
+    x = head; // Initialize a pointer to traverse the list
+    
+    while(x->next != nullptr) // Traverse the list and print the keys of the nodes
+    {
+        std::cout << x->next->key << " ";
+        x = x->next;
+    }
+    
+    std::cout << std::endl; // Print a newline character at the end
+
+    return 0;
+}
+

@@ -1,0 +1,25 @@
+
+import java.util.Scanner;
+
+public class s105543399{
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    long long  n,a,m,M,c,b,i;
+    c = 0;
+    m = 100000000;
+    M =-100000000;
+    n = sc.nextLong();
+
+    for(i=1; i<=n; i++){
+      a = sc.nextLong();
+      if(a>M) {
+        M = a;
+      } 
+      if(a < m){
+        m = a;
+      }
+      c = c+a;
+    }
+    System.out.println(m + " " + M + " " + c);
+  }
+}

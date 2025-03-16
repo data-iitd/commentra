@@ -1,0 +1,77 @@
+MOD = 1000000007
+# Define a constant value for MOD
+
+def mod_pow(x, n):
+    # Function to calculate x raised to the power n modulo MOD
+    ans = 1
+    while n > 0:
+        # While n is greater than 0
+        if (n & 1) == 1:
+            # If n is odd
+            ans = ans * x % MOD
+            # Multiply ans with x
+        x = x * x % MOD
+        # Square x and update ans
+        n >>= 1
+        # Divide n by 2
+    return ans
+# End of mod_pow function
+
+def comb_s(n, r):
+    # Function to calculate nCr (n choose r) using combinatorics formula
+    tmp_n = 1
+    tmp_d = 1
+    ans = 0
+    # Initialize temporary variables tmp_n and tmp_d to 1
+    for i in range(1, r + 1):
+        # Loop from i=1 to i=r
+        tmp_n = (tmp_n * (n + 1 - i)) % MOD
+        # Multiply tmp_n with (n+1-i)
+        tmp_d = (tmp_d * i) % MOD
+        # Multiply tmp_d with i
+        ans = tmp_n * mod_pow(tmp_d, MOD - 2) % MOD
+        # Calculate ans = tmp_n * (tmp_d^(MOD-2))
+
+    return ans
+# End of comb_s function
+
+def main():
+    # Initialize variables
+    n = int(input())
+    a = int(input())
+    b = int(input())
+    ans = 1
+
+    ans = mod_pow(2, n)
+    # Calculate 2^n
+    ans -= 1
+    # Subtract 1 from the result
+
+    tmp_nd = comb_s(n, a)
+    # Calculate nCa
+
+    ans = (ans - tmp_nd) % MOD
+    # Subtract nCa from the result
+
+    while ans < 0:
+        # If the result is negative, add MOD to make it positive
+        ans += MOD
+
+    # Calculate nCb
+    tmp_nd = comb_s(n, b)
+
+    ans = (ans - tmp_nd) % MOD
+    # Subtract nCb from the result
+
+    while ans < 0:
+        # If the result is negative, add MOD to make it positive
+        ans += MOD
+
+    print(ans)
+    # Print the final answer
+
+if __name__ == "__main__":
+    main()
+# End of main function
+
+# <END-OF-CODE>

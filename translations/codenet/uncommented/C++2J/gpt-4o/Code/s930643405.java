@@ -1,0 +1,37 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        boolean[] d = new boolean[10];
+        int n = scanner.nextInt();
+        int k = scanner.nextInt();
+        
+        for (int i = 0; i < k; ++i) {
+            int a = scanner.nextInt();
+            d[a] = true;
+        }
+        
+        while (true) {
+            int x = n;
+            boolean hantei = true;
+            while (x > 0) {
+                if (d[x % 10]) {
+                    hantei = false;
+                    break;
+                }
+                x /= 10;
+            }
+            if (hantei) {
+                System.out.println(n);
+                break;
+            }
+            n++;
+        }
+        
+        scanner.close();
+    }
+}
+
+// <END-OF-CODE>

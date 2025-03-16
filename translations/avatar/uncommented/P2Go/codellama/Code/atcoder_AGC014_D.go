@@ -1,0 +1,67 @@
+package main
+
+import (
+	"bufio"
+	"fmt"
+	"os"
+)
+
+func main() {
+	var N int
+	fmt.Scan(&N)
+	adj := make([][]int, N+1)
+	for i := range adj {
+		adj[i] = make([]int, 0)
+	}
+	for i := 0; i < N-1; i++ {
+		var a, b int
+		fmt.Scan(&a, &b)
+		adj[a] = append(adj[a], b)
+		adj[b] = append(adj[b], a)
+	}
+	que := make([]int, 0)
+	que = append(que, 1)
+	seen := make([]int, N+1)
+	seen[1] = 1
+	par := make([]int, N+1)
+	child_num := make([]int, N+1)
+	for i := range child_num {
+		child_num[i] = 0
+	}
+	for len(que) > 0 {
+		v := que[0]
+		que = que[1:]
+		for _, u := range adj[v] {
+			if seen[u] == 0 {
+				seen[u] = 1
+				par[u] = v
+				child_num[v]++
+				que = append(que, u)
+			}
+		}
+	}
+	seq := make([]int, 0)
+	for i := 1; i <= N; i++ {
+		if child_num[i] == 0 {
+			seq = append(seq, i)
+		}
+	}
+	for len(seq) > 0 {
+		c := seq[0]
+		seq = seq[1:]
+		seen[c] = 0
+		if seen[par[c]] == 0 {
+			fmt.Println("First")
+			return
+		}
+		seen[par[c]] = 0
+		child_num[par[par[c]]]--
+		if child_num[par[par[c]]] == 0 {
+			seq = append(seq, par[par[c]])
+		}
+	}
+	fmt.Println("Second")
+}
+
+
+

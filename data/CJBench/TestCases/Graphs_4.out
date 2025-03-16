@@ -1,0 +1,13 @@
+Graph Representation:
+Vertex: 1
+Adjacent vertices: 2 3 4 
+Vertex: 2
+Adjacent vertices: 3 4 
+Vertex: 3
+Adjacent vertices: 4 
+Vertex: 4
+Adjacent vertices: 5 
+Vertex: 5
+Adjacent vertices: 6 
+Vertex: 6
+Adjacent vertices: 

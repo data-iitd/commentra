@@ -1,0 +1,41 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+void solve ( int N , int M , int Q , vector < int > a , vector < int > b , vector < int > c , vector < int > d ) {
+    int res = 0;
+    void rec ( vector < int > A ) {
+        if ( A.size ( ) == N ) {
+            int ans = 0;
+            for ( int i = 0 ; i < Q ; i++ ) {
+                if ( A [ b [ i ] - 1 ] - A [ a [ i ] - 1 ] == c [ i ] ) {
+                    ans += d [ i ];
+                }
+            }
+            res = max ( res , ans );
+            return;
+        }
+        int last_max = 1;
+        if ( A.size ( ) != 0 ) {
+            last_max = A [ A.size ( ) - 1 ];
+        }
+        for ( int i = last_max ; i <= M ; i++ ) {
+            vector < int > B = A;
+            B.push_back ( i );
+            rec ( B );
+        }
+    }
+    rec ( vector < int > ( ) );
+    cout << res << endl;
+    return;
+}
+int main ( ) {
+    int N , M , Q;
+    cin >> N >> M >> Q;
+    vector < int > a ( Q ) , b ( Q ) , c ( Q ) , d ( Q );
+    for ( int i = 0 ; i < Q ; i++ ) {
+        cin >> a [ i ] >> b [ i ] >> c [ i ] >> d [ i ];
+    }
+    solve ( N , M , Q , a , b , c , d );
+    return 0;
+}

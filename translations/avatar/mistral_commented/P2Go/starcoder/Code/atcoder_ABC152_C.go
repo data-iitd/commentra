@@ -1,0 +1,32 @@
+// Import the Go standard library package "fmt" for printing
+import "fmt"
+
+// Get the number of elements in the array from user input
+var N int
+fmt.Scanf("%d", &N)
+
+// Initialize an empty Go array 'n' of size N
+var n [N]int
+
+// Get the elements of the array from user input and store them in 'n'
+for i := 0; i < N; i++ {
+    fmt.Scanf("%d", &n[i])
+}
+
+// Initialize variables 'a' and 'pos'
+var a, pos int
+
+// Iterate through the array 'n' starting from the second element
+for i := 1; i < N; i++ {
+    // Check if the current element is greater than the previous one
+    if n[pos] > n[i] {
+        // Increment the variable 'a' if the condition is true
+        a++
+        // Update the position of the previous greater element
+        pos = i
+    }
+}
+
+// Print the value of 'a' as the output
+fmt.Printf("%d", a)
+

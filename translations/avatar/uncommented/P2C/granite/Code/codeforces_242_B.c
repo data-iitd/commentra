@@ -1,0 +1,22 @@
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+int main() {
+    int n, id = 0, l, r, li, ri;
+    scanf("%d", &n);
+    scanf("%d %d", &l, &r);
+    for (int i = 1; i < n; i++) {
+        scanf("%d %d", &li, &ri);
+        if (li <= l && r <= ri) {
+            id = i;
+        } else if (li < l || r < ri) {
+            id = n;
+        }
+        l = fmin(l, li);
+        r = fmax(r, ri);
+    }
+    printf("%d\n", id == n? -1 : id + 1);
+    return 0;
+}

@@ -1,0 +1,35 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+// Define a recursive function 'aaa' that takes a string 'n'
+int aaa(char *n) {
+    // Check if the integer value of 'n' exceeds the limit N
+    if (atoi(n) > N) {
+        return 0;  // If it does, return 0 (base case)
+    }
+
+    // Check if the digits of 'n' are exactly '7', '5', and '3'
+    int ans = 1;
+    if (strcmp(n, "753") == 0) {
+        ans = 1;
+    } else {
+        ans = 0;
+    }
+
+    // Iterate over each character in the string '753'
+    for (int i = 0; i < 3; i++) {
+        // Recursively call 'aaa' with the current number 'n' concatenated with 'i'
+        ans += aaa(strcat(n, &i));
+    }
+
+    // Return the accumulated answer
+    return ans;
+}
+
+// Print the result of calling 'aaa' with the initial value '0'
+int main() {
+    printf("%d\n", aaa("0"));
+    return 0;
+}
+

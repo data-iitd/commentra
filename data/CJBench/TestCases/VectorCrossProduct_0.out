@@ -1,0 +1,7 @@
+Enter the components of the first vector (x y z): 
+Enter the components of the second vector (x y z): 
+Cross Product of the two vectors:
+x : -6	y : 3	z : 4
+Dot Product of the two vectors: 11
+Magnitude of the first vector: 3.74
+Magnitude of the second vector: 3.61

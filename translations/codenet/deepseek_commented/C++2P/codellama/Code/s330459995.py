@@ -1,0 +1,22 @@
+#include<iostream>
+using namespace std;
+
+# The main function starts here
+def main():
+    # Declare variables to store the dimensions of the rectangle and the circle
+    W, H, x, y, r = 0, 0, 0, 0, 0
+    
+    # Read the dimensions of the rectangle and the circle from the input
+    W, H, x, y, r = input().split()
+    
+    # Check if the circle is outside the rectangle
+    if(x - r < 0 or x + r > W or y - r < 0 or y + r > H):
+        # If any part of the circle is outside the rectangle, print "No"
+        print("No")
+    else:
+        # If the circle is completely inside the rectangle, print "Yes"
+        print("Yes")
+    
+    # End of the main function
+    return 0
+

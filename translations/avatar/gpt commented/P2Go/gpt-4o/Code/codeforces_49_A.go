@@ -1,0 +1,33 @@
+package main
+
+import (
+	"fmt"
+	"strings"
+)
+
+func main() {
+	// Take input from the user
+	var a string
+	fmt.Scanln(&a)
+
+	// Define a list of vowels (both lowercase and uppercase)
+	vo := "aeiouyAEIOUY"
+
+	// Iterate through the input string in reverse order
+	for i := len(a) - 1; i >= 0; i-- {
+		// Check if the current character is a space or a question mark
+		if a[i] == ' ' || a[i] == '?' {
+			continue // Skip to the next iteration if it is a space or '?'
+		} else {
+			// Check if the current character is a vowel
+			if strings.ContainsRune(vo, rune(a[i])) {
+				fmt.Println("YES") // Print "YES" if it is a vowel
+			} else {
+				fmt.Println("NO") // Print "NO" if it is not a vowel
+			}
+			break // Exit the loop after processing the first non-space character
+		}
+	}
+}
+
+// <END-OF-CODE>

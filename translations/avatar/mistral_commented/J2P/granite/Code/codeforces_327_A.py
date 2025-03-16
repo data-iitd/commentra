@@ -1,0 +1,3 @@
+
+scanner = Scanner(sys.stdin)
+

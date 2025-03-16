@@ -1,0 +1,43 @@
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	// Declare variables
+	var m, n int
+	var A [100][100]int
+	var B [100]int
+	var S [100]int
+
+	// Read the dimensions of the matrices from user
+	fmt.Scan(&m, &n)
+
+	// Comments for the for loop: Read the elements of matrix A row-wise
+	for i := 0; i < m; i++ {
+		for j := 0; j < n; j++ {
+			fmt.Scan(&A[i][j])
+		}
+	}
+
+	// Comments for the for loop: Read the elements of vector B
+	for i := 0; i < n; i++ {
+		fmt.Scan(&B[i])
+	}
+
+	// Comments for the for loop: Perform element-wise multiplication of matrices A and B, and store the result in vector S
+	for i := 0; i < m; i++ {
+		for j := 0; j < n; j++ {
+			S[i] += A[i][j] * B[j]
+		}
+	}
+
+	// Comments for the for loop: Print the elements of vector S
+	for i := 0; i < m; i++ {
+		fmt.Println(S[i])
+	}
+}
+
+// The program ends with a return statement with value 0
+// In Go, the main function returns nothing, so no explicit return statement is needed.

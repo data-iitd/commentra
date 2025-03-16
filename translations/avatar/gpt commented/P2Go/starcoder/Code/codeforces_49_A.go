@@ -1,0 +1,21 @@
+// Take input from the user
+a := bufio.NewReader(os.Stdin)
+
+// Define a list of vowels (both lowercase and uppercase)
+vo := []string{"a", "e", "i", "o", "u", "y", "A", "E", "I", "O", "U", "Y"}
+
+// Iterate through the input string in reverse order
+for i := len(a) - 1; i >= 0; i-- {
+    // Check if the current character is a space or a question mark
+    if a[i] =='' || a[i] == '?' {
+        continue // Skip to the next iteration if it is a space or '?'
+    } else {
+        // Check if the current character is a vowel
+        if a[i] in vo {
+            fmt.Println("YES") // Print "YES" if it is a vowel
+        } else {
+            fmt.Println("NO")  // Print "NO" if it is not a vowel
+        }
+        break // Exit the loop after processing the first non-space character
+}
+

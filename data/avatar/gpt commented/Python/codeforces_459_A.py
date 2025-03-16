@@ -1,0 +1,71 @@
+import math  # Import the math module for mathematical operations
+
+# Take input from the user and split it into a list of strings
+given = input("")
+l1 = given.split()
+
+# Convert the list of strings into a list of integers
+l1 = [int(x) for x in l1]
+
+# Assign the first four integers to coordinates (x1, y1) and (x2, y2)
+x1 = l1[0]
+y1 = l1[1]
+x2 = l1[2]
+y2 = l1[3]
+
+# Calculate the denominator and numerator for slope calculation
+denominator = x2 - x1
+numerator = y2 - y1
+
+# Check if the line is not vertical
+if denominator != 0:
+    quotient = numerator / denominator  # Calculate the slope of the line
+
+# Check if the line is horizontal
+if numerator == 0:
+    # Calculate the distance between the two points
+    d = int(math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2))
+    # Set new coordinates for the points shifted vertically
+    x4 = x1
+    x3 = x2
+    y3 = y2 + d
+    y4 = y1 + d
+    # Print the new coordinates
+    print(f"{x3} {y3} {x4} {y4}")
+
+# Check if the line is vertical
+elif denominator == 0:
+    # Set y-coordinates to the original y-values
+    y4 = y2
+    y3 = y1
+    # Calculate the distance between the two points
+    d = int(math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2))
+    # Set new coordinates for the points shifted horizontally
+    x4 = x1 + d
+    x3 = x2 + d
+    # Print the new coordinates
+    print(f"{x3} {y3} {x4} {y4}")
+
+# Check if the slope is 1 (45 degrees)
+elif quotient == 1:
+    # Set new coordinates for the points
+    x4 = x2
+    x3 = x1
+    y4 = y1
+    y3 = y2
+    # Print the new coordinates
+    print(f"{x3} {y3} {x4} {y4}")
+
+# Check if the slope is -1 (-45 degrees)
+elif quotient == -1:
+    # Set new coordinates for the points
+    x4 = x1
+    x3 = x2
+    y4 = y2
+    y3 = y1
+    # Print the new coordinates
+    print(f"{x3} {y3} {x4} {y4}")
+
+# If none of the conditions are met, print -1
+else:
+    print('-1')

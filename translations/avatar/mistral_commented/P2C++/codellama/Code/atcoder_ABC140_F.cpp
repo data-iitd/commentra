@@ -1,0 +1,88 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+// Function to read an integer from standard input
+int I() {
+    int x;
+    cin >> x;
+    return x;
+}
+
+// Function to read a list of integers from standard input
+vector<int> LI() {
+    vector<int> S;
+    int x;
+    while (cin >> x) {
+        S.push_back(x);
+    }
+    return S;
+}
+
+// Function to sort a list of integers in descending order
+void sortDesc(vector<int> &S) {
+    sort(S.begin(), S.end(), greater<int>());
+}
+
+// Function to solve the problem
+string main() {
+    // Read the number of test cases
+    int N = I();
+
+    // Read the list of integers and sort it in descending order
+    vector<int> S = LI();
+    sortDesc(S);
+
+    // Initialize a list of flags to keep track of whether each integer has been included in the current subsequence or not
+    vector<bool> flag(N, true);
+
+    // Initialize an empty list to store the current subsequence
+    vector<int> cur;
+
+    // Start from the first integer and include it in the subsequence
+    cur.push_back(S[0]);
+    flag[0] = false;
+
+    // For each integer in the sorted list
+    for (int i = 1; i < N; i++) {
+        // Initialize variables
+        int j = 0;
+        int jM = cur.size();
+
+        // Try to include the current integer in the subsequence
+        for (int k = 0; k < N; k++) {
+            // If the flag of the current integer is True and it is smaller than the last integer in the subsequence
+            if (flag[k] && S[k] < cur[j]) {
+                // Include the current integer in the subsequence and update the flag and the index of the last integer in the subsequence
+                cur.push_back(S[k]);
+                j += 1;
+                flag[k] = false;
+                // If the length of the subsequence hasn't changed, break the loop
+                if (j == jM) {
+                    break;
+                }
+            }
+        }
+
+        // If we couldn't include any integer in the subsequence after the current one, return "No"
+        if (j == 0) {
+            return "No";
+        }
+
+        // Sort the subsequence in descending order
+        sortDesc(cur);
+    }
+
+    // If we could include all the integers in the subsequence, return "Yes"
+    return "Yes";
+}
+
+// Run the main function if the script is executed directly
+int main() {
+    // Read the output and print it
+    cout << main() << endl;
+    return 0;
+}
+

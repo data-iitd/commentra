@@ -1,0 +1,32 @@
+package main
+
+import (
+	"fmt"
+)
+
+func you(x, y int) int {
+	var z int
+	for {
+		z = x % y
+		x = y
+		y = z
+		if y <= 0 {
+			break
+		}
+	}
+	return x
+}
+
+func main() {
+	var x, y int
+	fmt.Scanf("%d %d", &x, &y)
+	var z int
+	if x >= y {
+		z = you(x, y)
+	} else {
+		z = you(y, x)
+	}
+	fmt.Println(z)
+}
+
+// <END-OF-CODE>

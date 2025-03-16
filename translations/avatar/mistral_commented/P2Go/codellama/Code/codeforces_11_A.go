@@ -1,0 +1,28 @@
+// Define the number of elements 'n' and the difference 'd' in the input list
+n, d := inputInt()
+
+// Initialize an empty list 'x' to store the input elements
+x := make([]int, 0)
+
+// Initialize variables 'm' and 'q' to 0
+m := 0
+q := 0
+
+// Read the 'n' elements from the input and convert them to integers
+x = inputInt()
+
+// Iterate through the list 'x' to find the elements that are not in increasing order
+for i := 0; i < len(x); i++ {
+    // Check if the current element is greater than or equal to the next element
+    if x[i] >= x[i+1] {
+        // Calculate the number of elements that need to be added to the next element
+        q = int((x[i] - x[i+1]) / d + 1)
+        // Add the calculated number of elements to the current and next elements
+        m += q
+        x[i+1] += q * d
+    }
+}
+
+// Print the final result 'm'
+fmt.Println(m)
+

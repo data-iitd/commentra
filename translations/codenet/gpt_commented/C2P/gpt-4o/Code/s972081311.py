@@ -1,0 +1,10 @@
+# Declare a variable to hold the input number
+n = int(input())
+
+# Calculate the sum of the first n natural numbers using the formula n*(n+1)/2
+sum = (n * (n + 1)) // 2
+
+# Print the calculated sum to the console
+print(sum)
+
+# <END-OF-CODE>

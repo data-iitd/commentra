@@ -1,0 +1,44 @@
+# 入場料金計算プログラム
+
+DAYS = 365  # 最大何日か？
+
+def main():
+    n = int(input())
+    nyuyoku_ticket = [0] * DAYS
+    pool_ticket = [0] * DAYS
+    nyuyoku_member = [0] * DAYS
+    pool_member = [0] * DAYS
+    seiki_ryoukin = [0] * DAYS
+    waribiki_ryoukin = [0] * DAYS
+    saiyasune = [0] * DAYS
+
+    for i in range(n):
+        x, y, b, p = map(int, input().split())
+        nyuyoku_ticket[i] = x
+        pool_ticket[i] = y
+        nyuyoku_member[i] = b
+        pool_member[i] = p
+
+        if nyuyoku_member[i] >= 5 and pool_member[i] >= 2:
+            seiki_ryoukin[i] = (nyuyoku_ticket[i] * nyuyoku_member[i] + pool_ticket[i] * pool_member[i]) * 8 // 10
+            saiyasune[i] = seiki_ryoukin[i]
+        elif nyuyoku_member[i] >= 5:
+            seiki_ryoukin[i] = (nyuyoku_ticket[i] * nyuyoku_member[i] + pool_ticket[i] * pool_member[i])
+            waribiki_ryoukin[i] = (nyuyoku_ticket[i] * nyuyoku_member[i] + pool_ticket[i] * 2) * 8 // 10
+            saiyasune[i] = min(seiki_ryoukin[i], waribiki_ryoukin[i])
+        elif pool_member[i] >= 2:
+            seiki_ryoukin[i] = (nyuyoku_ticket[i] * nyuyoku_member[i] + pool_ticket[i] * pool_member[i])
+            waribiki_ryoukin[i] = (nyuyoku_ticket[i] * 5 + pool_ticket[i] * pool_member[i]) * 8 // 10
+            saiyasune[i] = min(seiki_ryoukin[i], waribiki_ryoukin[i])
+        else:
+            seiki_ryoukin[i] = (nyuyoku_ticket[i] * nyuyoku_member[i] + pool_ticket[i] * pool_member[i])
+            waribiki_ryoukin[i] = (nyuyoku_ticket[i] * 5 + pool_ticket[i] * 2) * 8 // 10
+            saiyasune[i] = min(seiki_ryoukin[i], waribiki_ryoukin[i])
+
+    for i in range(n):
+        print(saiyasune[i])
+
+if __name__ == "__main__":
+    main()
+
+# <END-OF-CODE>

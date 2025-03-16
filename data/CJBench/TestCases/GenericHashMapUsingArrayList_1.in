@@ -1,0 +1,11 @@
+10
+PUT apple red
+PUT banana yellow
+PUT cherry pink
+GET banana
+REMOVE apple
+CONTAINS apple
+CONTAINS cherry
+GET apple
+SIZE
+PRINT

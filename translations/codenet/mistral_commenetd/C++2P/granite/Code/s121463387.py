@@ -1,0 +1,16 @@
+
+n = int(input())
+for i in range(1, n+1):
+    x = i
+    s = str(x)
+    if x % 3 == 0 or s[-1] == '3':
+        print(i, end=" ")
+    else:
+        k = len(s)
+        while k > 0:
+            k -= 1
+            j = 10 ** k
+            if (x // j) % 10 == 3:
+                print(i, end=" ")
+                break
+print()

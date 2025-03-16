@@ -1,0 +1,26 @@
+# Declare global variables
+n, k = map(int, input().split())  # n: number of elements, k: size of the subset
+vec = []  # List to store the input elements
+ans = 1000000001  # Initialize ans to a large value to find the minimum difference
+
+# Read n integers from input and store them in the list
+for _ in range(n):
+    t = int(input())  # Read each integer
+    vec.append(t)  # Add the integer to the list
+
+# Sort the list in non-decreasing order
+vec.sort()
+
+# Iterate through the sorted list to find the minimum difference
+for i in range(n - k + 1):
+    # Calculate the difference between the maximum and minimum of the current subset of size k
+    diff = vec[i + k - 1] - vec[i]
+    
+    # Update the minimum difference found so far
+    if diff < ans:
+        ans = diff  # Update ans if a smaller difference is found
+
+# Output the minimum difference found
+print(ans)
+
+# <END-OF-CODE>

@@ -1,0 +1,11 @@
+Inserted: 10
+Inserted: 20
+Inserted: 5
+Inserted: 6
+Inserted: 15
+5 => 10 <= 20
+END => 5 <= 6
+END => 6 <= END
+15 => 20 <= END
+END => 15 <= END
+Tree Height: 3

@@ -1,0 +1,114 @@
+
+import decimal
+
+class Pair:
+    def __init__(self, key, value):
+        self.key = key
+        self.value = value
+
+    def __eq__(self, other):
+        return self.key == other.key and self.value == other.value
+
+    def __hash__(self):
+        return hash((self.key, self.value))
+
+    def __repr__(self):
+        return f"Pair({self.key}, {self.value})"
+
+class AffineConverter:
+    def __init__(self, scale, offset):
+        self.scale = scale
+        self.offset = offset
+
+    def convert(self, value):
+        return self.scale * value + self.offset
+
+    def invert(self):
+        if self.scale == 0:
+            raise ArithmeticError("Cannot invert a scale of zero.")
+        return AffineConverter(1 / self.scale, -self.offset / self.scale)
+
+    def compose(self, other):
+        return AffineConverter(self.scale * other.scale, self.scale * other.offset + self.offset)
+
+    def __repr__(self):
+        return f"AffineConverter(scale={self.scale}, offset={self.offset})"
+
+class Main:
+    def __init__(self, basic_conversions):
+        self.conversions = self.compute_all_conversions(basic_conversions)
+        self.units = self.extract_units(self.conversions)
+
+    def convert(self, input_unit, output_unit, value):
+        conversion_key = Pair(input_unit, output_unit)
+        try:
+            converter = self.conversions[conversion_key]
+        except KeyError:
+            raise ValueError(f"No converter for: {conversion_key}")
+        result = converter.convert(value)
+        return decimal.Decimal(result).quantize(decimal.Decimal('0.00'))
+
+    def available_units(self):
+        return self.units
+
+    @staticmethod
+    def add_inversions(known_conversions):
+        res = {}
+        for key, converter in known_conversions.items():
+            input_unit, output_unit = key
+            res[key] = converter
+            res[(output_unit, input_unit)] = converter.invert()
+        return res
+
+    @staticmethod
+    def add_compositions(known_conversions):
+        res = {}
+        for first_key, first_converter in known_conversions.items():
+            input_unit_1, output_unit_1 = first_key
+            res[first_key] = first_converter
+            for second_key, second_converter in known_conversions.items():
+                output_unit_2, input_unit_2 = second_key
+                if output_unit_1 == input_unit_2:
+                    composed_converter = second_converter.compose(first_converter)
+                    res[(input_unit_1, output_unit_2)] = composed_converter
+        return res
+
+    @staticmethod
+    def compute_all_conversions(basic_conversions):
+        tmp = basic_conversions
+        res = Main.add_all(tmp)
+        while len(res)!= len(tmp):
+            tmp = res
+            res = Main.add_all(tmp)
+        return res
+
+    @staticmethod
+    def add_all(known_conversions):
+        res = Main.add_inversions(known_conversions)
+        return Main.add_compositions(res)
+
+    @staticmethod
+    def extract_units(conversions):
+        res = set()
+        for key, _ in conversions.items():
+            input_unit, output_unit = key
+            res.add(input_unit)
+            res.add(output_unit)
+        return res
+
+if __name__ == "__main__":
+    import sys
+
+    basic_conversions = {
+        (Pair("Celsius", "Fahrenheit"), AffineConverter(9.0 / 5.0, 32.0)),
+        (Pair("Kelvin", "Celsius"), AffineConverter(1.0, -273.15))
+    }
+    converter = Main(basic_conversions)
+    input_unit = sys.stdin.readline().strip()
+    output_unit = sys.stdin.readline().strip()
+    value = float(sys.stdin.readline().strip())
+    try:
+        result = converter.convert(input_unit, output_unit, value)
+        print(f"Converted value: {result}")
+    except Exception as e:
+        print(f"Error: {e}")

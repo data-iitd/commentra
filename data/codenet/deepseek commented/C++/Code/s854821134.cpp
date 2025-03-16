@@ -1,0 +1,15 @@
+#include<iostream> // Step 1: Include necessary libraries
+#include<algorithm>
+#include<queue>
+#include<string>
+#include<vector>
+using namespace std;
+const int INF = 200000005; // Step 2: Define constants
+
+int main()
+{
+	int a, b;
+	cin >> a >> b; // Step 4: Read input values
+	if (a <= 8 && b <= 8) cout << "Yay!" << endl; // Step 5: Check the condition and print the result
+    return 0; // Step 7: End the main function
+}

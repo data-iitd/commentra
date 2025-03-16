@@ -1,0 +1,85 @@
+
+import sys
+
+class Point:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+    @staticmethod
+    def orientation(i, j, k):
+        return (j.y - i.y) * (k.x - j.x) - (j.x - i.x) * (k.y - j.y)
+
+    def __lt__(self, other):
+        return (self.x == other.x) and (self.y < other.y) or (self.x < other.x)
+
+    def __repr__(self):
+        return f"Point({self.x}, {self.y})"
+
+def convex_hull_brute_force(points):
+    convex_set = set()
+    for i in range(len(points)):
+        for j in range(i + 1, len(points)):
+            all_points_on_one_side = True
+            left_side = Point.orientation(points[i], points[j], points[(i + 1) % len(points)]) > 0
+            for k in range(len(points)):
+                if k!= i and k!= j and Point.orientation(points[i], points[j], points[k])!= left_side:
+                    all_points_on_one_side = False
+                    break
+            if all_points_on_one_side:
+                convex_set.add(points[i])
+                convex_set.add(points[j])
+    return list(convex_set)
+
+def convex_hull_recursive(points):
+    points.sort()
+    convex_set = set()
+    left_most_point = points[0]
+    right_most_point = points[-1]
+    convex_set.add(left_most_point)
+    convex_set.add(right_most_point)
+    upper_hull = []
+    lower_hull = []
+    for i in range(1, len(points) - 1):
+        det = Point.orientation(left_most_point, right_most_point, points[i])
+        if det > 0:
+            upper_hull.append(points[i])
+        elif det < 0:
+            lower_hull.append(points[i])
+    construct_hull(upper_hull, left_most_point, right_most_point, convex_set)
+    construct_hull(lower_hull, right_most_point, left_most_point, convex_set)
+    result = list(convex_set)
+    result.sort()
+    return result
+
+def construct_hull(points, left, right, convex_set):
+    if points:
+        extreme_point = None
+        extreme_point_distance = float('-inf')
+        candidate_points = []
+        for p in points:
+            det = Point.orientation(left, right, p)
+            if det > 0:
+                candidate_points.append(p)
+                if det > extreme_point_distance:
+                    extreme_point_distance = det
+                    extreme_point = p
+        if extreme_point:
+            construct_hull(candidate_points, left, extreme_point, convex_set)
+            convex_set.add(extreme_point)
+            construct_hull(candidate_points, extreme_point, right, convex_set)
+
+if __name__ == "__main__":
+    n = int(input())
+    points = []
+    for _ in range(n):
+        x, y = map(int, input().split())
+        points.append(Point(x, y))
+    brute_force_hull = convex_hull_brute_force(points)
+    print("Convex Hull (Brute Force):")
+    for p in brute_force_hull:
+        print(p)
+    recursive_hull = convex_hull_recursive(points)
+    print("Convex Hull (Recursive):")
+    for p in recursive_hull:
+        print(p)

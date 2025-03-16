@@ -1,0 +1,53 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+void editorial ( int N , vector < int > P ) {
+    if ( N == 1 ) {
+        cout << 0 << endl;
+        return;
+    }
+    vector < int > a ( N + 1 );
+    for ( int i = 0 ; i < N ; i++ ) {
+        a [ P [ i ] ] = i;
+    }
+    int tmp = 1;
+    int max_len = 1;
+    for ( int i = 1 ; i < N ; i++ ) {
+        if ( a [ i ] < a [ i + 1 ] ) {
+            tmp++;
+            max_len = max ( max_len , tmp );
+        } else {
+            tmp = 1;
+        }
+    }
+    int ans = N - max_len;
+    cout << ans << endl;
+}
+void WA ( int N , vector < int > P ) {
+    int tmp = 0;
+    int ans = 0;
+    for ( int i = 0 ; i < N ; i++ ) {
+        if ( i == 0 || P [ i - 1 ] + 1 == P [ i ] ) {
+            tmp++;
+        } else {
+            ans = max ( ans , tmp );
+            tmp = 1;
+        }
+    }
+    cout << N - ans << endl;
+}
+int main ( ) {
+    int N;
+    cin >> N;
+    vector < int > P ( N );
+    for ( int i = 0 ; i < N ; i++ ) {
+        cin >> P [ i ];
+    }
+    editorial ( N , P );
+    // WA ( N , P );
+    return 0;
+}
+
+
+
+Translate the above Python code to Java and end with comment "

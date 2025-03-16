@@ -1,0 +1,59 @@
+
+package main
+
+import (
+	"bufio"
+	"fmt"
+	"os"
+	"strconv"
+)
+
+func main() {
+	// Get the number of candles 'candeleIntere' and the box size 'b' from user input
+	candeleIntere, b := readTwoInt()
+
+	// Initialize the sum's' to 0
+	s := 0
+
+	// Initialize the remaining candles'restoSciolte' to 0
+	restoSciolte := 0
+
+	// Continue the loop as long as there are still candles or the remaining candles are greater than or equal to the box size
+	for candeleIntere > 0 || restoSciolte >= b {
+
+		// Calculate the number of full boxes of candles that can be put in the box
+		candeleIntere += restoSciolte / b
+
+		// Update the remaining candles
+		restoSciolte %= b
+
+		// Add the number of candles in the current box to the sum
+		s += candeleIntere
+
+		// Update the remaining candles by adding the remainder of the current box
+		restoSciolte += candeleIntere % b
+
+		// Update the number of candles to be put in the next box
+		candeleIntere /= b
+	}
+
+	// Print the final sum
+	fmt.Println(s)
+}
+
+func readTwoInt() (int, int) {
+	// Create a new scanner to read input from the user
+	scanner := bufio.NewScanner(os.Stdin)
+
+	// Read the first integer from the user
+	scanner.Scan()
+	candeleIntere, _ := strconv.Atoi(scanner.Text())
+
+	// Read the second integer from the user
+	scanner.Scan()
+	b, _ := strconv.Atoi(scanner.Text())
+
+	// Return the two integers
+	return candeleIntere, b
+}
+

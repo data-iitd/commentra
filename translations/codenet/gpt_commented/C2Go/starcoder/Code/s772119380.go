@@ -1,0 +1,44 @@
+package main
+
+import (
+    "fmt"
+    "os"
+    "strconv"
+    "strings"
+)
+
+func main() {
+    // Declare an array to hold up to 1000 integers and variables for size and counters
+    var a [1000]int
+    var n, i, j, d int
+
+    // Read the number of elements to be sorted
+    n, _ = strconv.Atoi(strings.TrimSpace(string(os.Stdin.Read(make([]byte, 1000)))))
+
+    // Read the elements into the array
+    for i = 0; i < n; i++ {
+        fmt.Scanf("%d", &a[i])
+    }
+
+    // Perform a bubble sort on the array
+    for i = 0; i < n; i++ {
+        // Inner loop for comparing adjacent elements
+        for j = n - 1; j >= i + 1; j-- {
+            // If the current element is less than the previous one, swap them
+            if a[j] < a[j - 1] {
+                a[j], a[j - 1] = a[j - 1], a[j]
+                d++ // Increment the swap counter
+            }
+        }
+    }
+
+    // Print the sorted array
+    fmt.Printf("%d", a[0]) // Print the first element
+    for i = 1; i < n; i++ {
+        fmt.Printf(" %d", a[i]) // Print the remaining elements
+    }
+
+    // Print the total number of swaps made during sorting
+    fmt.Printf("\n%d\n", d)
+}
+

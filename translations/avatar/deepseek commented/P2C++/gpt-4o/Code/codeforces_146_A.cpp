@@ -1,0 +1,45 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+int main() {
+    int n;  // Step 1: Declare an integer `n`
+    cin >> n;  // Step 1: Take an integer input `n`
+    
+    vector<int> number(n);  // Step 1: Declare a vector to store the digits
+    for (int i = 0; i < n; i++) {
+        cin >> number[i];  // Step 1: Take a list of integers `number`
+    }
+
+    int h1 = 0;  // Step 2: Initialize `h1` to store the sum of the first half of the digits
+    int h2 = 0;  // Step 2: Initialize `h2` to store the sum of the second half of the digits
+    bool invalidDigitFound = false;  // Step 3: Initialize a flag for invalid digits
+
+    // Step 4: Enter a for loop to iterate over each digit in the number
+    for (int i = 0; i < n; i++) {
+        if (number[i] != 4 && number[i] != 7) {  // Step 5: Check if the current digit is invalid
+            cout << "NO" << endl;  // Step 5: Print "NO" and break the loop if an invalid digit is found
+            invalidDigitFound = true;  // Step 5: Set the flag to true
+            break;  // Step 5: Break out of the loop
+        }
+        if (i < n / 2) {  // Step 6: Add the digit to `h1` if it's in the first half
+            h1 += number[i];
+        } else {  // Step 6: Add the digit to `h2` if it's in the second half
+            h2 += number[i];
+        }
+    }
+
+    // Step 7: After the loop, check if no invalid digit was found and compare the sums of the first and second halves
+    if (!invalidDigitFound) {  // Step 7: Check if no invalid digit was found
+        if (h1 == h2) {  // Step 7: Check if the sums are equal
+            cout << "YES" << endl;  // Step 7: Print "YES" if the sums are equal
+        } else {  // Step 7: Print "NO" if the sums are not equal
+            cout << "NO" << endl;
+        }
+    }
+
+    return 0;  // End of the program
+}
+
+// <END-OF-CODE>

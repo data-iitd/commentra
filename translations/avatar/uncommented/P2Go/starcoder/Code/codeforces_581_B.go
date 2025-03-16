@@ -1,0 +1,36 @@
+package main
+
+import (
+	"bufio"
+	"fmt"
+	"os"
+	"strconv"
+	"strings"
+)
+
+func main() {
+	reader := bufio.NewReader(os.Stdin)
+	fmt.Println("Enter the number of elements in the array")
+	n, _ := strconv.Atoi(strings.TrimSpace(reader.ReadString()))
+	fmt.Println("Enter the elements of the array")
+	arr := make([]int, n)
+	for i := 0; i < n; i++ {
+		arr[i], _ = strconv.Atoi(strings.TrimSpace(reader.ReadString()))
+	}
+	ans := make([]int, n)
+	mx := arr[n-1]
+	for i := n - 2; i >= 0; i-- {
+		ans[i] = max(0, mx-arr[i]+1)
+		if arr[i] > mx {
+			mx = arr[i]
+	}
+	fmt.Println(ans)
+}
+
+func max(a, b int) int {
+	if a > b {
+		return a
+	}
+	return b
+}
+

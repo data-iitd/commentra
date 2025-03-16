@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    // Initialize variables N and K with user input
+    int N, K;
+    scanf("%d %d", &N, &K);
+
+    // Create a vector 'v' of size N to store the input integers
+    int *v = (int *)malloc(N * sizeof(int));
+
+    // Read N integers from the user and store them in the vector 'v'
+    for (int i = 0; i < N; ++i) {
+        scanf("%d", &v[i]);
+    }
+
+    // Calculate the number of subarrays of size K that can be formed from the vector 'v'
+    int count = ((N - 1) + ((K - 1) - 1)) / (K - 1);
+
+    // Output the result to the console
+    printf("%d\n", count);
+
+    // Free the memory allocated to the vector 'v'
+    free(v);
+
+    return 0;
+}
+

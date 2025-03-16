@@ -1,0 +1,7 @@
+Execution Order:
+Process 1 started at time 0
+Process 2 started at time 6
+Process 3 started at time 14
+Process 4 started at time 21
+Average Waiting Time: 8.75
+Average Turnaround Time: 14.75

@@ -1,0 +1,37 @@
+
+
+import java.util.Scanner;
+
+public class s054878611{
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int n = scanner.nextInt();
+        int[] a = new int[n];
+        for (int i = 0; i < n; i++) {
+            a[i] = scanner.nextInt();
+        }
+        int out = solution(n, a);
+        System.out.println(out);
+    }
+
+    public static int solution(int n, int[] a) {
+        int[] memo = new int[100002];
+        for (int i = 0; i < n; i++) {
+            memo[a[i]]++;
+            memo[a[i] + 1]++;
+            memo[a[i] + 2]++;
+        }
+        int out = 0;
+        for (int i = 0; i < memo.length; i++) {
+            if (memo[i] > 0) {
+                out = Math.max(out, memo[i]);
+            }
+        }
+        return out;
+    }
+
+    public static int max(int x, int y) {
+        return x > y? x : y;
+    }
+}
+

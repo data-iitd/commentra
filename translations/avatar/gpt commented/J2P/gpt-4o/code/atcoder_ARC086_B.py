@@ -1,0 +1,46 @@
+def main():
+    import sys
+    
+    # Read the number of elements in the array
+    n = int(sys.stdin.readline().strip())
+    
+    # Initialize a list to hold the integers
+    a = list(map(int, sys.stdin.readline().strip().split()))
+    
+    # Create a list to store the result pairs
+    r = []
+    
+    # Variable to track the index of the element with the maximum absolute value
+    m = 0
+    
+    # Find the index of the element with the maximum absolute value
+    for i in range(1, n):
+        if abs(a[m]) < abs(a[i]):
+            m = i
+    
+    # Generate pairs of indices based on the sign of the maximum absolute value element
+    for i in range(n):
+        if (a[m] >= 0) ^ (a[i] >= 0):
+            r.append(f"{m + 1} {i + 1}")
+    
+    # If the maximum absolute value element is non-negative
+    if a[m] >= 0:
+        # Add pairs of consecutive indices in ascending order
+        for i in range(1, n):
+            r.append(f"{i} {i + 1}")
+    else:
+        # If the maximum absolute value element is negative, add pairs in descending order
+        for i in range(n, 1, -1):
+            r.append(f"{i} {i - 1}")
+    
+    # Print the size of the result list
+    print(len(r))
+    
+    # Print each pair in the result list
+    for pair in r:
+        print(pair)
+
+if __name__ == "__main__":
+    main()
+
+# <END-OF-CODE>

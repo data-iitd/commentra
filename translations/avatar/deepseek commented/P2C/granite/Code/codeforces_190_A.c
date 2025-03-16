@@ -1,0 +1,45 @@
+
+
+#include <stdio.h>
+
+int main ( void ) {
+    int n, m ;
+    scanf ( "%d %d", & n, & m ) ;
+    // Read two integers, `n` and `m`, from the standard input
+
+    if ( n < 1 ) {
+        // Check if `n` is less than 1
+        if ( m < 1 ) {
+            // Check if `m` is also less than 1
+            printf ( "%d %d\n", n, m ) ;
+            return 0 ;
+            // Print `n` and `m` and then return from the function
+        }
+        printf ( "Impossible\n" ) ;
+        return 0 ;
+        // Print "Impossible" and then return from the function
+    }
+
+    if ( m > n ) {
+        // Check if `m` is greater than `n`
+        int min = m ;
+        int max = n + m - 1 ;
+        printf ( "%d %d\n", min, max ) ;
+        // Calculate `min` as `m` and `max` as `n + m - 1`, then print `min` and `max`
+    }
+
+    if ( m <= n ) {
+        // Check if `m` is less than or equal to `n`
+        int min = n ;
+        int max = n + m - 1 ;
+        if ( m == 0 ) {
+            max = n ;
+        }
+        printf ( "%d %d\n", min, max ) ;
+        // Calculate `min` as `n` and `max` as `n + m - 1`. If `m` is 0, set `max` to `n`. Finally, print `min` and `max`
+    }
+
+    return 0 ;
+    // Return from the function
+}
+

@@ -1,0 +1,23 @@
+import sys
+
+def main():
+    minA = 10**9 + 1
+    num = 0
+    
+    n, t = map(int, sys.stdin.readline().split())
+    A = list(map(int, sys.stdin.readline().split()))
+    
+    for i in range(n):
+        if minA > A[i]:
+            minA = A[i]
+        else:
+            if num == A[i] - minA:
+                num += 1
+            elif num < A[i] - minA:
+                num = 1
+                f = A[i] - minA
+    
+    print(num)
+
+if __name__ == "__main__":
+    main()

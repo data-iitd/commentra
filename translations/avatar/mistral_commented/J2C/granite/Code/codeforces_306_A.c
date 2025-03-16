@@ -1,0 +1,38 @@
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int n, m;
+    printf("Enter the value of n: ");
+    scanf("%d", &n);
+    printf("Enter the value of m: ");
+    scanf("%d", &m);
+
+    int a[m];
+    if (n % m == 0) {
+        for (int i = 0; i < m; i++) {
+            a[i] = n / m;
+        }
+    } else {
+        int sub = n / m;
+        for (int i = 0; i < m; i++) {
+            a[i] = sub;
+        }
+        int test = n - (sub * m);
+        int count = 0;
+        for (int i = 0; i < test; i++) {
+            a[count] = a[count] + 1;
+            count++;
+            if (count > m) count = 0;
+        }
+    }
+
+    for (int i = m - 1; i >= 0; i--) {
+        printf("%d ", a[i]);
+    }
+
+    return 0;
+}
+

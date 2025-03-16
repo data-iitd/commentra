@@ -1,0 +1,21 @@
+#include <iostream>
+
+int main() {
+    // Declare variables
+    unsigned long long int n, b = 0;
+
+    // Read an unsigned long long integer from user input
+    std::cin >> n;
+
+    // Calculate the number of ways to choose 2 items from n items
+    // This is done using the formula: b = n * (n - 1) / 2
+    b = (n * (n - 1)) / 2;
+
+    // Print the result
+    std::cout << b << std::endl;
+
+    // Return 0 to indicate successful execution
+    return 0;
+}
+
+// <END-OF-CODE>

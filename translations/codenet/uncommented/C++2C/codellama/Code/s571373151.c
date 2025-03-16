@@ -1,0 +1,37 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    int n, m;
+    scanf("%d %d", &n, &m);
+
+    int *foods = (int *)malloc(m * sizeof(int));
+
+    for (int i = 0; i < n; i++) {
+        int k;
+        scanf("%d", &k);
+
+        for (int j = 0; j < k; j++) {
+            int temp;
+            scanf("%d", &temp);
+            temp--;
+
+            foods[temp]++;
+        }
+    }
+
+    int ans = 0;
+    for (int i = 0; i < m; i++) {
+        if (foods[i] == n) {
+            ans++;
+        }
+    }
+
+    printf("%d\n", ans);
+
+    free(foods);
+
+    return 0;
+}
+

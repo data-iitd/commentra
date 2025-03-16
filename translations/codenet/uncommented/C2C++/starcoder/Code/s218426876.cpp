@@ -1,0 +1,26 @@
+#include <string.h>
+#include<iostream>
+using namespace std;
+int main(void)
+{
+	int i,sum=0;
+	int flag=0;
+	char x[1002];
+	cin>>x;
+	do{
+		
+		for(i=0;i<1002;i++){
+			if(x[i]==0){
+				cout<<sum<<endl;
+				break;
+			}else{
+				sum+=x[i]-0x30;
+			}
+		}
+		sum=0;
+		cin>>x;
+	}while(x[0]!=0x30);
+
+	return 0 ;
+}
+

@@ -1,0 +1,36 @@
+
+import java.util.Scanner;
+
+public class s062562864{
+    public static void main(String[] args) {
+        // Declare integer variables to hold input values and results
+        int a, b, c, d, i, j;
+
+        // Create a Scanner object to read user input
+        Scanner scanner = new Scanner(System.in);
+
+        // Read four integers from user input
+        a = scanner.nextInt();
+        b = scanner.nextInt();
+        c = scanner.nextInt();
+        d = scanner.nextInt();
+
+        // Calculate the product of the first two integers
+        i = a * b;
+
+        // Calculate the product of the last two integers
+        j = c * d;
+
+        // Compare the two products and print the larger one
+        if (i > j) {
+            // If the first product is greater, print it
+            System.out.println(i);
+        } else {
+            // Otherwise, print the second product
+            System.out.println(j);
+        }
+
+        // Close the Scanner object to release system resources
+        scanner.close();
+    }
+}

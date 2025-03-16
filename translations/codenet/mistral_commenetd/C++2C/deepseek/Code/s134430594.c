@@ -1,0 +1,108 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <math.h>
+#include <time.h>
+#include <ctype.h>
+#include <limits.h>
+#include <stdbool.h>
+
+#define int long long
+
+// Define a struct to store information about intervals
+typedef struct {
+    int l; // left endpoint of the interval
+    int r; // right endpoint of the interval
+    int val; // value of the interval
+} Ban;
+
+// Define a constant for the maximum depth of the segment tree
+const int LIM = 20;
+// Define a constant for the maximum number of elements in the array
+const int N = 2e5 + 7;
+
+// An array to store the minimum value in each segment of the segment tree
+int mn[LIM][N];
+// An array to store the power of 2 up to the maximum depth of the segment tree
+int pw[N];
+
+// A function to initialize the segment tree
+void init(int* a, int n) {
+    // Initialize the first level of the segment tree
+    for (int i = 0; i < n; i++) {
+        mn[0][i] = a[i]; // Store the value of the element at index i in the first level of the segment tree
+    }
+    // Build the segment tree recursively
+    for (int i = 0; i + 1 < LIM; i++) {
+        for (int j = 0; j + (1 << (i + 1)) <= n; j++) {
+            mn[i + 1][j] = fmax(mn[i][j], mn[i][j + (1 << i)]); // Find the minimum value in the current segment and store it in the next level of the segment tree
+        }
+    }
+    // Calculate the power of 2 up to the maximum depth of the segment tree
+    pw[1] = 0;
+    for (int i = 2; i < N; i++) {
+        pw[i] = pw[i / 2] + 1; // Calculate the power of 2 for each index
+    }
+}
+
+// A function to get the minimum value in a segment of the segment tree
+int get(int l, int r) {
+    r++; // Adjust the index of the right endpoint of the segment to be one more than the actual index
+    int p = pw[r - l]; // Calculate the depth of the segment tree for the given segment
+    return fmin(mn[p][l], mn[p][r - (1 << p)]); // Return the minimum value in the given segment
+}
+
+int main() {
+    // Read the number of elements in the array
+    int n;
+    scanf("%lld", &n);
+
+    // Read the elements of the array
+    int a[n];
+    for (int i = 0; i < n; i++) {
+        scanf("%lld", &a[i]);
+    }
+
+    // Initialize some variables
+    int dl[n]; // An array to store the difference between the index and the index of the element in the array
+    int ans = 0; // The answer
+    Ban bans[n]; // A vector to store some information about the intervals
+    int ban_count = 0; // The number of intervals
+
+    // Calculate the differences between the indices and the elements in the array
+    for (int i = 0; i < n; i++) {
+        if (a[i] > i) { // Check if the element is out of its position
+            printf("-1\n"); // Output -1 if the element is out of its position
+            return 0;
+        }
+        dl[i] = i - a[i]; // Calculate the difference between the index and the element
+    }
+
+    // Calculate the answer and store some information about the intervals in a vector
+    for (int i = 0; i < n; i++) {
+        int r = i; // Initialize a variable to store the right endpoint of the current interval
+        while (r + 1 < n && a[r] + 1 == a[r + 1]) { // Check if there is a longer interval with the same value
+            r++; // Move to the next index if there is
+        }
+        ans += a[r]; // Add the value of the right endpoint of the current interval to the answer
+        i = r; // Update the index to be the right endpoint of the current interval
+        bans[ban_count++] = (Ban){r - a[r], r, r - a[r]}; // Store some information about the current interval in the vector
+    }
+
+    // Initialize the segment tree using the differences between the indices and the elements in the array
+    init(dl, n);
+
+    // Check some conditions and calculate the answer if possible
+    for (int i = 0; i < ban_count; i++) {
+        Ban t = bans[i];
+        if (get(t.l, t.r) > t.val) { // Check if the minimum value in the segment of the segment tree is greater than the value of the interval
+            printf("-1\n"); // Output -1 if the condition is not satisfied
+            return 0;
+        }
+    }
+
+    // Output the answer
+    printf("%lld\n", ans);
+
+    return 0;
+}

@@ -1,0 +1,48 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+  int n, r, p, c;
+  int i, j, k, l;
+  vector<int> a(51);
+  vector<int> b(51);
+
+  while (true) { // Loop until both n and r are zero
+    cin >> n >> r; // Read the number of elements and the number of operations
+    if (n == 0 && r == 0)
+      break; // Exit the loop if both n and r are zero
+
+    // Initialize vector a with elements from 1 to n
+    for (i = 0; i < n; i++)
+      a[i] = i + 1;
+
+    // Perform r operations
+    for (i = 0; i < r; i++) {
+      cin >> p >> c; // Read the position and count of elements to be moved
+
+      // Copy the last c elements to be moved to vector b
+      for (j = 0; j < c; j++)
+        b[j] = a[n - p - c + 1 + j];
+
+      // Shift the first p-1 elements before the position where the c elements will be moved
+      for (j = 0; j < p - 1; j++)
+        a[n - p - c + 1 + j] = a[n - p + j + 1];
+
+      // Place the elements from b back into vector a at the correct position
+      for (j = n - p - c + 1 + j, k = 0; k < c; j++, k++)
+        a[j] = b[k];
+
+      // Uncomment the following block to print the vector after each operation for debugging
+      /*
+      for (j = 0; j < n; j++)
+        cout << a[j] << endl;
+      cout << "---" << endl;
+      */
+    }
+    // Print the last element of the vector a after all operations
+    cout << a[n - 1] << endl;
+  }
+  return 0;
+}
+

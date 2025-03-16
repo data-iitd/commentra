@@ -1,0 +1,158 @@
+#include <iostream>
+#include <vector>
+#include <utility>
+#include <algorithm>
+#define MAX 100000
+
+// Partition function used in Quicksort algorithm
+int Partition(std::vector<char>&, std::vector<int>&, int, int);
+
+// Quicksort function to sort the array
+void Quicksort(std::vector<char>&, std::vector<int>&, int, int);
+
+// Merge function used in Merge Sort algorithm
+void Merge(std::vector<char>&, std::vector<int>&, int, int, int);
+
+// Merge Sort function to sort the array using recursion
+void Merge_Sort(std::vector<char>&, std::vector<int>&, int, int);
+
+// Variable to store the pivot index in Partition function
+int q;
+
+// Main function to read input, sort data using both algorithms, and check stability
+int main() {
+    // Vectors to store characters and their corresponding numbers
+    std::vector<int> A(MAX + 1);
+    std::vector<char> C(MAX + 1);
+    std::vector<char> MC(MAX + 1);
+    std::vector<int> MN(MAX + 1);
+
+    // Variables to store the number of elements and loop index
+    int n, count = 0;
+
+    // Read the number of elements
+    std::cin >> n;
+
+    // Read characters and their corresponding numbers
+    for (int i = 1; i <= n; i++)
+        std::cin >> C[i] >> A[i];
+
+    // Copy characters and numbers to another array for Merge Sort
+    for (int i = 1; i <= n; i++) {
+        MC[i] = C[i];
+        MN[i] = A[i];
+    }
+
+    // Sort the copied array using Merge Sort
+    Merge_Sort(MC, MN, 1, n);
+
+    // Sort the original array using Quicksort
+    int p = 1;
+    Quicksort(C, A, p, n);
+
+    // Check if the sorting results are stable
+    for (int i = 1; i <= n; i++) {
+        if (MN[i] == A[i] && MC[i] == C[i])
+            count++;
+    }
+
+    // Print the stability result
+    if (count == n)
+        std::cout << "Stable\n";
+    else
+        std::cout << "Not stable\n";
+
+    // Print the sorted characters and their corresponding numbers
+    for (int i = 1; i <= n; i++)
+        std::cout << C[i] << " " << A[i] << "\n";
+
+    return 0;
+}
+
+// Partition function to find the pivot index and rearrange elements
+int Partition(std::vector<char>& C, std::vector<int>& A, int p, int r) {
+    // Variables to store temporary values during partition
+    int i = p - 1;
+    char x = C[r];
+    int y = A[r];
+
+    // Rearrange elements in the array
+    for (int j = p; j < r; j++) {
+        if (A[j] <= y) {
+            i++;
+            std::swap(A[i], A[j]);
+            std::swap(C[i], C[j]);
+        }
+    }
+
+    // Place the pivot element in its correct position
+    std::swap(A[i + 1], A[r]);
+    std::swap(C[i + 1], C[r]);
+
+    return i + 1;
+}
+
+// Quicksort function to sort the array recursively
+void Quicksort(std::vector<char>& C, std::vector<int>& A, int p, int r) {
+    // Base case: if the subarray has more than one element
+    if (p < r) {
+        q = Partition(C, A, p, r);
+        Quicksort(C, A, p, q - 1);
+        Quicksort(C, A, q + 1, r);
+    }
+}
+
+// Merge function to merge two sorted subarrays
+void Merge(std::vector<char>& MC, std::vector<int>& MN, int left, int mid, int right) {
+    // Calculate sizes of two subarrays to be merged
+    int n1 = mid - left + 1;
+    int n2 = right - mid;
+    std::vector<int> LN(n1 + 1);
+    std::vector<int> RN(n2 + 1);
+    std::vector<char> LC(n1 + 1);
+    std::vector<char> RC(n2 + 1);
+
+    // Copy data to temp arrays
+    for (int i = 1; i <= n1; i++) {
+        LN[i] = MN[left + i - 1];
+        LC[i] = MC[left + i - 1];
+    }
+
+    for (int i = 1; i <= n2; i++) {
+        RN[i] = MN[mid + i];
+        RC[i] = MC[mid + i];
+    }
+
+    // Sentinel values to avoid checking if any subarray is empty
+    LN[n1 + 1] = 1000000000;
+    RN[n2 + 1] = 1000000000;
+
+    // Initial indexes for subarrays
+    int i = 1, j = 1;
+
+    // Merge the temp arrays back into arr[left..right]
+    for (int k = left; k <= right; k++) {
+        if (LN[i] <= RN[j]) {
+            MN[k] = LN[i];
+            MC[k] = LC[i++];
+        } else {
+            MN[k] = RN[j];
+            MC[k] = RC[j++];
+        }
+    }
+}
+
+// Merge Sort function to sort the array using recursion
+void Merge_Sort(std::vector<char>& MC, std::vector<int>& MN, int left, int right) {
+    int mid;
+
+    // Base case: if the subarray has more than one element
+    if (left < right) {
+        mid = (left + right) / 2;
+        Merge_Sort(MC, MN, left, mid);
+        Merge_Sort(MC, MN, mid + 1, right);
+        Merge(MC, MN, left, mid, right);
+    }
+}
+
+// <END-OF-CODE>

@@ -1,0 +1,31 @@
+
+#include <iostream>
+#include <string>
+#include <vector>
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+    vector<string> q;
+    int count = 0;
+    for (int i = 0; i < n; i++) {
+        string a;
+        cin >> a;
+        q.push_back(a);
+    }
+    for (int j = 0; j < n; j++) {
+        for (int k = 0; k < n; k++) {
+            if (k == j) {
+                continue;
+            } else if (q[j][0] == q[k][q[k].length() - 1]) {
+                count++;
+            } else {
+                continue;
+            }
+        }
+    }
+    cout << count << endl;
+    return 0;
+}
+

@@ -1,0 +1,8 @@
+8
+6
+PUT cat meow
+PUT dog bark
+GET cat
+DELETE dog
+CONTAINS dog
+SIZE

@@ -1,0 +1,50 @@
+package main
+
+import (
+	"fmt"
+	"math"
+)
+
+var min int64 = math.MaxInt64
+
+func main() {
+	var arr [4]int64
+	for i := 0; i < 4; i++ {
+		fmt.Scan(&arr[i])
+	}
+	var ops [3]string
+	for i := 0; i < 3; i++ {
+		fmt.Scan(&ops[i])
+	}
+	util(arr[:], ops, 0)
+	fmt.Println(min)
+}
+
+func util(arr []int64, ops [3]string, idx int) {
+	if idx == 3 {
+		if arr[0] < min {
+			min = arr[0]
+		}
+		return
+	}
+	for i := 0; i < len(arr); i++ {
+		for j := i + 1; j < len(arr); j++ {
+			a := make([]int64, 0)
+			for k := 0; k < len(arr); k++ {
+				if k != j && k != i {
+					a = append(a, arr[k])
+				}
+			}
+			var res int64
+			if idx < 3 && ops[idx] == "+" {
+				res = arr[i] + arr[j]
+			} else {
+				res = arr[i] * arr[j]
+			}
+			a = append(a, res)
+			util(a, ops, idx+1)
+		}
+	}
+}
+
+// <END-OF-CODE>

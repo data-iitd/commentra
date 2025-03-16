@@ -1,0 +1,49 @@
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int N, K;
+    cin >> N >> K;
+
+    vector<int> L(N);
+    for (int i = 0; i < N; i++) {
+        cin >> L[i];
+    }
+
+    vector<int> path = {1};
+    int ind = 0, count = 0;
+    int x = 1, t = -1;
+    bool flag = false;
+
+    unordered_map<int, int> Hash;
+
+    for (int i = 0; i <= N; i++) {
+        int ne = L[x - 1];
+        if (Hash[ne]!= 0) {
+            flag = true;
+            t = Hash[ne];
+            break;
+        }
+        path.push_back(ne);
+        ind++;
+        Hash[ne] = ind;
+        x = ne;
+    }
+
+    if (flag) {
+        vector<int> loop = vector<int>(path.begin() + t, path.end());
+        if (path.size() < K) {
+            cout << path[K] << endl;
+        } else {
+            K = K - path.size();
+            K = K % loop.size();
+            cout << loop[K] << endl;
+        }
+    } else {
+        cout << path[K - 1] << endl;
+    }
+
+    return 0;
+}
+

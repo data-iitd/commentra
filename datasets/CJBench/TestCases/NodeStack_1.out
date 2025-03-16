@@ -1,0 +1,10 @@
+Error: Cannot pop from an empty stack.
+Error: Cannot peek from an empty stack.
+Pushed: 100
+Pushed: 200
+Size: 2
+Top: 200
+Popped: 200
+Popped: 100
+Is empty: true
+Error: Cannot pop from an empty stack.

@@ -1,0 +1,4 @@
+
+# <START-OF-CODE>
+import java.math.BigInteger ; import java.nio.charset.IllegalCharsetNameException ; import java.util.* ; public class Main { public static void main ( String [ ] args ) { Scanner sc = new Scanner ( System.in ) ; int n, a, b ; n = sc.nextInt ( ) ; a = sc.nextInt ( ) ; b = sc.nextInt ( ) ; ArrayList < Integer > list1 = new ArrayList < > ( ) ; ArrayList < Integer > list2 = new ArrayList < > ( ) ; for ( int i = 0 ; i < a ; i ++ ) { list1.add ( sc.nextInt ( ) ) ; } for ( int i = 0 ; i < b ; i ++ ) { list2.add ( sc.nextInt ( ) ) ; } for ( int i = 0 ; i < n ; i ++ ) { if ( list1.contains ( i + 1 ) ) { System.out.print ( 1 + " " ) ; } else { System.out.print ( 2 + " " ) ; } } } }
+# 

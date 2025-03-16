@@ -1,0 +1,75 @@
+class Dice:
+    def __init__(self, nums):
+        self.nums = nums
+
+    def rotate(self, direction, times):
+        times %= 4
+        if direction == "W":
+            for _ in range(times):
+                self.nums[0], self.nums[2], self.nums[5], self.nums[3] = self.nums[2], self.nums[5], self.nums[3], self.nums[0]
+        elif direction == "E":
+            for _ in range(times):
+                self.nums[0], self.nums[2], self.nums[5], self.nums[3] = self.nums[3], self.nums[0], self.nums[2], self.nums[5]
+        elif direction == "N":
+            for _ in range(times):
+                self.nums[0], self.nums[4], self.nums[5], self.nums[1] = self.nums[1], self.nums[0], self.nums[4], self.nums[5]
+        elif direction == "S":
+            for _ in range(times):
+                self.nums[5], self.nums[1], self.nums[0], self.nums[4] = self.nums[1], self.nums[0], self.nums[4], self.nums[5]
+
+    def roll(self, direction, times):
+        times %= 4
+        if direction == "R":
+            for _ in range(times):
+                self.nums[3], self.nums[1], self.nums[2], self.nums[4] = self.nums[1], self.nums[2], self.nums[4], self.nums[3]
+        elif direction == "L":
+            for _ in range(times):
+                self.nums[3], self.nums[1], self.nums[2], self.nums[4] = self.nums[4], self.nums[3], self.nums[1], self.nums[2]
+
+    def print_status(self):
+        status = """
+        　　　 _ _ _ _
+         _ _ _|_%3d_|_ _ _ _ _ _
+        |_%3d_|_%3d_|_%3d_|_%3d_|
+         　       |_%3d_|
+        """
+        print(status % (self.nums[0], self.nums[3], self.nums[1], self.nums[2], self.nums[4], self.nums[5]))
+
+def get_index(nums, target):
+    for i, v in enumerate(nums):
+        if target == v:
+            return i
+    return -1
+
+def is_equal(dice1, dice2):
+    return all(a == b for a, b in zip(dice1.nums, dice2.nums))
+
+def main():
+    dice1 = Dice([int(input()) for _ in range(6)])
+    dice2 = Dice([int(input()) for _ in range(6)])
+
+    direction_order = ["N", "S", "W", "E"]
+    roll_order = ["R", "L"]
+    flag = False
+
+    for i in range(3):
+        for j in range(3):
+            for direction in direction_order:
+                for roll in roll_order:
+                    tmp = Dice(dice2.nums[:])
+                    tmp.rotate(direction, i)
+                    tmp.roll(roll, j)
+                    if is_equal(dice1, tmp):
+                        flag = True
+                        break
+                if flag:
+                    break
+            if flag:
+                break
+
+    if flag:
+        print("Yes")
+    else:
+        print("No")
+
+main()

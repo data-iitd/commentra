@@ -1,0 +1,50 @@
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	// Take the number of elements in the array as input
+	var n int
+	fmt.Scan(&n)
+
+	// Initialize an empty slice 'arr' of size 'n' and fill it with integers taken as input
+	arr := make([]int, n)
+	for i := 0; i < n; i++ {
+		fmt.Scan(&arr[i])
+	}
+
+	// Initialize an empty slice 'ans' of size 'n' with zeros
+	ans := make([]int, n)
+
+	// Variable 'mx' stores the maximum element in the array
+	mx := arr[n-1]
+
+	// Iterate through the array from index 'n-2' to '0' in reverse order
+	for i := n - 2; i >= 0; i-- {
+		// Update the answer at current index 'i' based on the maximum element 'mx' and current element 'arr[i]'
+		ans[i] = max(0, mx-arr[i]+1)
+
+		// If the current element 'arr[i]' is greater than the maximum element 'mx', update 'mx'
+		if arr[i] > mx {
+			mx = arr[i]
+		}
+	}
+
+	// Print the answer slice
+	for _, value := range ans {
+		fmt.Print(value, " ")
+	}
+	fmt.Println()
+}
+
+// Helper function to find the maximum of two integers
+func max(a, b int) int {
+	if a > b {
+		return a
+	}
+	return b
+}
+
+// <END-OF-CODE>

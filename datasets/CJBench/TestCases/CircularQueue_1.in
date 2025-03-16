@@ -1,0 +1,14 @@
+2
+deQueue
+enQueue 5
+enQueue 10
+enQueue 15
+deQueue
+enQueue 20
+peek
+size
+isFull
+deQueue
+deQueue
+isEmpty
+exit

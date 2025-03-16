@@ -1,0 +1,35 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+    string line[2][1];
+    for (int i = 0; i < 2; i++) {
+        cin >> line[i][0];
+    }
+    string number = "";
+    for (int i = 1; i <= n; i++) {
+        number += to_string(i);
+    }
+    vector<string> listA;
+    permutation(listA, number, "");
+    int sum = 0;
+    for (int j = 0; j < 2; j++) {
+        for (int i = 0; i < listA.size(); i++) {
+            if (listA[i] == line[j][0]) {
+                if (sum == 0) {
+                    sum += i;
+                } else {
+                    sum -= i;
+                }
+            }
+        }
+    }
+    cout << abs(sum) << endl;
+    return 0;
+}
+

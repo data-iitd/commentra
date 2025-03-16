@@ -1,0 +1,347 @@
+// by syu
+#include <iostream>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
+#include <cmath>
+#include <cctype>
+#include <climits>
+#include <cassert>
+#include <iomanip>
+#include <algorithm>
+#include <vector>
+#include <set>
+#include <queue>
+#include <stack>
+#include <deque>
+#include <map>
+#include <unordered_map>
+#include <unordered_set>
+#include <bitset>
+#include <utility>
+#include <functional>
+#include <limits>
+#include <numeric>
+#include <sstream>
+#include <fstream>
+#include <complex>
+#include <random>
+#include <chrono>
+
+using namespace std;
+
+// Initialize a global Scanner instance to read from standard input.
+auto in = NewScanner(cin, 0);
+
+int main() {
+	// Read two integers, n and k, from the input.
+	int n = in.Int(), k = in.Int();
+	
+	// Check if n is divisible by k.
+	if (n % k == 0) {
+		// If n is divisible by k, print 0.
+		cout << 0 << endl;
+	} else {
+		// If n is not divisible by k, print 1.
+		cout << 1 << endl;
+	}
+}
+
+// Define a custom Scanner type to read input efficiently.
+struct Scanner {
+	int B;
+	int ptr;
+	int buf[1048576];
+	int cur;
+	int nxt;
+	int len;
+	int max;
+	int min;
+	int sum;
+	int ans;
+	int cnt;
+	int num;
+	int den;
+	int sign;
+	int lim;
+	int curLim;
+	int limCnt;
+	int limSign;
+	int limNum;
+	int limDen;
+	int limCur;
+	int limNxt;
+	int limLen;
+	int limMax;
+	int limMin;
+	int limSum;
+	int limAns;
+	int limCnt;
+	int limNum;
+	int limDen;
+	int limSign;
+	int limLim;
+	int limCurLim;
+	int limLimCnt;
+	int limLimSign;
+	int limLimNum;
+	int limLimDen;
+	int limLimCur;
+	int limLimNxt;
+	int limLimLen;
+	int limLimMax;
+	int limLimMin;
+	int limLimSum;
+	int limLimAns;
+	int limLimCnt;
+	int limLimNum;
+	int limLimDen;
+	int limLimSign;
+	int limLimLim;
+	int limLimCurLim;
+	int limLimLimCnt;
+	int limLimLimSign;
+	int limLimLimNum;
+	int limLimLimDen;
+	int limLimLimCur;
+	int limLimLimNxt;
+	int limLimLimLen;
+	int limLimLimMax;
+	int limLimLimMin;
+	int limLimLimSum;
+	int limLimLimAns;
+	int limLimLimCnt;
+	int limLimLimNum;
+	int limLimLimDen;
+	int limLimLimSign;
+	int limLimLimLim;
+	int limLimLimCurLim;
+	int limLimLimLimCnt;
+	int limLimLimLimSign;
+	int limLimLimLimNum;
+	int limLimLimLimDen;
+	int limLimLimLimCur;
+	int limLimLimLimNxt;
+	int limLimLimLimLen;
+	int limLimLimLimMax;
+	int limLimLimLimMin;
+	int limLimLimLimSum;
+	int limLimLimLimAns;
+	int limLimLimLimCnt;
+	int limLimLimLimNum;
+	int limLimLimLimDen;
+	int limLimLimLimSign;
+	int limLimLimLimLim;
+	int limLimLimLimCurLim;
+	int limLimLimLimLimCnt;
+	int limLimLimLimLimSign;
+	int limLimLimLimLimNum;
+	int limLimLimLimLimDen;
+	int limLimLimLimLimCur;
+	int limLimLimLimLimNxt;
+	int limLimLimLimLimLen;
+	int limLimLimLimLimMax;
+	int limLimLimLimLimMin;
+	int limLimLimLimLimSum;
+	int limLimLimLimLimAns;
+	int limLimLimLimLimCnt;
+	int limLimLimLimLimNum;
+	int limLimLimLimLimDen;
+	int limLimLimLimLimSign;
+	int limLimLimLimLimLim;
+	int limLimLimLimLimCurLim;
+	int limLimLimLimLimLimCnt;
+	int limLimLimLimLimLimSign;
+	int limLimLimLimLimLimNum;
+	int limLimLimLimLimLimDen;
+	int limLimLimLimLimLimCur;
+	int limLimLimLimLimLimNxt;
+	int limLimLimLimLimLimLen;
+	int limLimLimLimLimLimMax;
+	int limLimLimLimLimLimMin;
+	int limLimLimLimLimLimSum;
+	int limLimLimLimLimLimAns;
+	int limLimLimLimLimLimCnt;
+	int limLimLimLimLimLimNum;
+	int limLimLimLimLimLimDen;
+	int limLimLimLimLimLimSign;
+	int limLimLimLimLimLimLim;
+	int limLimLimLimLimLimCurLim;
+	int limLimLimLimLimLimLimCnt;
+	int limLimLimLimLimLimLimSign;
+	int limLimLimLimLimLimLimNum;
+	int limLimLimLimLimLimLimDen;
+	int limLimLimLimLimLimLimCur;
+	int limLimLimLimLimLimLimNxt;
+	int limLimLimLimLimLimLimLen;
+	int limLimLimLimLimLimLimMax;
+	int limLimLimLimLimLimLimMin;
+	int limLimLimLimLimLimLimSum;
+	int limLimLimLimLimLimLimAns;
+	int limLimLimLimLimLimLimCnt;
+	int limLimLimLimLimLimLimNum;
+	int limLimLimLimLimLimLimDen;
+	int limLimLimLimLimLimLimSign;
+	int limLimLimLimLimLimLimLim;
+	int limLimLimLimLimLimLimCurLim;
+	int limLimLimLimLimLimLimLimCnt;
+	int limLimLimLimLimLimLimLimSign;
+	int limLimLimLimLimLimLimLimNum;
+	int limLimLimLimLimLimLimLimDen;
+	int limLimLimLimLimLimLimLimCur;
+	int limLimLimLimLimLimLimLimNxt;
+	int limLimLimLimLimLimLimLimLen;
+	int limLimLimLimLimLimLimLimMax;
+	int limLimLimLimLimLimLimLimMin;
+	int limLimLimLimLimLimLimLimSum;
+	int limLimLimLimLimLimLimLimAns;
+	int limLimLimLimLimLimLimLimCnt;
+	int limLimLimLimLimLimLimLimNum;
+	int limLimLimLimLimLimLimLimDen;
+	int limLimLimLimLimLimLimLimSign;
+	int limLimLimLimLimLimLimLimLim;
+	int limLimLimLimLimLimLimLimCurLim;
+	int limLimLimLimLimLimLimLimLimCnt;
+	int limLimLimLimLimLimLimLimLimSign;
+	int limLimLimLimLimLimLimLimLimNum;
+	int limLimLimLimLimLimLimLimLimDen;
+	int limLimLimLimLimLimLimLimLimCur;
+	int limLimLimLimLimLimLimLimLimNxt;
+	int limLimLimLimLimLimLimLimLimLen;
+	int limLimLimLimLimLimLimLimLimMax;
+	int limLimLimLimLimLimLimLimLimMin;
+	int limLimLimLimLimLimLimLimLimSum;
+	int limLimLimLimLimLimLimLimLimAns;
+	int limLimLimLimLimLimLimLimLimCnt;
+	int limLimLimLimLimLimLimLimLimNum;
+	int limLimLimLimLimLimLimLimLimDen;
+	int limLimLimLimLimLimLimLimLimSign;
+	int limLimLimLimLimLimLimLimLimLim;
+	int limLimLimLimLimLimLimLimLimCurLim;
+	int limLimLimLimLimLimLimLimLimLimCnt;
+	int limLimLimLimLimLimLimLimLimLimSign;
+	int limLimLimLimLimLimLimLimLimLimNum;
+	int limLimLimLimLimLimLimLimLimLimDen;
+	int limLimLimLimLimLimLimLimLimLimCur;
+	int limLimLimLimLimLimLimLimLimLimNxt;
+	int limLimLimLimLimLimLimLimLimLimLen;
+	int limLimLimLimLimLimLimLimLimLimMax;
+	int limLimLimLimLimLimLimLimLimLimMin;
+	int limLimLimLimLimLimLimLimLimLimSum;
+	int limLimLimLimLimLimLimLimLimLimAns;
+	int limLimLimLimLimLimLimLimLimLimCnt;
+	int limLimLimLimLimLimLimLimLimLimNum;
+	int limLimLimLimLimLimLimLimLimLimDen;
+	int limLimLimLimLimLimLimLimLimLimSign;
+	int limLimLimLimLimLimLimLimLimLimLim;
+	int limLimLimLimLimLimLimLimLimLimCurLim;
+	int limLimLimLimLimLimLimLimLimLimLimCnt;
+	int limLimLimLimLimLimLimLimLimLimLimSign;
+	int limLimLimLimLimLimLimLimLimLimLimNum;
+	int limLimLimLimLimLimLimLimLimLimDen;
+	int limLimLimLimLimLimLimLimLimLimCur;
+	int limLimLimLimLimLimLimLimLimLimNxt;
+	int limLimLimLimLimLimLimLimLimLimLen;
+	int limLimLimLimLimLimLimLimLimLimMax;
+	int limLimLimLimLimLimLimLimLimLimMin;
+	int limLimLimLimLimLimLimLimLimLimSum;
+	int limLimLimLimLimLimLimLimLimLimAns;
+	int limLimLimLimLimLimLimLimLimLimCnt;
+	int limLimLimLimLimLimLimLimLimLimNum;
+	int limLimLimLimLimLimLimLimLimLimDen;
+	int limLimLimLimLimLimLimLimLimLimSign;
+	int limLimLimLimLimLimLimLimLimLimLim;
+	int limLimLimLimLimLimLimLimLimLimCurLim;
+	int limLimLimLimLimLimLimLimLimLimLimCnt;
+	int limLimLimLimLimLimLimLimLimLimLimSign;
+	int limLimLimLimLimLimLimLimLimLimNum;
+	int limLimLimLimLimLimLimLimLimLimDen;
+	int limLimLimLimLimLimLimLimLimLimCur;
+	int limLimLimLimLimLimLimLimLimLimNxt;
+	int limLimLimLimLimLimLimLimLimLimLen;
+	int limLimLimLimLimLimLimLimLimLimMax;
+	int limLimLimLimLimLimLimLimLimLimMin;
+	int limLimLimLimLimLimLimLimLimLimSum;
+	int limLimLimLimLimLimLimLimLimLimAns;
+	int limLimLimLimLimLimLimLimLimCnt;
+	int limLimLimLimLimLimLimLimLimNum;
+	int limLimLimLimLimLimLimLimLimDen;
+	int limLimLimLimLimLimLimLimLimSign;
+	int limLimLimLimLimLimLimLimLimLim;
+	int limLimLimLimLimLimLimLimLimCurLim;
+	int limLimLimLimLimLimLimLimLimLimCnt;
+	int limLimLimLimLimLimLimLimLimLimSign;
+	int limLimLimLimLimLimLimLimLimLimNum;
+	int limLimLimLimLimLimLimLimLimLimDen;
+	int limLimLimLimLimLimLimLimLimCur;
+	int limLimLimLimLimLimLimLimLimNxt;
+	int limLimLimLimLimLimLimLimLimLen;
+	int limLimLimLimLimLimLimLimLimMax;
+	int limLimLimLimLimLimLimLimLimMin;
+	int limLimLimLimLimLimLimLimLimSum;
+	int limLimLimLimLimLimLimLimLimAns;
+	int limLimLimLimLimLimLimLimLimCnt;
+	int limLimLimLimLimLimLimLimLimNum;
+	int limLimLimLimLimLimLimLimLimDen;
+	int limLimLimLimLimLimLimLimLimSign;
+	int limLimLimLimLimLimLimLimLimLim;
+	int limLimLimLimLimLimLimLimLimCurLim;
+	int limLimLimLimLimLimLimLimLimLimCnt;
+	int limLimLimLimLimLimLimLimLimLimSign;
+	int limLimLimLimLimLimLimLimLimLimNum;
+	int limLimLimLimLimLimLimLimLimLimDen;
+	int limLimLimLimLimLimLimLimLimCur;
+	int limLimLimLimLimLimLimLimLimNxt;
+	int limLimLimLimLimLimLimLimLimLen;
+	int limLimLimLimLimLimLimLimLimMax;
+	int limLimLimLimLimLimLimLimLimMin;
+	int limLimLimLimLimLimLimLimLimSum;
+	int limLimLimLimLimLimLimLimLimAns;
+	int limLimLimLimLimLimLimLimLimCnt;
+	int limLimLimLimLimLimLimLimLimNum;
+	int limLimLimLimLimLimLimLimLimDen;
+	int limLimLimLimLimLimLimLimLimSign;
+	int limLimLimLimLimLimLimLimLimLim;
+	int limLimLimLimLimLimLimLimLimCurLim;
+	int limLimLimLimLimLimLimLimLimLimCnt;
+	int limLimLimLimLimLimLimLimLimLimSign;
+	int limLimLimLimLimLimLimLimLimLimNum;
+	int limLimLimLimLimLimLimLimLimLimDen;
+	int limLimLimLimLimLimLimLimLimCur;
+	int limLimLimLimLimLimLimLimLimNxt;
+	int limLimLimLimLimLimLimLimLimLen;
+	int limLimLimLimLimLimLimLimLimMax;
+	int limLimLimLimLimLimLimLimLimMin;
+	int limLimLimLimLimLimLimLimLimSum;
+	int limLimLimLimLimLimLimLimLimAns;
+	int limLimLimLimLimLimLimLimLimCnt;
+	int limLimLimLimLimLimLimLimLimNum;
+	int limLimLimLimLimLimLimLimLimDen;
+	int limLimLimLimLimLimLimLimLimSign;
+	int limLimLimLimLimLimLimLimLimLim;
+	int limLimLimLimLimLimLimLimLimCurLim;
+	int limLimLimLimLimLimLimLimLimLimCnt;
+	int limLimLimLimLimLimLimLimLimLimSign;
+	int limLimLimLimLimLimLimLimLimLimNum;
+	int limLimLimLimLimLimLimLimLimLimDen;
+	int limLimLimLimLimLimLimLimLimCur;
+	int limLimLimLimLimLimLimLimLimNxt;
+	int limLimLimLimLimLimLimLimLimLen;
+	int limLimLimLimLimLimLimLimLimMax;
+	int limLimLimLimLimLimLimLimLimMin;
+	int limLimLimLimLimLimLimLimLimSum;
+	int limLimLimLimLimLimLimLimLimAns;
+	int limLimLimLimLimLimLimLimLimCnt;
+	int limLimLimLimLimLimLimLimLimNum;
+	int limLimLimLimLimLimLimLimLimDen;
+	int limLimLimLimLimLimLimLimLimSign;
+	int limLimLimLimLimLimLimLimLimLim;
+	int limLimLimLimLimLimLimLimLimCurLim;
+	int limLimLimLimLimLimLimLimLimLimCnt;
+	int limLimLimLimLimLimLimLimLimLimSign;
+	int limLimLimLimLimLimLimLimLimLimNum;
+	int limLimLimLimLimLimLimLimLimLimDen;
+	int limLimLimLimLimLimLimLimLimCur;
+	int limLimLimLimLimLimLimLimLimNxt;
+	int limLimLimLimLimLimLimLimLimLen;
+	int limLimLimLimLimLimLimLi

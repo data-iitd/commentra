@@ -1,0 +1,10 @@
+Inserted: 10
+Inserted: 20
+Inserted: 15
+Peek: 20
+Removed: 20
+Size: 2
+Is empty: false
+Removed: 15
+Removed: 10
+Is empty: true

@@ -1,0 +1,42 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+// Function main is the entry point of the program
+int main() {
+    // Declare variables for height and width of the rectangle to be printed
+    int height, width;
+    // Declare a string to store the input string
+    string input_str;
+
+    // Read the height and width of the rectangle from the user
+    cin >> height >> width;
+
+    // Print the top border of the rectangle
+    for(int i = 0; i < width + 2; i++) {
+        // Print '#' character for each iteration
+        cout << "#";
+    }
+    cout << endl; // Print newline character after the top border
+
+    // Print the body of the rectangle
+    for(int i = 0; i < height; i++) {
+        // Read a string from the user
+        cin >> input_str;
+        // Print the top and bottom border of each row with '#' character
+        cout << "#" << input_str << "#" << endl;
+    }
+
+    // Print the bottom border of the rectangle
+    for(int i = 0; i < width + 2; i++) {
+        // Print '#' character for each iteration
+        cout << "#";
+    }
+    cout << endl; // Print newline character after the bottom border
+
+    // Return 0 to indicate successful execution of the program
+    return 0;
+}
+
+// <END-OF-CODE>

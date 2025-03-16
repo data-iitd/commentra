@@ -1,0 +1,60 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main() {
+    // Create a new Scanner object to read input from the user
+    long number;
+    scanf("%ld", &number);
+    
+    // Read a long integer input from the user
+    long ans = -1, value = 0;
+    
+    // Initialize two variables, ans and value, to -1 and 0, respectively
+    long mask = 2;
+    
+    // The code enters a while loop that continues as long as value is less than the input number
+    while (value < number) {
+        // Convert the mask value to a binary string, remove the first character, and store the result in the s variable
+        char s[100];
+        sprintf(s, "%ld", mask++);
+        s[0] = '\0';
+        for (int i = 0; i < strlen(s); i++) {
+            if (s[i] == '0') {
+                s[i] = '4';
+            } else if (s[i] == '1') {
+                s[i] = '7';
+            }
+        }
+        
+        // Count the number of zeros in the binary string and store it in the zeros variable
+        int zeros = 0;
+        for (int i = 0; i < strlen(s); i++) {
+            if (s[i] == '0') {
+                zeros++;
+            }
+        }
+        
+        // If the number of zeros is not equal to the number of ones, skip the rest of the loop and increment the mask
+        if (zeros != strlen(s) - zeros) {
+            continue;
+        }
+        
+        // Replace all zeros with 4 and all ones with 7 in the binary string and convert it back to a long integer
+        for (int i = 0; i < strlen(s); i++) {
+            if (s[i] == '0') {
+                s[i] = '4';
+            } else if (s[i] == '1') {
+                s[i] = '7';
+            }
+        }
+        value = atol(s);
+    }
+    
+    // Print the value variable
+    printf("%ld\n", value);
+    
+    // End of code
+    return 0;
+}
+

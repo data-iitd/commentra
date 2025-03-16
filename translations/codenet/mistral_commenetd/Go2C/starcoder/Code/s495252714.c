@@ -1,0 +1,101 @@
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <math.h>
+#include <stdbool.h>
+
+//=====I/O=====
+
+// Initialize scanner and writer
+FILE *fin = stdin;
+FILE *fout = stdout;
+
+// Function to read an integer from standard input
+int scanInt() {
+	int a;
+	fscanf(fin, "%d", &a);
+	return a;
+}
+
+// Function to read n integers from standard input
+int *scanInts(int n) {
+	int *res = malloc(n*sizeof(int));
+	for (int i = 0; i < n; i++) {
+		fscanf(fin, "%d", &res[i]);
+	}
+	return res;
+}
+
+// Function to print integers to standard output
+void printInts(int *a, int n) {
+	for (int i = 0; i < n; i++) {
+		fprintf(fout, "%d ", a[i]);
+	}
+	fprintf(fout, "\n");
+}
+
+//=====main=====
+
+// Set scanner to scan words
+int main() {
+	// Read an integer n from standard input
+	int n = scanInt();
+
+	// Read n integers c from standard input and store them in a slice
+	int *c = scanInts(n);
+
+	// Initialize answer variable to 0
+	int ans = 0;
+
+	// Sort slice c in ascending order
+	qsort(c, n, sizeof(int), cmpfunc);
+
+	// Iterate through slice c and calculate answer
+	for (int i = 0; i < n; i++) {
+		// Calculate contribution of current integer to answer
+		ans = (ans + (n+1-i)*c[i]%mod)%mod;
+	}
+
+	// Calculate final answer by multiplying answer with (4^(n-1)) modulo mod
+	printf("%d\n", ans*modpow(4,n-1)%mod);
+}
+
+// Constants
+const int mod = 1000000007;
+
+// Function to calculate modular exponentiation
+int modpow(int a, int n) {
+	// Initialize result to 1
+	int res = 1;
+
+	// If n is 0, return result
+	if (n == 0) { return res; }
+
+	// If n is 1, return a
+	if (n == 1) { return a; }
+
+	// If n is odd, multiply result with a multiplied by itself recursively
+	if (n&1 == 1) {
+		res = res*a%mod;
+		a = a*a%mod;
+		n = n>>1;
+		res = res*modpow(a,n)%mod;
+	}
+
+	// If n is even, square result and recursively call function for n/2
+	else {
+		a = a*a%mod;
+		n = n>>1;
+		res = modpow(a,n)%mod;
+	}
+
+	// Return result
+	return res;
+}
+
+// Function to compare two integers
+int cmpfunc(const void *a, const void *b) {
+	return *(int*)a - *(int*)b;
+}
+

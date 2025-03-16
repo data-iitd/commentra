@@ -1,0 +1,30 @@
+package main
+
+import (
+	"fmt"
+	"math"
+)
+
+func main() {
+	var N int
+	fmt.Scan(&N)
+	A := make([]int64, N)
+	for i := 0; i < N; i++ {
+		fmt.Scan(&A[i])
+	}
+
+	answer := int64(0)
+	// Calculate the maximum absolute difference between any two elements in the array
+	for i := 0; i < N-1; i++ {
+		for j := i + 1; j < N; j++ {
+			diff := int64(math.Abs(float64(A[i] - A[j])))
+			if diff > answer {
+				answer = diff
+			}
+		}
+	}
+	// Output the result
+	fmt.Println(answer)
+}
+
+// <END-OF-CODE>

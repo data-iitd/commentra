@@ -1,0 +1,21 @@
+
+#include <stdio.h>                                                                                                                                   
+#include <string.h>                                                                                                                                  
+using namespace std;                                                                                                                              
+                                                                                                                                                  
+int main() {                                                                                                                                      
+    char str[1000];                                                                                                                                 
+    scanf("%s", str);                                                                                                                            
+                                                                                                                                                  
+    int max = 0, cnt = 0;                                                                                                                         
+    for (int i = 0; i < strlen(str); i++) {                                                                                                     
+        if (str[i] == 'A' || str[i] == 'C' || str[i] == 'G' || str[i] == 'T') {                                                                                   
+            cnt++;                                                                                                                                
+        } else {                                                                                                                                  
+            cnt = 0;                                                                                                                              
+        }                                                                                                                                         
+        max = max < cnt? cnt : max;                                                                                                              
+    }                                                                                                                                             
+                                                                                                                                                  
+    printf("%d\n", max);                                                                                                                          
+}    

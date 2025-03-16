@@ -1,0 +1,14 @@
+8
+12
+PUT one first
+PUT two second
+PUT three third
+GET one
+PUT four fourth
+PUT five fifth
+REMOVE three
+CONTAINS three
+GET five
+SIZE
+REMOVE one
+PRINT

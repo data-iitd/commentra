@@ -1,0 +1,47 @@
+
+package main
+
+import (
+	"bufio"
+	"fmt"
+	"os"
+	"strconv"
+	"strings"
+)
+
+func main() {
+	// Get the number of nodes 'n' and the number of edges 'k' from user input
+	reader := bufio.NewReader(os.Stdin)
+	u, _ := reader.ReadString('\n')
+	n, _ := strconv.Atoi(strings.Split(u, " ")[0])
+	k, _ := strconv.Atoi(strings.Split(u, " ")[1])
+
+	// Initialize an empty list 'M' of size 'n' to represent the status of each node
+	M := make([]int, n)
+	for i := 0; i < n; i++ {
+		M[i], _ = strconv.Atoi(strings.Split(reader.ReadString('\n')[0], " ")[0])
+	}
+
+	// Initialize a counter'm' to keep track of the number of nodes printed
+	m := 0
+
+	// Iterate through each node 'j' in the range of 0 to 'n'
+	for j := 0; j < n; j++ {
+		// Iterate through each node 'p' in the range of 0 to 'n'
+		for p := 0; p < n; p++ {
+			// Check if the current node 'p' is not yet processed (M[p] == 0)
+			if M[p] == 0 {
+				// Print the index of the current node 'p' and increment the counter'm'
+				fmt.Print(p+1, " ")
+				break
+			}
+		}
+		// Decrement the status of all nodes 'l' in the range of 0 to 'p' (exclusive)
+		for l := 0; l < p+1-k; l++ {
+			M[l] -= 1
+		}
+		// Decrement the status of the current node 'p'
+		M[p] -= 1
+	}
+}
+

@@ -1,0 +1,138 @@
+
+#include<iostream>
+#include<stdlib.h>
+
+struct node{
+  struct node *right;
+  struct node *left;
+  struct node *parent;
+  int key;
+};
+typedef struct node * Node;
+#define NIL NULL
+
+Node root;
+
+Node treeMinimum(Node x){
+  while(x->left!=NIL) x=x->left;
+  return x;
+
+}
+
+Node treeMaximum(Node x){
+  while(x->right!=NIL) x=x->right;
+  return x;
+
+}
+
+Node treeSearch(Node u, int k){
+  if(u==NIL || k==u->key) return u;
+
+  if(k<u->key) return treeSearch(u->left,k);
+  else return treeSearch(u->right,k);
+
+}
+
+Node treeSuccessor(Node x){
+  Node y; // node to be deleted
+  Node x; // child of y
+
+  if(x->right!=NIL) return treeMinimum(x->right);
+  
+  y=x->parent;
+  while(y!=NIL && x==y->right){
+    x=y;
+    y=y->parent;
+  }
+    return y;
+
+}
+
+void treeDelete(Node z){
+  Node y; // node to be deleted
+  Node x; // child of y
+
+  if(z->left==NIL || z->right == NIL) y=z;
+  else y=treeSuccessor(z);
+
+  if(y->left!=NIL) x=y->left;
+  else x=y->right;
+
+  if(x!=NIL) x->parent = y->parent;
+
+  if(y->parent==NIL) root=x;
+  else if(y==y->parent->left) y->parent->left = x;
+  else y->parent->right = x;
+
+  if(y!=z) z->key=y->key;
+
+}
+
+void insert(int k){
+  Node y = NIL;
+  Node x = root;
+  Node z;
+
+  z = new node;
+  z->key = k;
+  z->left = NIL;
+  z->right = NIL;
+
+  while (x!=NIL){
+    y=x;
+    if(z->key < x->key){
+      x=x->left;
+    }
+    else{
+      x=x->right;
+    }
+  }
+  z->parent=y;
+  if(y==NIL) root =z;
+  else if(z->key<y->key) y->left=z;
+  else (y->right = z);
+}
+
+void inorder(Node u){
+  if(u==NIL) return;
+  inorder(u->left);
+  std::cout << " " << u->key;
+  inorder(u->right);
+}
+void preorder(Node u){
+  if(u==NIL) return;
+  std::cout << " " << u->key;
+  preorder(u->left);
+  preorder(u->right);
+}
+
+
+int main(){
+  int n, i, x;
+  char com[20];
+  std::cin >> n;
+
+  for ( i = 0; i < n; i++ ){
+    std::cin >> com;
+    if ( com[0] == 'f' ){
+      std::cin >> x;
+      Node t = treeSearch(root, x);
+      if ( t!= NIL ) std::cout << "yes\n";
+      else std::cout << "no\n";
+    } else if ( com[0] == 'i' ){
+      std::cin >> x;
+      insert(x);
+    } else if ( com[0] == 'p' ){
+      inorder(root);
+      std::cout << "\n";
+      preorder(root);
+      std::cout << "\n";
+    } else if ( com[0] == 'd' ){
+      std::cin >> x;
+      treeDelete(treeSearch(root, x));
+    }
+  }
+
+  return 0;
+}
+

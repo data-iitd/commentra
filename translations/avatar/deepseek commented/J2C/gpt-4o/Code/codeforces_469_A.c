@@ -1,0 +1,56 @@
+#include <stdio.h>
+
+int main() {
+    int n, levels, level2, level3, count = 0;
+    
+    // Initialize arrays to store completed levels
+    scanf("%d", &n); // Read the total number of levels
+    scanf("%d", &levels); // Read the number of levels the user has completed
+    int arr[levels]; // Array to store completed levels
+
+    // Read the levels completed by the user
+    for (int i = 0; i < levels; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    scanf("%d", &level2); // Read the number of levels the second user has completed
+    level3 = levels + level2; // Calculate the total number of levels
+    int arr2[level3]; // Array to store all levels
+
+    // Copy levels from arr to arr2
+    for (int i = 0; i < levels; i++) {
+        arr2[i] = arr[i];
+    }
+
+    // Read additional levels for arr2
+    for (int i = levels; i < level3; i++) {
+        scanf("%d", &arr2[i]);
+    }
+
+    // Generate a sequence of numbers from 1 to n
+    int arr3[n];
+    for (int i = 0; i < n; i++) {
+        arr3[i] = i + 1;
+    }
+
+    // Check if all numbers from 1 to n are present in arr2
+    for (int i = 0; i < n; i++) {
+        for (int x = 0; x < level3; x++) {
+            if (arr3[i] == arr2[x]) {
+                count++;
+                break;
+            }
+        }
+    }
+
+    // Print the result based on whether all levels were completed
+    if (count == n) {
+        printf("I become the guy.\n");
+    } else {
+        printf("Oh, my keyboard!\n");
+    }
+
+    return 0;
+}
+
+// <END-OF-CODE>

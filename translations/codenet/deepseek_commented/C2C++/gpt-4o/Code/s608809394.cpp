@@ -1,0 +1,39 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    int n, m, s, t;
+    // Read the size of the array
+    cin >> n;
+    // Declare a vector of size n
+    vector<int> a(n);
+    // Read n integers and store them in the vector a
+    for (int i = 0; i < n; i++) {
+        cin >> a[i];
+    }
+    // Initialize t to 0, which will store the final sum of products
+    t = 0;
+    // Outer loop to iterate over each element in the vector a
+    for (int i = 0; i < n; i++) {
+        // Initialize s to 0, which will store the sum of products for the current element
+        s = 0;
+        // Inner loop to iterate over each element in the vector a, skipping the current element
+        for (int j = 0; j < n; j++) {
+            if (j <= i) {
+                continue; // Skip the current element being processed by the outer loop
+            }
+            // Calculate the product of the current element and the current element in the inner loop
+            m = a[i] * a[j];
+            // Add the product to the sum s
+            s += m;
+        }
+        // Add the sum s to the final sum t
+        t += s;
+    }
+    // Print the final sum of products
+    cout << t << endl;
+    return 0;
+}
+
+// <END-OF-CODE>

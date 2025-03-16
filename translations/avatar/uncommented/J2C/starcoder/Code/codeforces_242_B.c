@@ -1,0 +1,33 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <math.h>
+#include <stdbool.h>
+#include <limits.h>
+#include <assert.h>
+
+int main()
+{
+    int n;
+    scanf("%d", &n);
+    int a[n], b[n];
+    int left = INT_MAX, right = 0;
+    for (int i = 0; i < n; i++)
+    {
+        scanf("%d", &a[i]);
+        scanf("%d", &b[i]);
+        left = fmin(left, a[i]);
+        right = fmax(right, b[i]);
+    }
+    for (int i = 0; i < n; i++)
+    {
+        if (left == a[i] && right == b[i])
+        {
+            printf("%d\n", i + 1);
+            return 0;
+        }
+    }
+    printf("-1\n");
+    return 0;
+}
+

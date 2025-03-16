@@ -1,0 +1,27 @@
+package main
+
+import (
+	"fmt"
+	"strconv"
+)
+
+func main() {
+	var str string
+	var tmp string
+	var sum int
+
+	for {
+		fmt.Scan(&str)
+		if str == "0" {
+			break
+		}
+		sum = 0
+		for i := 0; i < len(str); i++ {
+			tmp = str[i : i+1]
+			num, _ := strconv.Atoi(tmp)
+			sum += num
+		}
+		fmt.Println(sum)
+	}
+}
+

@@ -1,0 +1,98 @@
+#include <iostream>
+#include <cstdio>
+#include <map>
+#include <set>
+#include <queue>
+#include <vector>
+#include <cstring>
+#include <cstdlib>
+#include <algorithm>
+
+// Macros for loop iterations and common operations
+#define rep(i,a,b) for(int i = a; i <= b; i++)
+#define dep(i,a,b) for(int i = a; i >= b; i--) 
+#define Rep(i,a) for(int i = 0; i < a; i++)
+#define pb(a) push_back(a)
+#define mp(a,b) make_pair(a,b)
+#define ab(x) ((x) < 0 ? -(x) : (x))
+
+using namespace std;
+
+// Type definitions for convenience
+typedef long long LL;
+typedef map<int, int>::iterator mit;
+typedef set<int>::iterator sit;
+typedef pair<int, int> pii;
+
+// Constants
+#define x first
+#define y second
+const int N = 1e5 + 10;
+
+// Structure to represent an edge in the graph
+struct edge {
+    int to, pre, c; // 'to' is the destination, 'pre' is the previous edge, 'c' is the color
+} e[N << 1]; 
+
+// Array to store the head of each vertex's adjacency list
+int u[N], l = 0;
+
+// Function to insert an edge into the graph
+void ins(int a, int b, int c) { 
+    e[++l] = (edge){b, u[a], c}; // Create a new edge
+    u[a] = l; // Update the head of the adjacency list for vertex 'a'
+}
+
+// Macros for accessing edge properties
+#define v e[i].to
+#define ec e[i].c
+#define reg(i,a) for(int i = u[a]; i; i = e[i].pre)
+
+// Global variables
+int n, m; // Number of vertices and edges
+bool vis[N], ok; // vis[i] indicates if vertex i has been visited, ok indicates if the graph is valid
+LL cnt[3]; // Count of vertices in each of the three color classes
+int d[N]; // Array to store the color of each vertex
+int T; // Total number of vertices in the current connected component
+
+// Depth-first search function to traverse the graph
+void dfs(int x, int l) {
+    vis[x] = true; // Mark the current vertex as visited
+    cnt[l]++; // Increment the count for the current color class
+    d[x] = l; // Assign the color to the current vertex
+
+    // Iterate through all edges of the current vertex
+    reg(i,x) {
+        T++; // Increment the total count of vertices in the component
+        if (!vis[v]) // If the adjacent vertex has not been visited
+            dfs(v, (l + ec) % 3); // Recursively visit it with the new color
+        else if ((l + ec) % 3 != d[v]) // If the adjacent vertex is visited but has a different color
+            ok = false; // Mark the component as invalid
+    }
+}
+
+int main() {
+    // Read the number of vertices and edges
+    scanf("%d%d",&n,&m);
+    
+    // Read edges and construct the graph
+    rep(i,1,m) {
+        int a, b; 
+        scanf("%d%d",&a,&b); // Read each edge
+        ins(a, b, 1); // Insert edge from a to b with color 1
+        ins(b, a, 2); // Insert edge from b to a with color 2
+    }
+
+    LL ans = 0; // Variable to store the final answer
+
+    // Iterate through all vertices
+    rep(i,1,n) 
+        if (!vis[i]) { // If the vertex has not been visited
+            T = 0; // Reset the total count for the new component
+            rep(j,0,2) cnt[j] = 0; // Reset color counts
+            ok = true; // Assume the component is valid
+            dfs(i, 0); // Start DFS from the current vertex with color 0
+            
+            # <START-OF-CODE>
+            # Insert Python code here
+            # 

@@ -1,0 +1,25 @@
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	var a, b int
+	fmt.Scan(&a, &b) // Read two integers from standard input
+
+	sum := 0
+
+	for i := 0; i < 2; i++ {
+		if a >= b {
+			sum += a
+			a--
+		} else {
+			sum += b
+			b--
+		}
+	}
+
+	fmt.Println(sum) // Print the value of sum to standard output
+}
+

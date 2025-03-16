@@ -1,0 +1,51 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main() {
+    // Read the number of sweet items (N) and the initial amount of money (x)
+    int N, x;
+    scanf("%d %d", &N, &x);
+    
+    // Initialize a list to store the sweetness values of the items
+    long *sweet = (long *) malloc(N * sizeof(long));
+    
+    // Read the sweetness values and add them to the list
+    for (int i = 0; i < N; i++) {
+        scanf("%ld", &sweet[i]);
+    }
+    
+    // Sort the list of sweetness values in ascending order
+    qsort(sweet, N, sizeof(long), compare);
+    
+    // Initialize a counter for the number of sweet items that can be bought
+    int num = 0;
+    
+    // Iterate through the sorted sweetness values
+    for (int i = 0; i < N; i++) {
+        // Check if the current sweetness value can be bought with the remaining money
+        if (x - sweet[num] >= 0) {
+            // Deduct the sweetness value from the total money
+            x = x - sweet[num];
+            // Increment the count of items bought
+            num++;
+        } else {
+            // If the current item cannot be bought, exit the loop
+            break;
+        }
+    }
+    
+    // Adjust the count if all items were bought but there is still money left
+    if ((num == N) && (x > 0)) {
+        num -= 1;
+    }
+    
+    // Print the total number of sweet items that can be bought
+    printf("%d\n", num);
+    
+    // Free the memory allocated to the list
+    free(sweet);
+    
+    return 0;
+}
+

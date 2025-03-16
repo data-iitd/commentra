@@ -1,0 +1,6 @@
+# <START-OF-CODE>
+
+x = int(input())
+print(x*x*x)
+
+# 

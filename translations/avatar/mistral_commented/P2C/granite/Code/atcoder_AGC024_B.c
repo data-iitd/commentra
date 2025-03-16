@@ -1,0 +1,90 @@
+
+###
+#include <stdio.h>
+
+// This is the main function that is called when we run the program.
+// It takes an input of an integer N and a list P of N integers as arguments.
+// It then calls the editorial function with these arguments.
+int main() {
+    // Read the number of test cases N from the standard input.
+    int N;
+    scanf("%d", &N);
+    // Read N integers from the standard input and store them in an array P.
+    int P[N];
+    for (int i = 0; i < N; i++) {
+        scanf("%d", &P[i]);
+    }
+    // Call the editorial function with N and P as arguments.
+    editorial(N, P);
+    return 0;
+}
+
+// This function calculates the answer based on the given input.
+void editorial(int N, int P[]) {
+    // Base case: if there is only one element in the list, the answer is 0.
+    if (N == 1) {
+        printf("0\n");
+        return;
+    }
+    // Initialize an array a of size N+1 with all elements initialized to 0.
+    int a[N + 1];
+    for (int i = 0; i <= N; i++) {
+        a[i] = 0;
+    }
+    // Iterate through the list P and assign each element its index in the array a.
+    for (int i = 0; i < N; i++) {
+        a[P[i]] = i;
+    }
+    // Initialize two variables: tmp to keep track of the current streak,
+    // and max_len to keep track of the maximum streak.
+    int tmp = 1;
+    int max_len = 1;
+    // Iterate through the array a from the second element to the last.
+    for (int i = 1; i < N; i++) {
+        // If the current element has a smaller index than the previous one,
+        // increment the streak and update max_len if necessary.
+        if (a[i] < a[i + 1]) {
+            tmp += 1;
+            max_len = tmp > max_len? tmp : max_len;
+        }
+        // Otherwise, reset the streak to 1.
+        else {
+            tmp = 1;
+        }
+    }
+    // Calculate the answer as the difference between the total number of elements
+    // and the maximum streak.
+    int ans = N - max_len;
+    // Print the answer.
+    printf("%d\n", ans);
+}
+
+// This function is used for testing purposes and is not called in the main function.
+void WA(int N, int P[]) {
+    // Initialize two variables: tmp to keep track of the current streak,
+    // and ans to keep track of the maximum answer.
+    int tmp = 0;
+    int ans = 0;
+    // Iterate through the list P and calculate the answer based on the current streak.
+    for (int i = 0; i < N; i++) {
+        // If the current element is the first one or its previous element plus one,
+        // increment the streak and update ans if necessary.
+        if (i == 0 || P[i - 1] + 1 == P[i]) {
+            tmp += 1;
+            ans = ans > tmp? ans : tmp;
+        }
+        // Otherwise, reset the streak to 1.
+        else {
+            tmp = 1;
+        }
+    }
+    // Print the answer.
+    printf("%d\n", N - ans);
+}
+
+// This line is executed only if the program is run as the main module, not imported as a module.
+int main() {
+    // Call the main function.
+    main();
+    return 0;
+}

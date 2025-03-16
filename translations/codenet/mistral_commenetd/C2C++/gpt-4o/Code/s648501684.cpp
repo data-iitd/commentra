@@ -1,0 +1,26 @@
+#include <iostream>
+#include <vector>
+
+int main() {
+    long int n, k, q; // Declare and initialize three long integers n, k, and q to read input values from the user
+
+    std::cin >> n >> k >> q; // Read the input values n, k, and q from the user using cin
+
+    std::vector<int> arr(n + 1, 0); // Declare an integer vector arr of size n+1 and initialize it with zeros
+
+    for (long int i = 0; i < q; i++) { // Read q query values from the user and increment the corresponding index in the array arr
+        long int temp;
+        std::cin >> temp;
+        arr[temp] += 1;
+    }
+
+    for (long int i = 1; i <= n; i++) { // Check each index i in the array arr and print "Yes" if the count is greater than q-k, otherwise print "No"
+        if (arr[i] > (q - k)) {
+            std::cout << "Yes" << std::endl;
+        } else {
+            std::cout << "No" << std::endl;
+        }
+    }
+
+    return 0; // Indicate the successful termination of the main function
+} // <END-OF-CODE>

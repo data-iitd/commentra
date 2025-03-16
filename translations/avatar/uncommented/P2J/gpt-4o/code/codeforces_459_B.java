@@ -1,0 +1,33 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int n = Integer.parseInt(scanner.nextLine());
+        String[] input = scanner.nextLine().split(" ");
+        int[] l1 = new int[n];
+
+        for (int i = 0; i < n; i++) {
+            l1[i] = Integer.parseInt(input[i]);
+        }
+
+        Arrays.sort(l1);
+        int a = l1[n - 1];
+        int b = l1[0];
+
+        if (a == b) {
+            System.out.println(a - b + " " + (n * (n - 1) / 2));
+        } else {
+            int ac = 0;
+            int bc = 0;
+
+            for (int num : l1) {
+                if (num == a) ac++;
+                if (num == b) bc++;
+            }
+
+            System.out.println(a - b + " " + (ac * bc));
+        }
+    }
+}
+// <END-OF-CODE>

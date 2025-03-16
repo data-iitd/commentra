@@ -1,0 +1,35 @@
+
+#include <iostream>
+#include <cmath>
+#include <iomanip>
+
+using namespace std;
+
+int main() {
+    // Initialize Scanner to read input from the user
+    double N, d, x;
+    cin >> N >> d >> x;
+
+    // Initialize BigDecimal to store the result with precision
+    double ans = 0.0;
+
+    // Continue the loop until N is greater than 0.5
+    while (N > 0.5) {
+        // Calculate a value using BigDecimal for precision
+        double adnum = d + x * (N - 0.5);
+        ans += adnum;
+
+        // Update the values of d and x based on the current value of N
+        d = (N + 1.0) * d / N + (5.0 * x) / (2.0 * N);
+        x = (1.0 + (2.0 / N)) * x;
+
+        // Decrement N by 1 in each iteration
+        --N;
+    }
+
+    // Initialize DecimalFormat to format the output
+    cout << fixed << setprecision(20) << ans << endl;
+
+    return 0;
+}
+

@@ -1,0 +1,39 @@
+#include<cstdio>
+#include<map>
+#include<string>
+#include<iostream>
+using namespace std;
+
+int main() {
+    // Declare variables for input and a map to store string entries
+    int n; // Number of commands to process
+    char str[10], com[13]; // Arrays to hold command and string inputs
+    map<string, bool> T; // Map to track the presence of strings (true if present)
+
+    // Read the number of commands from input
+    cin >> n;
+    
+    // Loop through each command
+    for (int i = 0; i < n; i++) {
+        // Read the command and the associated string
+        scanf("%s%s", com, str);
+        
+        // Check if the command is 'insert' (indicated by the first character being 'i')
+        if (com[0] == 'i') {
+            // Insert the string into the map with a value of true
+            T[string(str)] = true;
+        } else {
+            // If the command is not 'insert', check if the string exists in the map
+            if (T[string(str)]) {
+                // If the string exists, print "yes"
+                printf("yes\n");
+            } else {
+                // If the string does not exist, print "no"
+                printf("no\n");
+            }
+        }
+    }
+    
+    // Return 0 to indicate successful execution
+    return 0;
+}

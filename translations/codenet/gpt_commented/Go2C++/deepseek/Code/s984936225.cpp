@@ -1,0 +1,70 @@
+#include <iostream>
+#include <vector>
+#include <climits>
+
+using namespace std;
+
+int main() {
+    int N, M;
+    cin >> N >> M;
+
+    const long long Inf = LLONG_MAX / 2; // Using a large value for infinity
+
+    vector<int> a(M), b(M), c(M);
+
+    // Read the edges and their weights from input
+    for (int i = 0; i < M; i++) {
+        cin >> a[i] >> b[i] >> c[i];
+        c[i] = -c[i]; // Negate the weights for the algorithm (to handle maximization)
+    }
+
+    // Initialize the distance array to hold the minimum cost to reach each vertex
+    vector<long long> dist(N, Inf); // Array to store the minimum cost to reach each vertex
+    dist[0] = 0; // The starting vertex (0) has a distance of 0
+
+    // Relax edges N times to find the shortest paths
+    for (int loop = 0; loop < N; loop++) {
+        for (int i = 0; i < M; i++) {
+            // Skip if the starting vertex distance is infinity (not reachable)
+            if (dist[a[i] - 1] == Inf) {
+                continue;
+            }
+            // If a shorter path to vertex b[i] is found, update the distance
+            if (dist[b[i] - 1] > dist[a[i] - 1] + c[i]) {
+                dist[b[i] - 1] = dist[a[i] - 1] + c[i]; // Update the distance to b[i]
+            }
+        }
+    }
+
+    // Store the minimum distance to the last vertex (N-1)
+    long long ans = dist[N - 1]; // The answer is the distance to the last vertex
+    vector<bool> navigate(N, false); // Array to track reachable vertices
+
+    // Check for negative cycles and update reachable vertices
+    for (int loop = 0; loop < N; loop++) {
+        for (int i = 0; i < M; i++) {
+            // Skip if the starting vertex distance is infinity (not reachable)
+            if (dist[a[i] - 1] == Inf) {
+                continue;
+            }
+            // If a shorter path to vertex b[i] is found, update the distance and mark it as reachable
+            if (dist[b[i] - 1] > dist[a[i] - 1] + c[i]) {
+                dist[b[i] - 1] = dist[a[i] - 1] + c[i];
+                navigate[b[i] - 1] = true; // Mark b[i] as reachable
+            }
+            // If a[i] is reachable, then b[i] is also reachable
+            if (navigate[a[i] - 1]) {
+                navigate[b[i] - 1] = true;
+            }
+        }
+    }
+
+    // Output the result based on the reachability of the last vertex
+    if (navigate[N - 1]) {
+        cout << "inf" << endl; // If the last vertex is reachable, print "inf" (indicating a negative cycle)
+    } else {
+        cout << -ans << endl; // Otherwise, print the negative of the answer (since weights were negated)
+    }
+
+    return 0;
+}

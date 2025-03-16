@@ -1,0 +1,78 @@
+
+import sys
+
+class SegmentTree:
+    def __init__(self, n, arr):
+        self.n = n
+        self.arr = arr
+        self.segTree = [0] * (4 * n)
+        self.constructTree(arr, 0, n - 1, 0)
+
+    def constructTree(self, arr, start, end, index):
+        if start == end:
+            self.segTree[index] = arr[start]
+            return arr[start]
+
+        mid = start + (end - start) / 2
+        self.segTree[index] = self.constructTree(arr, start, mid, index * 2 + 1) + \
+                             self.constructTree(arr, mid + 1, end, index * 2 + 2)
+        return self.segTree[index]
+
+    def updateTree(self, start, end, index, diff, segIndex):
+        if index < start or index > end:
+            return
+
+        self.segTree[segIndex] += diff
+        if start!= end:
+            mid = start + (end - start) / 2
+            self.updateTree(start, mid, index, diff, segIndex * 2 + 1)
+            self.updateTree(mid + 1, end, index, diff, segIndex * 2 + 2)
+
+    def update(self, index, value):
+        if index < 0 or index >= self.n:
+            return
+
+        diff = value - self.arr[index]
+        self.arr[index] = value
+        self.updateTree(0, self.n - 1, index, diff, 0)
+
+    def getSumTree(self, start, end, qStart, qEnd, segIndex):
+        if qStart <= start and qEnd >= end:
+            return self.segTree[segIndex]
+
+        if qStart > end or qEnd < start:
+            return 0
+
+        mid = start + (end - start) / 2
+        return (self.getSumTree(start, mid, qStart, qEnd, segIndex * 2 + 1) +
+                self.getSumTree(mid + 1, end, qStart, qEnd, segIndex * 2 + 2))
+
+    def getSum(self, start, end):
+        if start < 0 or end >= self.n or start > end:
+            return 0
+        return self.getSumTree(0, self.n - 1, start, end, 0)
+
+if __name__ == "__main__":
+    n = int(raw_input().strip())
+
+    arr = [int(arr_temp) for arr_temp in raw_input().strip().split(' ')]
+
+    segmentTree = SegmentTree(n, arr)
+
+    q = int(raw_input().strip())
+
+    for a0 in xrange(q):
+        choice = int(raw_input().strip())
+
+        if choice == 1:
+            start = int(raw_input().strip())
+            end = int(raw_input().strip())
+            print "Sum of range [" + str(start) + ", " + str(end) + "] is: " + str(segmentTree.getSum(start, end))
+        elif choice == 2:
+            index = int(raw_input().strip())
+            value = int(raw_input().strip())
+            segmentTree.update(index, value)
+            print "Value updated."
+        else:
+            print "Invalid operation."
+

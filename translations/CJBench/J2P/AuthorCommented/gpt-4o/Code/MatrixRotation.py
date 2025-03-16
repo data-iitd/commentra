@@ -1,0 +1,79 @@
+def rotate(matrix, r):
+    left = 0
+    up = 0
+
+    m = len(matrix)
+    n = len(matrix[0])
+
+    while m >= 1 and n >= 1:
+        count = 2 * (m + n) - 4
+        tmp = [0] * count
+        curr = 0
+
+        for i in range(n):
+            tmp[curr] = matrix[up][left + i]
+            curr += 1
+        for i in range(1, m - 1):
+            tmp[curr] = matrix[up + i][left + n - 1]
+            curr += 1
+        for i in range(n - 1, -1, -1):
+            tmp[curr] = matrix[up + m - 1][left + i]
+            curr += 1
+        for i in range(m - 2, 0, -1):
+            tmp[curr] = matrix[up + i][left]
+            curr += 1
+
+        curr = r % count
+        if curr < 0:
+            curr += count
+
+        for i in range(n):
+            matrix[up][left + i] = tmp[curr]
+            curr += 1
+            if curr >= count:
+                curr -= count
+        for i in range(1, m - 1):
+            matrix[up + i][left + n - 1] = tmp[curr]
+            curr += 1
+            if curr >= count:
+                curr -= count
+        for i in range(n - 1, -1, -1):
+            matrix[up + m - 1][left + i] = tmp[curr]
+            curr += 1
+            if curr >= count:
+                curr -= count
+        for i in range(m - 2, 0, -1):
+            matrix[up + i][left] = tmp[curr]
+            curr += 1
+            if curr >= count:
+                curr -= count
+
+        m -= 2
+        n -= 2
+
+        left += 1
+        up += 1
+
+if __name__ == "__main__":
+    import sys
+
+    # Input matrix dimensions
+    rows, cols = map(int, sys.stdin.readline().strip().split())
+    matrix = []
+
+    # Input matrix elements
+    for _ in range(rows):
+        row = list(map(int, sys.stdin.readline().strip().split()))
+        matrix.append(row)
+
+    # Input number of rotations
+    rotations = int(sys.stdin.readline().strip())
+
+    # Perform matrix rotation
+    rotate(matrix, rotations)
+
+    # Print the rotated matrix
+    for row in matrix:
+        print(" ".join(map(str, row)))
+
+# <END-OF-CODE>

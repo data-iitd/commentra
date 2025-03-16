@@ -1,0 +1,15 @@
+
+import java.util.*;
+public class s275739084{
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    int A = sc.nextInt();
+    int B = sc.nextInt();
+    int C = A + B;
+    if (A % 3!= 0 && B % 3!= 0 && C % 3!= 0) {
+      System.out.println("Impossible");
+    } else {
+      System.out.println("Possible");
+    }
+  }
+}

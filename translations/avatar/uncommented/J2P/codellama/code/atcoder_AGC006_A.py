@@ -1,0 +1,27 @@
+
+import sys
+import math
+
+def getFail(b, m):
+    j = 0
+    f[0] = f[1] = 0
+    for i in range(2, m + 1):
+        while j > 0 and b[j + 1] != b[i]:
+            j = f[j]
+        if b[j + 1] == b[i]:
+            j += 1
+        f[i] = j
+
+n = int(sys.stdin.readline())
+s1 = sys.stdin.readline().strip()
+str = sys.stdin.readline().strip()
+cnt = 0
+for i in range(0, n):
+    b[cnt + 1] = str[i]
+for i in range(0, n):
+    b[cnt + 2 + i] = s1[i]
+getFail(b, cnt + 2 + n)
+len = min(f[cnt + 2 + n], min(n, n))
+print(2 * n - len)
+
+# 

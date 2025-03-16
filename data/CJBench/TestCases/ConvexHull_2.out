@@ -1,0 +1,11 @@
+Convex Hull (Brute Force):
+0 0
+0 3
+1 0
+3 0
+3 3
+Convex Hull (Recursive):
+0 0
+0 3
+3 0
+3 3

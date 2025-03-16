@@ -1,0 +1,4 @@
+
+#include < stdio.h > #include < stdbool.h > #include < stdlib.h > #include < string.h > #include < time.h > #include < math.h > #include < stdarg.h > #include < assert.h > #include < inttypes.h > #include < stdio.h > #include < stdbool.h > #include < stdlib.h > #include < string.h > #include < time.h > #include < math.h > #include < stdarg.h > #include < assert.h > #include < inttypes.h >
+
+int main ( void ) { int n = 0 ; scanf ( "%d", & n ) ; int * a = malloc ( n * sizeof ( int ) ) ; for ( int i = 0 ; i < n ; i ++ ) { scanf ( "%d", & a [ i ] ) ; } qsort ( a, n, sizeof ( int ), cmpfunc ) ; bool found = false ; for ( int i = 0 ; i < n ; i ++ ) { if ( i + 1 < n && i + 2 < n ) { if ( a [ i ] + 1 == a [ i + 1 ] && a [ i + 1 ] + 1 == a [ i + 2 ] ) { found = true ; } } } printf ( "%s\n", found? "YES" : "NO" ) ; return 0 ; } 

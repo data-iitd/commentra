@@ -1,0 +1,64 @@
+
+import java.util.Scanner;
+
+public class codeforces_287_A{
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        char[][] t = new char[4][4];  // Initialize a 4x4 array of characters to store the input data.
+
+        // Loop to take input and store it in the array t.
+        for (int i = 0; i < 4; i++) {
+            String s = sc.next();
+            for (int j = 0; j < 4; j++) {
+                t[i][j] = s.charAt(j);  // Convert the input string to a character array and store it in t.
+            }
+        }
+
+        int black = 0;  // Initialize the count of black cells to 0.
+        int white = 0;  // Initialize the count of white cells to 0.
+        int correct = 0;  // Initialize the correct flag to 0.
+
+        // Nested loop to iterate over the 3x3 grid formed by the first 3 rows and columns of t.
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                // Count the number of black and white cells in the current 2x2 subgrid.
+                if (t[i][j] == '#') {
+                    black++;
+                } else {
+                    white++;
+                }
+                if (t[i][j + 1] == '#') {
+                    black++;
+                } else {
+                    white++;
+                }
+                if (t[i + 1][j] == '#') {
+                    black++;
+                } else {
+                    white++;
+                }
+                if (t[i + 1][j + 1] == '#') {
+                    black++;
+                } else {
+                    white++;
+                }
+
+                // Check if the counts of black and white cells meet any of the specified conditions.
+                if (black == 0 || black == 3 || white == 0 || white == 3 || white == 4 || black == 4) {
+                    correct = 1;
+                    break;  // If conditions are met, set correct to 1 and break out of the loop.
+                }
+
+                black = 0;  // Reset the count of black cells.
+                white = 0;  // Reset the count of white cells.
+            }
+        }
+
+        // Print 'YES' if correct is 1, otherwise print 'NO'.
+        if (correct == 1) {
+            System.out.println("YES");
+        } else {
+            System.out.println("NO");
+        }
+    }
+}

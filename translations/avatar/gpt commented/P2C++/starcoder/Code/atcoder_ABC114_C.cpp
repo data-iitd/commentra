@@ -1,0 +1,27 @@
+#include <iostream>
+#include <string>
+#include <set>
+
+using namespace std;
+
+int aaa(string n) {
+    if (stoi(n) > N) {
+        return 0;
+    }
+    int ans = 1;
+    if (set<char>(n.begin(), n.end()) == set<char>{"7", "5", "3"}) {
+        ans = 1;
+    }
+    for (char i : "753") {
+        ans += aaa(n + i);
+    }
+    return ans;
+}
+
+int main() {
+    int N;
+    cin >> N;
+    cout << aaa("0") << endl;
+    return 0;
+}
+

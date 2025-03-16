@@ -1,0 +1,78 @@
+/*depth first search
+not lie in stack
+*/
+package main
+
+import "fmt"
+
+const N = 100 // Define the maximum number of nodes
+const WHITE = 0 // Define WHITE color
+const GRAY = 1 // Define GRAY color
+const BLACK = 2 // Define BLACK color
+
+var M [N][N]int // Declare the adjacency matrix and number of nodes
+var n int
+var color [N]int // Declare color, discovery time, finish time, and time counter
+var d [N]int
+var f [N]int
+var tt int
+
+// Depth-first search visit function
+func dfs_visit(u int) {
+	var v int
+	color[u] = GRAY // Set the color of node u to GRAY
+	d[u] = tt + 1 // Record the discovery time of u
+	for v = 0; v < n; v++ {
+		if M[u][v] == 0 {
+			continue // Skip if there is no edge from u to v
+		}
+		if color[v] == WHITE { // If v is WHITE, recursively visit v
+			dfs_visit(v)
+		}
+	}
+	color[u] = BLACK // Set the color of node u to BLACK
+	f[u] = tt + 1 // Record the finish time of u
+}
+
+// Depth-first search function
+func dfs() {
+	var u int
+	for i := 0; i < n; i++ {
+		color[i] = WHITE // Initialize all nodes to WHITE
+	}
+	tt = 0 // Reset the time counter
+
+	for u = 0; u < n; u++ {
+		if color[u] == WHITE { // If u is WHITE, start a DFS from u
+			dfs_visit(u)
+		}
+	}
+
+	for i := 0; i < n; i++ {
+		fmt.Println(i+1, d[i], f[i]) // Print the discovery and finish times for each node
+	}
+}
+
+func main() {
+
+	var k, u, v int
+	fmt.Scan(&n) // Read the number of nodes
+	for i := 0; i < n; i++ {
+		for j := 0; j < n; j++ {
+			M[i][j] = 0 // Initialize the adjacency matrix
+		}
+	}
+	for i := 0; i < n; i++ {
+		fmt.Scan(&u, &k) // Read the node and the number of its neighbors
+		u--                 // Convert to 0-based index
+		for j := 0; j < k; j++ {
+			fmt.Scan(&v) // Read the neighbor
+			v--           // Convert to 0-based index
+			M[u][v] = 1   // Set the edge in the adjacency matrix
+		}
+	}
+
+	dfs() // Perform the depth-first search and print the results
+
+}
+

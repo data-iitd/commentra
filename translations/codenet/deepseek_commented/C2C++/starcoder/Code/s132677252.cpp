@@ -1,0 +1,209 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+// Define a structure for a directed edge in the graph
+struct directed_edge {
+  int32_t vertex; // The destination vertex of the edge
+  int32_t next;   // The index of the next edge in the adjacency list
+};
+
+// Define a structure for the directed graph
+struct directedGraph {
+  directed_edge *edge;       // Array of edges
+  int32_t *start;         // Array of start pointers for each vertex
+  int32_t pointer;        // Current number of edges
+  int32_t vertex_num;     // Number of vertices
+  int32_t edge_max_size;  // Maximum size of the edge array
+};
+
+// Function to initialize a new graph with a given number of vertices
+directedGraph* new_graph (const int vertex_num) {
+  directedGraph *g = (directedGraph *) malloc (sizeof (directedGraph));
+  g->edge = (directed_edge *) malloc (sizeof (directed_edge));
+  g->start = (int32_t *) malloc (vertex_num * sizeof (int32_t));
+  g->pointer = 0;
+  g->vertex_num = vertex_num;
+  g->edge_max_size = 1;
+  for (int32_t i = 0; i < vertex_num; ++i) {
+    g->start[i] = -1; // Initialize all start pointers to -1 (no edges initially)
+  }
+  return g;
+}
+
+// Function to add a directed edge to the graph
+void add_edge (directedGraph *g, int32_t from, int32_t to) {
+  if (g->pointer == g->edge_max_size) {
+    g->edge_max_size *= 2;
+    g->edge = (directed_edge *) realloc (g->edge, sizeof (directed_edge) * g->edge_max_size);
+  }
+  g->edge[g->pointer] = (directed_edge) {to, g->start[from]}; // Set the new edge and update the start pointer
+  g->start[from] = g->pointer++; // Update the start pointer to the new edge
+}
+
+// Define the modulo constant
+const int32_t mod = 1000000007;
+
+// Function to compute r^n % mod using exponentiation by squaring
+int32_t mod_pow (int32_t r, int32_t n) {
+  int32_t t = 1;
+  int32_t s = r;
+  while (n > 0) {
+    if (n & 1) t = (int64_t) t * s % mod; // If n is odd, multiply t by s
+    s = (int64_t) s * s % mod; // Square s
+    n >>= 1; // Halve n
+  }
+  return t;
+}
+
+// Define a structure for a node in the dynamic programming array
+struct dp_node {
+  int32_t one;  // Number of ways to have exactly one edge
+  int32_t zero; // Number of ways to have exactly zero edges
+};
+
+// Function to merge two nodes in the dynamic programming array
+dp_node merge (dp_node *a, int32_t n) {
+  int64_t one = 0;
+  int64_t zero = 1;
+  int64_t total = 1;
+  for (int32_t i = 0; i < n; ++i) {
+    one = (one * a[i].zero + zero * a[i].one) % mod; // Calculate the number of ways to have exactly one edge
+    zero = zero * a[i].zero % mod; // Calculate the number of ways to have exactly zero edges
+    total = total * (a[i].zero + a[i].one) % mod; // Calculate the total number of ways
+  }
+  return (dp_node) {one, (total + mod - one) % mod}; // Return the merged node
+}
+
+// Define the type for values stored in the deque
+typedef dp_node deque_val;
+
+// Define a structure for the deque
+struct Deque {
+  deque_val *array;
+  size_t front;
+  size_t last;
+  size_t mask;
+};
+
+// Function to initialize a new deque
+Deque* new_deque (void) {
+  const size_t len = 2;
+  Deque *d = (Deque *) malloc (sizeof (Deque));
+  d->array = (deque_val *) malloc (len * sizeof (deque_val));
+  d->front = d->last = 0;
+  d->mask = len - 1;
+  return d;
+}
+
+// Function to free the memory allocated for a deque
+void free_deque (Deque * const d) {
+  free (d->array);
+  free (d);
+}
+
+// Function to get the number of elements in the deque
+size_t get_size (const Deque *d) {
+  return (d->last + (~d->front + 1)) & d->mask;
+}
+
+// Function to reallocate the deque when necessary
+void deque_realloc (Deque * const d) {
+  deque_val *array = (deque_val *) malloc (2 * (d->mask + 1) * sizeof (deque_val));
+  size_t k = 0;
+  for (size_t i = d->front; i!= d->last; i = (i + 1) & d->mask) {
+    array[k++] = d->array[i];
+  }
+  free (d->array);
+  d->array = array;
+  d->front = 0;
+  d->last = k;
+  d->mask = 2 * d->mask + 1;
+}
+
+// Function to get the value at a specific index in the deque
+deque_val get_at (const Deque *d, size_t x) {
+  return d->array[(d->front + x) & d->mask];
+}
+
+// Function to assign a value at a specific index in the deque
+void assign_at (const Deque *d, size_t x, deque_val v) {
+  d->array[(d->front + x) & d->mask] = v;
+}
+
+// Function to add an element to the front of the deque
+void push_front (Deque * const d, const deque_val v) {
+  if(((d->last + 1) & d->mask) == d->front) {
+    deque_realloc (d);
+  }
+  d->front = (d->front + d->mask) & d->mask;
+  d->array[d->front] = v;
+}
+
+// Function to compare the sizes of two deques
+int cmp_deque_size (const void *a, const void *b) {
+  Deque *p = *(Deque **)a;
+  Deque *q = *(Deque **)b;
+  int32_t d = get_size (p) - get_size (q);
+  return d == 0? 0 : d > 0? -1 : 1;
+}
+
+// Function to run the main logic of the program
+void run (void) {
+  int32_t n;
+  scanf ("%" SCNd32, &n); // Read the number of vertices
+  int32_t *p = (int32_t *) malloc ((n + 1) * sizeof (int32_t)); // Array to store parent pointers
+  int32_t *depth = (int32_t *) malloc ((n + 1) * sizeof (int32_t)); // Array to store depths of vertices
+  int32_t *cnt = (int32_t *) malloc ((n + 1) * sizeof (int32_t)); // Array to count vertices at each depth
+  cnt[0] = 1; // There is one way to have zero edges (the root itself)
+  directedGraph *g = new_graph (n + 1); // Initialize the graph
+  for (int32_t i = 1; i <= n; ++i) {
+    scanf ("%" SCNd32, p + i); // Read the parent of each vertex
+    add_edge (g, p[i], i); // Add the edge to the graph
+    depth[i] = depth[p[i]] + 1; // Calculate the depth of each vertex
+    cnt[depth[i]]++; // Increment the count of vertices at the current depth
+  }
+  Deque **dp = (Deque **) malloc ((n + 1) * sizeof (Deque *)); // Array to store dynamic programming results
+  Deque **child = (Deque **) malloc ((n + 1) * sizeof (Deque *)); // Array to store child deques
+  dp_node *lst = (dp_node *) malloc ((n + 1) * sizeof (dp_node)); // Array to store merged nodes
+  for (int32_t i = n; i >= 0; --i) {
+    int32_t v = i;
+    if (g->start[v] == -1) {
+      dp[v] = new_deque();
+      push_front (dp[v], (dp_node) {1, 1}); // Initialize the dp array for leaf nodes
+      continue;
+    }
+    int32_t len = 0;
+    for (int32_t p = g->start[v]; p!= -1; p = g->edge[p].next) {
+      int32_t u = g->edge[p].vertex;
+      child[len++] = dp[u]; // Collect child deques
+    }
+    if (len > 1) {
+      qsort (child, len, sizeof (Deque *), cmp_deque_size); // Sort child deques by size
+      for (int32_t d = 0; d < (int32_t) get_size (child[1]); ++d) {
+        int32_t j = 0;
+        for (; j < len && d < (int32_t) get_size (child[j]); ++j) {
+          lst[j] = get_at (child[j], d); // Get nodes at the current depth
+        }
+        assign_at (child[0], d, merge (lst, j)); // Merge nodes and assign to the first child deque
+      }
+      for (int32_t j = 1; j < len; ++j) {
+	free_deque (child[j]); // Free memory of unused child deques
+      }
+    }
+    dp[v] = child[0]; // Assign the merged deque to the current vertex
+    push_front (dp[v], (dp_node) {1, 1}); // Add the current node to the dp array
+  }
+  int64_t ans = 0;
+  for (int32_t i = 0; i < (int32_t) get_size (dp[0]); ++i) {
+    ans += (int64_t) mod_pow (2, n + 1 - cnt[i]) * get_at (dp[0], i).one % mod; // Calculate the answer
+  }
+  printf ("%" PRId64 "\n", ans % mod); // Print the result
+}
+
+// Main function to run the program
+int main (void) {
+  run();
+  return 0;
+}
+

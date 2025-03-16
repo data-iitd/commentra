@@ -1,0 +1,53 @@
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
+        int H = sc.nextInt();
+        int W = sc.nextInt();
+        int A = sc.nextInt();
+        int B = sc.nextInt();
+        
+        solve(H, W, A, B);
+    }
+    
+    public static void solve(int H, int W, int A, int B) {
+        // Initialize the answer matrix with "0"
+        String[][] answer = new String[H][W];
+        for (int i = 0; i < H; i++) {
+            for (int j = 0; j < W; j++) {
+                answer[i][j] = "0";
+            }
+        }
+        
+        // Fill the matrix based on the given conditions
+        for (int i = 0; i < H; i++) {
+            for (int j = 0; j < W; j++) {
+                if (i < B) {  // Check if the row index is less than B
+                    if (j < A) {  // Check if the column index is less than A
+                        answer[i][j] = "0";  // Assign "0" if both conditions are met
+                    } else {
+                        answer[i][j] = "1";  // Assign "1" otherwise
+                    }
+                } else {  // If the row index is not less than B
+                    if (j < A) {
+                        answer[i][j] = "1";  // Assign "1" if the column index is less than A
+                    } else {
+                        answer[i][j] = "0";  // Assign "0" otherwise
+                    }
+                }
+            }
+        }
+        
+        // Print each row of the matrix as a string
+        for (int i = 0; i < H; i++) {
+            for (int j = 0; j < W; j++) {
+                System.out.print(answer[i][j]);
+            }
+            System.out.println();
+        }
+    }
+}
+

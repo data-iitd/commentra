@@ -1,0 +1,25 @@
+# Create a new scanner to read from standard input
+stdin = input()
+
+# Read an array of integers from standard input
+arr = stdin.split()
+
+# Assign the first two elements of the array to variables a and b
+a, b = int(arr[0]), int(arr[1])
+
+# Initialize the number of taps needed to 0
+tap = 0
+
+# Initialize the consent variable to 1 (the starting point)
+consent = 1
+
+# Loop until the consent value is less than b
+while consent < b:
+	# Update consent by adding (a - 1) to it
+	consent = consent + a - 1
+	# Increment the tap count
+	tap = tap + 1
+
+# Print the total number of taps needed
+print(tap)
+

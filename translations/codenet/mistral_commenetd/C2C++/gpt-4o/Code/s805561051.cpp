@@ -1,0 +1,110 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+// Define a structure for a binary tree node
+struct BT {
+    int parent; // Parent node index
+    int right; // Index of right child
+    int left; // Index of left child
+};
+
+vector<BT> bt(26); // Initialize a vector of size 26 to store binary tree nodes
+int n; // Number of nodes in the binary tree
+
+// Recursive function to print tree in preorder traversal
+void Preorder(int a) {
+    // Base case: if current node index is -1, return
+    if (a == -1) return;
+
+    // Print the current node value
+    cout << " " << a;
+
+    // Recursively call for left and right subtrees
+    Preorder(bt[a].left);
+    Preorder(bt[a].right);
+}
+
+// Recursive function to print tree in inorder traversal
+void Inorder(int a) {
+    // Base case: if current node index is -1, return
+    if (a == -1) return;
+
+    // Recursively call for left subtree
+    Inorder(bt[a].left);
+
+    // Print the current node value
+    cout << " " << a;
+
+    // Recursively call for right subtree
+    Inorder(bt[a].right);
+}
+
+// Recursive function to print tree in postorder traversal
+void Postorder(int a) {
+    // Base case: if current node index is -1, return
+    if (a == -1) return;
+
+    // Recursively call for left and right subtrees
+    Postorder(bt[a].left);
+    Postorder(bt[a].right);
+
+    // Print the current node value
+    cout << " " << a;
+}
+
+// Main function to read input and print tree traversals
+int main() {
+    int i, num; // Initialize variables
+
+    // Read number of nodes in the binary tree
+    cin >> n;
+
+    // Initialize all nodes as root
+    for (i = 0; i < n; ++i) bt[i].parent = -1;
+
+    // Read node values and their left and right children
+    for (i = 0; i < n; i++) {
+        cin >> num; // Read node value
+
+        // Initialize left and right children as -1
+        bt[num].left = -1;
+        bt[num].right = -1;
+
+        // Read left and right child indices if they exist
+        if (cin >> bt[num].left >> bt[num].right) {
+            // Set parent of left and right children to current node
+            if (bt[num].left != -1 && bt[num].right != -1) {
+                bt[bt[num].left].parent = num;
+                bt[bt[num].right].parent = num;
+            }
+            // Set parent of left child if it exists
+            else if (bt[num].left != -1) bt[bt[num].left].parent = num;
+            // Set parent of right child if it exists
+            else if (bt[num].right != -1) bt[bt[num].right].parent = num;
+        } else {
+            break;
+        }
+    }
+
+    // Find the index of the last node (root) in the tree
+    for (i = 0; bt[i].parent != -1; ++i);
+
+    // Print tree traversals
+    cout << "Preorder\n";
+    Preorder(i);
+    cout << "\n";
+
+    cout << "Inorder\n";
+    Inorder(i);
+    cout << "\n";
+
+    cout << "Postorder\n";
+    Postorder(i);
+    cout << "\n";
+
+    return 0;
+}
+
+// <END-OF-CODE>

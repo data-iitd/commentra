@@ -1,0 +1,54 @@
+import java.util.*;
+
+public class Prim {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+        int[][] G = new int[n][n];
+        int[] d = new int[n];
+        int[] pi = new int[n];
+        int[] color = new int[n];
+        int u,v,min,sum=0;
+
+        for(int i=0;i<n;i++){
+            d[i] = Integer.MAX_VALUE;
+            pi[i] = -1;
+            color[i] = 0;
+        }
+
+        for(int i=0;i<n;i++){
+            for(int j=0;j<n;j++){
+                G[i][j] = in.nextInt();
+            }
+        }
+
+        d[0] = 0;
+
+        while(true){
+            min = Integer.MAX_VALUE;
+            u = -1;
+            for(int i=0;i<n;i++){
+                if(color[i] == 0 && d[i] < min){
+                    min = d[i];
+                    u = i;
+                }
+            }
+            if(u == -1)break;
+            color[u] = 1;
+            for(int v=0;v<n;v++){
+                if(color[v] == 0 && G[u][v]!= Integer.MAX_VALUE){
+                    if(d[v] > G[u][v]){
+                        d[v] = G[u][v];
+                        pi[v] = u;
+                        color[v] = 1;
+                    }
+                }
+            }
+        }
+        for(int i=0;i<n;i++){
+            if(pi[i]!= -1)sum += G[i][pi[i]];
+        }
+        System.out.println(sum);
+    }
+}
+

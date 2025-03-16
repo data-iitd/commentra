@@ -1,0 +1,6 @@
+n = int(input())
+a = int(input())
+s = list(map(int,input().split()))
+s.sort()
+print(sum(s[n-a:]))
+

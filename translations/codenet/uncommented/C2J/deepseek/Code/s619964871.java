@@ -1,0 +1,41 @@
+public class NumberOfInversions {
+    public static long merge(long[] a, int left, int middle, int right) {
+        long[] l_arr = new long[middle - left + 1];
+        long[] r_arr = new long[right - middle + 1];
+        long cnt = 0;
+        for (int i = 0; i < middle - left; i++) l_arr[i] = a[left + i];
+        for (int i = 0; i < right - middle; i++) r_arr[i] = a[middle + i];
+        l_arr[middle - left] = Long.MAX_VALUE;
+        r_arr[right - middle] = Long.MAX_VALUE;
+        int l = 0, r = 0;
+        for (int i = 0; i < right - left; i++) {
+            if (l_arr[l] <= r_arr[r]) {
+                a[left + i] = l_arr[l++];
+            } else {
+                a[left + i] = r_arr[r++];
+                cnt += middle - left - l;
+            }
+        }
+        return cnt;
+    }
+
+    public static long mergeSort(long[] a, int left, int right) {
+        if (left + 1 < right) {
+            int middle = (left + right) / 2;
+            long x1 = mergeSort(a, left, middle);
+            long x2 = mergeSort(a, middle, right);
+            long x3 = merge(a, left, middle, right);
+            return x1 + x2 + x3;
+        } else {
+            return 0;
+        }
+    }
+
+    public static void main(String[] args) {
+        java.util.Scanner scanner = new java.util.Scanner(System.in);
+        int n = scanner.nextInt();
+        long[] a = new long[n];
+        for (int i = 0; i < n; i++) a[i] = scanner.nextLong();
+        System.out.println(mergeSort(a, 0, n));
+    }
+}

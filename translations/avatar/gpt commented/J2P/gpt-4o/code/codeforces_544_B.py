@@ -1,0 +1,38 @@
+def print_island(n, count):
+    # Calculate the number of 'L' and 'S' characters that can be placed on the island
+    a = (n + 1) // 2  # Number of 'L' characters in the first half
+    b = n // 2        # Number of 'L' characters in the second half
+    max_count = a * a + b * b  # Maximum number of 'L' characters that can fit in the island
+    
+    # Check if the provided count exceeds the maximum possible 'L' characters
+    if count > max_count:
+        print("NO")  # Print "NO" if the count is too high
+        return  # Exit the function
+    
+    # If the count is valid, print "YES"
+    print("YES")
+    
+    # Loop through each row of the island
+    for i in range(n):
+        row = []  # Create a list to construct the row
+        
+        # Loop through each column of the island
+        for j in range(n):
+            # Place 'L' if the sum of indices is even and there are still 'L' characters left
+            if (i + j) % 2 == 0 and count > 0:
+                row.append('L')  # Append 'L' to the current row
+                count -= 1  # Decrement the count of 'L' characters
+            else:
+                row.append('S')  # Append 'S' to the current row
+        
+        # Print the constructed row of the island
+        print(''.join(row))
+
+# Main function to read input and call the print_island function
+if __name__ == "__main__":
+    n = int(input())  # Read the size of the island (n)
+    count = int(input())  # Read the number of 'L' characters (count)
+    
+    print_island(n, count)
+
+# <END-OF-CODE>

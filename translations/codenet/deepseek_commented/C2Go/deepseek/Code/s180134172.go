@@ -1,0 +1,43 @@
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	var n, k int
+	var p [99999]int
+	var i, j, l, m, o int
+
+	// Read the number of elements (n) and the number of elements to sum (k)
+	fmt.Scan(&n, &k)
+
+	// Read n integers and store them in the array p
+	for i = 0; i < n; i++ {
+		fmt.Scan(&p[i])
+	}
+
+	// Perform selection sort on the array p
+	for i = 0; i < n; i++ {
+		l = i
+		for j = i + 1; j < n; j++ {
+			if p[j] < p[l] {
+				l = j
+			}
+		}
+		if l != i {
+			m = p[i]
+			p[i] = p[l]
+			p[l] = m
+		}
+	}
+
+	// Sum the first k elements of the sorted array
+	for i = 0; i < k; i++ {
+		o += p[i]
+	}
+
+	// Print the sum of the first k elements
+	fmt.Println(o)
+}
+

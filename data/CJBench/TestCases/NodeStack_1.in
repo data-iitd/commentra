@@ -1,0 +1,11 @@
+pop
+peek
+push 100
+push 200
+size
+peek
+pop
+pop
+isEmpty
+pop
+exit

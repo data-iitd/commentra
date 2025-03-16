@@ -1,0 +1,62 @@
+package main
+
+import (
+	"fmt"
+	"math"
+)
+
+func main() {
+	// Declare variables for the number of elements (N) and a threshold (T)
+	var N, T int
+	
+	// Read the number of elements and the threshold from input
+	fmt.Scan(&N, &T)
+	
+	// Initialize a slice A to hold the input values
+	A := make([]int, N)
+	
+	// Initialize a slice B to hold the transformed values
+	B := make([]int, N)
+	
+	// Read N integers into the slice A
+	for i := 0; i < N; i++ {
+		fmt.Scan(&A[i])
+	}
+	
+	// Initialize m with the first element of A
+	m := A[0]
+	
+	// Calculate the first element of B based on the first element of A and update m
+	B[1] = A[1] - m
+	m = int(math.Min(float64(m), float64(A[1])))
+	
+	// Loop through the remaining elements of A to fill B and update m
+	for i := 2; i < N; i++ {
+		// Fill B[i] with the difference between A[i] and the minimum value found so far (m)
+		B[i] = A[i] - m
+		
+		// Update m to be the minimum of the current m and A[i]
+		m = int(math.Min(float64(m), float64(A[i])))
+	}
+	
+	// Find the maximum element in B
+	maxB := B[0]
+	for _, value := range B {
+		if value > maxB {
+			maxB = value
+		}
+	}
+	
+	// Count the number of times the maximum element in B appears
+	count := 0
+	for _, value := range B {
+		if value == maxB {
+			count++
+		}
+	}
+	
+	// Output the count
+	fmt.Println(count)
+}
+
+// <END-OF-CODE>

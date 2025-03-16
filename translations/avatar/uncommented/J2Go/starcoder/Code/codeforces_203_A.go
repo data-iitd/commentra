@@ -1,0 +1,41 @@
+package main
+
+import (
+	"bufio"
+	"fmt"
+	"os"
+	"strconv"
+	"strings"
+)
+
+func main() {
+	reader := bufio.NewReader(os.Stdin)
+	var x, t, a, b, da, db int
+	var first, second int
+	var ok bool
+	fmt.Fscanf(reader, "%d", &x)
+	fmt.Fscanf(reader, "%d", &t)
+	fmt.Fscanf(reader, "%d", &a)
+	fmt.Fscanf(reader, "%d", &b)
+	fmt.Fscanf(reader, "%d", &da)
+	fmt.Fscanf(reader, "%d", &db)
+	for i := 0; i < t; i++ {
+		first = a - (da * i)
+		for j := 0; j < t; j++ {
+			second = b - (db * j)
+			if second+first == x || second == x || first == x || x == 0 {
+				ok = true
+				break
+			}
+		}
+		if ok {
+			break
+		}
+	}
+	if ok {
+		fmt.Println("YES")
+	} else {
+		fmt.Println("NO")
+	}
+}
+

@@ -1,0 +1,16 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+int main()
+{
+    int cookies [ ] = { 0, 0, 0 };
+    for ( int i = 0; i < 3; i++ )
+    {
+        cin >> cookies [ i ];
+    }
+    int leftOver = cookies [ 0 ] - cookies [ 2 ];
+    int takahashi = max ( 0, leftOver );
+    cout << takahashi <<'' << ( cookies [ 1 ] if takahashi > 0 else max ( 0, cookies [ 1 ] - abs ( leftOver ) ) ) << endl;
+    return 0;
+}

@@ -1,0 +1,19 @@
+#include <stdio.h>
+
+int main() {
+    int n, s, max = 0;
+    scanf("%d %d", &n, &s);
+    
+    while (n-- > 0) {
+        int f, t;
+        scanf("%d %d", &f, &t);
+        if (max < f + t) {
+            max = f + t;
+        }
+    }
+    
+    printf("%d\n", (max > s) ? max : s);
+    return 0;
+}
+
+// <END-OF-CODE>

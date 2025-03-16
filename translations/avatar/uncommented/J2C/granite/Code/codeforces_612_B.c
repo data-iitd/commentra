@@ -1,0 +1,20 @@
+
+#include <stdio.h>
+
+int main() {
+    int n;
+    scanf("%d", &n);
+    int dp[200001];
+    for (int i = 0; i < n; i++) {
+        int x;
+        scanf("%d", &x);
+        dp[x] = i;
+    }
+    long long ans = 0;
+    for (int i = 2; i <= n; i++) {
+        ans += abs(dp[i] - dp[i - 1]);
+    }
+    printf("%lld\n", ans);
+    return 0;
+}
+// END-OF-CODE

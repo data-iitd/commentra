@@ -1,0 +1,6 @@
+create 10 InfoA
+create 20 InfoB
+create 15 InfoC
+print
+getKey 1
+getInfo 2

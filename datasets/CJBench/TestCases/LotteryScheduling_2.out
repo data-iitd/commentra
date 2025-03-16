@@ -1,0 +1,6 @@
+Process WaitingTime TurnAroundTime
+D 0 3
+B 3 8
+E 8 10
+C 10 16
+A 16 20

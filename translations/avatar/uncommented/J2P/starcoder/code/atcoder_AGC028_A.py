@@ -1,0 +1,2 @@
+import java.math.BigInteger ; import java.util.* ; import java.util.stream.* ; def main ( ): n = int ( input ( ) ) ; m = int ( input ( ) ) ; gcd = BigInteger.valueOf ( n ).gcd ( BigInteger.valueOf ( m ) ).intValue ( ) ; s = input ( ) ; t = input ( ) ; print ( IntStream.range ( 0, gcd ).filter ( lambda k : s [ k * n // gcd ]!= t [ k * m // gcd ] ).mapToLong ( lambda k : - 1 ).findAny ( ).orElse ( BigInteger.valueOf ( n ).multiply ( BigInteger.valueOf ( m ) ).divide ( BigInteger.valueOf ( gcd ) ).longValue ( ) ) ) ;
+

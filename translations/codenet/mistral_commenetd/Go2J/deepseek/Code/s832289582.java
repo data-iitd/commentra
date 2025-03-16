@@ -1,0 +1,56 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int N = scanner.nextInt();
+        int P = scanner.nextInt();
+        String S = scanner.next();
+        int answer = checkSubNumbers(N, P, S);
+        System.out.println(answer);
+    }
+
+    public static int checkSubNumbers(int N, int P, String S) {
+        if (P == 2 || P == 5) {
+            return checkTwoOrFive(N, P, S);
+        } else {
+            return checkNotTwoNorFive(N, P, S);
+        }
+    }
+
+    public static int checkTwoOrFive(int N, int P, String S) {
+        int answer = 0;
+        for (int i = N - 1; i >= 0; i--) {
+            int n = S.charAt(i) - '0';
+            if (n % P == 0) {
+                answer += i + 1;
+            }
+        }
+        return answer;
+    }
+
+    public static int checkNotTwoNorFive(int N, int P, String S) {
+        int multiplier = 1;
+        int answer = 0;
+        int[] remainderLookup = new int[P];
+        int prevRemaider = -1;
+        for (int i = N - 1; i >= 0; i--) {
+            int digit = S.charAt(i) - '0';
+            if (prevRemaider == -1) {
+                prevRemaider = digit % P;
+            } else {
+                int remainder = (((multiplier * digit) % P) + prevRemaider) % P;
+                if (remainder == 0) {
+                    answer++;
+                }
+                int count = remainderLookup[remainder];
+                answer += count;
+                count++;
+                remainderLookup[remainder] = count;
+            }
+            prevRemaider = digit % P;
+            multiplier = (multiplier * 10) % P;
+        }
+        return answer;
+    }
+}

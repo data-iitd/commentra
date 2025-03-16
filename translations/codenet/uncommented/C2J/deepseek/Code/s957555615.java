@@ -1,0 +1,119 @@
+public class Main {
+    static class Node {
+        Node right;
+        Node left;
+        Node parent;
+        int key;
+    }
+
+    static Node root;
+
+    static Node treeMinimum(Node x) {
+        while (x.left != null) x = x.left;
+        return x;
+    }
+
+    static Node treeMaximum(Node x) {
+        while (x.right != null) x = x.right;
+        return x;
+    }
+
+    static Node treeSearch(Node u, int k) {
+        if (u == null || k == u.key) return u;
+        if (k < u.key) return treeSearch(u.left, k);
+        else return treeSearch(u.right, k);
+    }
+
+    static Node treeSuccessor(Node x) {
+        Node y;
+        if (x.right != null) return treeMinimum(x.right);
+        y = x.parent;
+        while (y != null && x == y.right) {
+            x = y;
+            y = y.parent;
+        }
+        return y;
+    }
+
+    static void treeDelete(Node z) {
+        Node y; // node to be deleted
+        Node x; // child of y
+
+        if (z.left == null || z.right == null) y = z;
+        else y = treeSuccessor(z);
+
+        if (y.left != null) x = y.left;
+        else x = y.right;
+
+        if (x != null) x.parent = y.parent;
+
+        if (y.parent == null) root = x;
+        else if (y == y.parent.left) y.parent.left = x;
+        else y.parent.right = x;
+
+        if (y != z) z.key = y.key;
+    }
+
+    static void insert(int k) {
+        Node y = null;
+        Node x = root;
+        Node z = new Node();
+        z.key = k;
+        z.left = null;
+        z.right = null;
+
+        while (x != null) {
+            y = x;
+            if (z.key < x.key) x = x.left;
+            else x = x.right;
+        }
+        z.parent = y;
+        if (y == null) root = z;
+        else if (z.key < y.key) y.left = z;
+        else y.right = z;
+    }
+
+    static void inorder(Node u) {
+        if (u == null) return;
+        inorder(u.left);
+        System.out.print(" " + u.key);
+        inorder(u.right);
+    }
+
+    static void preorder(Node u) {
+        if (u == null) return;
+        System.out.print(" " + u.key);
+        preorder(u.left);
+        preorder(u.right);
+    }
+
+    public static void main(String[] args) {
+        int n, i, x;
+        String com;
+        Scanner scanner = new Scanner(System.in);
+        n = scanner.nextInt();
+        scanner.nextLine(); // Consume newline
+
+        for (i = 0; i < n; i++) {
+            com = scanner.next();
+            if (com.charAt(0) == 'f') {
+                x = scanner.nextInt();
+                Node t = treeSearch(root, x);
+                if (t != null) System.out.println("yes");
+                else System.out.println("no");
+            } else if (com.charAt(0) == 'i') {
+                x = scanner.nextInt();
+                insert(x);
+            } else if (com.charAt(0) == 'p') {
+                inorder(root);
+                System.out.println();
+                preorder(root);
+                System.out.println();
+            } else if (com.charAt(0) == 'd') {
+                x = scanner.nextInt();
+                treeDelete(treeSearch(root, x));
+            }
+        }
+        scanner.close();
+    }
+}

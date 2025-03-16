@@ -1,0 +1,110 @@
+#include <iostream>
+#include <vector>
+#define N 4
+
+// Define a structure Pazz to hold a 2D array P
+struct Pazz {
+    int P[N][N];
+};
+
+Pazz Q; // Initialize an empty Pazz structure Q
+int dx[4] = {0, 1, 0, -1}; // Define the possible moves in x direction
+int dy[4] = {1, 0, -1, 0}; // Define the possible moves in y direction
+
+// Function to calculate the heuristic value of the given Pazz structure Q
+int Heu(Pazz Q) {
+    int sum = 0; // Local variable
+
+    // Iterate through all the elements of the 2D array P in Q
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            // If the current element is not part of the puzzle, continue to next iteration
+            if (Q.P[i][j] == 0) continue;
+
+            // Calculate the heuristic value hx and hy for the current element
+            int hx = (Q.P[i][j] - 1) % N - j;
+            int hy = (Q.P[i][j] - 1) / N - i;
+
+            // Update the sum based on the heuristic values hx and hy
+            if (hx < 0) sum -= hx;
+            else sum += hx;
+
+            if (hy < 0) sum -= hy;
+            else sum += hy;
+        }
+    }
+    // Return the final sum as the heuristic value of the given Pazz structure Q
+    return sum;
+}
+
+// Recursive function to find the solution using Depth First Search algorithm
+int dfs(int x, int y, int max, int count, int n) {
+    int ans = -1; // Local variable to store the answer
+
+    // Calculate the heuristic value h of the current Pazz structure Q
+    int h = Heu(Q);
+
+    // Base case: If the heuristic value h is 0, return the current count as the solution
+    if (h == 0) return count;
+
+    // Check if the current count plus the heuristic value h is greater than the maximum allowed count
+    if ((count + h) > max) return -1;
+
+    // Iterate through all the possible moves from the current position (x,y)
+    for (int i = 0; i < 4; i++) {
+        // Calculate the new position (x0,y0) based on the current position (x,y) and the move i
+        int x0 = x + dx[i];
+        int y0 = y + dy[i];
+
+        // Check if the new position (x0,y0) is valid or not
+        if (((i == (n + 2) % 4) && (n != -1)) || !((0 <= x0) && (x0 < N) && (0 <= y0) && (y0 < N))) continue;
+
+        // Swap the current position (x,y) with the new position (x0,y0) in the Pazz structure Q
+        std::swap(Q.P[y][x], Q.P[y0][x0]);
+
+        // Recursively call the function dfs with the new position (x0,y0), the maximum allowed count max, the current count+1, and the move i
+        ans = dfs(x0, y0, max, count + 1, i);
+
+        // If the function call returns a valid solution, return it
+        if (ans != -1) return ans;
+
+        // Swap back the current position (x,y) with the new position (x0,y0) in the Pazz structure Q
+        std::swap(Q.P[y][x], Q.P[y0][x0]);
+    }
+
+    // If no valid solution is found, return -1
+    return -1;
+}
+
+// Main function to read the input and call the function dfs to find the solution
+int main() {
+    int kx, ky, ans, a; // Local variables
+
+    // Initialize an empty Pazz structure Q
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            // Read the input and store it in the Pazz structure Q
+            std::cin >> a;
+            Q.P[i][j] = a;
+            if (a == 0) {
+                kx = j; // Store the position of the empty cell in x direction
+                ky = i; // Store the position of the empty cell in y direction
+            }
+        }
+    }
+
+    // Call the function dfs with the initial position (kx,ky), the maximum allowed count 46, the initial count 0, and the initial move -1
+    ans = dfs(kx, ky, 46, 0, -1);
+
+    // If a valid solution is found, print it and exit the program
+    if (ans != -1) {
+        std::cout << ans << std::endl;
+        return 0;
+    }
+
+    // If no valid solution is found, print an error message and exit the program
+    std::cout << "No solution found" << std::endl;
+    return 1;
+}
+
+// <END-OF-CODE>

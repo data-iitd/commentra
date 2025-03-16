@@ -1,0 +1,22 @@
+
+package main
+
+import "fmt"
+
+func main() {
+    // Declare variables to hold the dimensions and results
+    var a, b, x, y int
+
+    // Read two integer inputs from the user (representing dimensions)
+    fmt.Scan(&a, &b)
+
+    // Calculate the perimeter of the rectangle (2 * (length + width))
+    x = 2 * a + 2 * b
+
+    // Calculate the area of the rectangle (length * width)
+    y = a * b
+
+    // Output the area and perimeter
+    fmt.Println(y, x)
+}
+

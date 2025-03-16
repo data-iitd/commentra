@@ -1,0 +1,18 @@
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	var x, y int
+	x = 0
+	y = 0
+
+	fmt.Scan(&x)
+	fmt.Scan(&y)
+
+	fmt.Printf("%d %d\n", x*y, (2*x)+(2*y))
+}
+
+// <END-OF-CODE>

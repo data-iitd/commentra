@@ -1,0 +1,16 @@
+
+s = int(input())
+a = {s}
+d = 2
+
+while True:
+    if s % 2 == 0:
+        x = s // 2
+    else:
+        x = 3 * s + 1
+    if x in a:
+        print(d)
+        break
+    a.add(x)
+    s = x
+    d += 1
