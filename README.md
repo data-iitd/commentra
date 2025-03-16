@@ -1,0 +1,1 @@
+Contains all the arterfacts associated with the submission titled "Revisiting the Role of Natural Language Code Comments in Code Translation" at ICSE 2026. 
