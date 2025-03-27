@@ -13,7 +13,6 @@ def main(args,diff_gen):
     print('testing translations')
     # dataset = 'codenet_deepseek'#granite-20b-code-instruct
     report_dir=f"/home/codetrans/Project/data/codetlingua/{args.approach}/{args.dataset}/{args.model}/{args.source_lang}/{args.target_lang}/temperature_0.0/reports"
-	# translation_dir = f"/home/scai/mtech/aib222684/MTP/output_cot_orig/{args.model}/{dataset}/{args.source_lang}/{args.target_lang}"
     translation_dir= f"/home/codetrans/Project/data/codetlingua/{args.approach}/{args.dataset}/{args.model}/{args.source_lang}/{args.target_lang}/temperature_0.0/{diff_gen}"
     test_dir = f"/home/codetrans/dataset/codenet/{args.source_lang}/TestCases"
     os.makedirs(report_dir, exist_ok=True)
@@ -372,13 +371,9 @@ if __name__ == "__main__":
 	    main(args,i)
 '''
 # info-
-# python3 /home/cse/dual/cs5190439/MTP1/PLTranslationEmpirical/src/test/compile_codenet.py --source_lang Python --target_lang Java --model StarCoder --report_dir /scratch/cse/dual/cs5190439/MTP1/PLTranslation_data/reports
-# python3 /home/cse/dual/cs5190439/MTP1/PLTranslationEmpirical/src/test/compile_codenet_feedback.py --source_lang Java --target_lang Python --model StarCoder --report_dir /scratch/cse/dual/cs5190439/MTP1/PLTranslation_data/reports --attempt 2
 #
-# report_dir- /scratch/cse/dual/cs5190439/MTP1/PLTranslation_data/reports
-# -StarCoder_codenet_compileReport_from_Java_to_Python.txt  StarCoder_codenet_compileReport_from_Java_to_Python.xlsx  StarCoder_codenet_compileReport_from_Java_to_Python_ordered_unsuccessful.txt
 
-python3 /home/codetrans/LALIT/codetlingua/compile_codenet.py --source_lang Python --target_lang Java --model starcoder --approach autocot2d
+python3 /path/compile_codenet.py --source_lang Python --target_lang Java --model starcoder --approach autocot2d
 granite-20b-code-instruct
 starcoder
 granite-8b-code-instruct
