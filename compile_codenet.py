@@ -12,9 +12,9 @@ import argparse
 def main(args,diff_gen):
     print('testing translations')
     # dataset = 'codenet_deepseek'#granite-20b-code-instruct
-    report_dir=f"/home/codetrans/Project/data/codetlingua/{args.approach}/{args.dataset}/{args.model}/{args.source_lang}/{args.target_lang}/temperature_0.0/reports"
-    translation_dir= f"/home/codetrans/Project/data/codetlingua/{args.approach}/{args.dataset}/{args.model}/{args.source_lang}/{args.target_lang}/temperature_0.0/{diff_gen}"
-    test_dir = f"/home/codetrans/dataset/codenet/{args.source_lang}/TestCases"
+    report_dir=f"/path/{args.approach}/{args.dataset}/{args.model}/{args.source_lang}/{args.target_lang}/temperature_0.0/reports"
+    translation_dir= f"/path/{args.approach}/{args.dataset}/{args.model}/{args.source_lang}/{args.target_lang}/temperature_0.0/{diff_gen}"
+    test_dir = f"/path/{args.source_lang}/TestCases"
     os.makedirs(report_dir, exist_ok=True)
     EXTENSIONS = { "C": ".c", "C++": ".cpp", "Java": ".java", "Python": ".py", "Go": ".go" }
     extn= EXTENSIONS[args.target_lang]
