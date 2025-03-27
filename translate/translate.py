@@ -65,7 +65,7 @@ def translate(args, workdir: PathLike, model: DecoderBase, accelerator: Accelera
     if accelerator:
         model = accelerator.unwrap_model(model)
 
-    in_folder = f'/home/codetrans/dataset/{args.dataset}/{args.source_lang}/Code'
+    in_folder = f'/path/dataset/{args.dataset}/{args.source_lang}/Code'
     in_files = os.listdir(in_folder)
     print(f'found {len(in_files)} inputs')
     total_time=0
@@ -219,7 +219,7 @@ def main():
         args.n_samples = 1
         print("Greedy decoding ON (--greedy): setting batch_size=1, n_samples=1, temperature=0")
 
-    args.root="/home/codetrans/Project/data/codetlingua/"
+    args.root="/path/data/codetlingua/"
     if (args.prompt_type=="vanilla"):
         approach="vanilla"
     elif (args.prompt_type=="autocot2d" or args.prompt_type=="autocot2d_p2j"):
