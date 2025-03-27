@@ -12,7 +12,7 @@ from tqdm import tqdm
     -approach
     -full out loc
 -log/print
-python3 /home/codetrans/AJAY/codetlingua/translate/translate.py --model=granite-20b-code-instruct --dataset=avatar --source_lang=Python --target_lang=Java --prompt_type=vanilla --temperature=0.2 --n_samples=10 --batch_size=10 --max_length=4090 --ngpus=2
+python3 /path/translate.py --model=granite-20b-code-instruct --dataset=avatar --source_lang=Python --target_lang=Java --prompt_type=vanilla --temperature=0.2 --n_samples=10 --batch_size=10 --max_length=4090 --ngpus=2
 
 granite-20b-code-instruct
 CodeLlama-13b-Instruct-hf
@@ -106,7 +106,7 @@ def translate(args, workdir: PathLike, model: DecoderBase, accelerator: Accelera
 #            # '''
 #            # prompt+=code_data
 #            code_id = p_name
-#            common_path=f"/home/scai/mtech/aib232083/AJAY/Project/dataset/{args.dataset}/{args.source_lang}/TestCases/"
+#            common_path=f"/path/dataset/{args.dataset}/{args.source_lang}/TestCases/"
 #            input_path = find_file_with_smallest_length(common_path, code_id)
 #            input_path =common_path + input_path
 #            if (args.dataset=="codenet"):
