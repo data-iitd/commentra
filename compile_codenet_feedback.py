@@ -9,9 +9,9 @@ from pathlib import Path
 def main(args,diff_gen):
     print('exporting reports')
     # dataset = 'codenet'#granite-20b-code-instruct
-    report_dir=f"/home/codetrans/Project/data/codetlingua/{args.approach}/{args.dataset}/{args.model}/{args.source_lang}/{args.target_lang}/temperature_0.0/reports"
-    translation_dir= f"/home/codetrans/Project/data/codetlingua/{args.approach}/{args.dataset}/{args.model}/{args.source_lang}/{args.target_lang}/temperature_0.0/{diff_gen}"
-    test_dir = f"/home/codetrans/dataset/codenet/{args.source_lang}/TestCases"
+    report_dir=f"/path/{args.approach}/{args.dataset}/{args.model}/{args.source_lang}/{args.target_lang}/temperature_0.0/reports"
+    translation_dir= f"/path/{args.approach}/{args.dataset}/{args.model}/{args.source_lang}/{args.target_lang}/temperature_0.0/{diff_gen}"
+    test_dir = f"/path/{args.source_lang}/TestCases"
     EXTENSIONS = { "C": ".c", "C++": ".cpp", "Java": ".java", "Python": ".py", "Go": ".go" }
     extn= EXTENSIONS[args.target_lang]
     files = [f  for f in os.listdir(translation_dir) if (f[(-1*len(extn)):]==extn)]#if f != '.DS_Store']
