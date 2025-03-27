@@ -118,8 +118,8 @@ def clean_codegen(dataset):
 
 
 def clean_starcoder(dataset):
-    main_path = f'/home/scai/mtech/aib222684/MTP/output_cot_orig_full/StarCoder/{dataset}'
-    output_path = '/home/scai/mtech/aib222684/MTP/output_cot_orig/StarCoder/'
+    main_path = f'/home/output_cot_orig_full/StarCoder/{dataset}'
+    output_path = '/home/output_cot_orig/StarCoder/'
 
     files = list_files(main_path)
 
@@ -234,7 +234,6 @@ def clean_new_models(dataset):#granite-20b-code-instruct
     EXTENSIONS = { "C": ".c", "C++": ".cpp", "Java": ".java", "Python": ".py", "Go": ".go" }
     extn= EXTENSIONS[args.target_lang]
     main_path = f"/home/codetrans/Project/data/codetlingua/{args.approach}/{dataset}/{args.model}/{args.source_lang}/{args.target_lang}/temperature_0.0"
-    # output_path= "/scratch/cse/dual/cs5190439/MTP1/PLTranslation_data/codetlingua/autocot2d/avatar/starcoder/Python/Java/temperature_0/"
     # print(main_path)
     output_path =main_path +'/'
     cur_folder_path = main_path
@@ -337,38 +336,6 @@ def clean_new_models(dataset):#granite-20b-code-instruct
                         if (last_idx!=-1):
                             data =data[:last_idx]
                         
-                    # cleaning of autocot1
-                    # data = data[data.find('3. Whole Python Code:')+len('3. Whole Python Code:'):]
-    
-                    # last_idx =data.find('####################')
-                    # if (last_idx==-1):
-                    #     # last_idx=data.find("4. Whole Java Code:")
-                    #     last_idx=data.find("4. Java Code:")
-                    # if (last_idx==-1):
-                    #     last_idx =data.find("main()")
-                    #     if (last_idx!=-1):
-                    #         last_idx+=len("main()")
-                    # if (last_idx!=-1):
-                    #     data =data[:last_idx]
-    
-                    # b/w -substring
-                    #  or startwith '''
-                    # last_idx =data.find(f"{target_lang.lower()}")
-                    
-                    # main() -> main(self) in autocot2d
-                    # data = data.replace("def main()", "def main(self)")
-    
-#                    valid_lines = []
-#                    for line in data.split('\n'):
-#                        # Start-End due to pseudocode part
-#                        if line.strip() in ["'''","",'End','C Code:', 'C++ Code:', 'Java Code:', 'Python Code:', 'Go Code:', '"""'] or line.strip().startswith("Input") or line.strip().startswith("Output"):
-#                            break
-#                        elif line.strip()=='Start' or line.strip().startswith("```") or line.strip()==args.target_lang or (line.strip().startswith("#") and args.target_lang!="Python") :#EOS problem of ###$ or comments
-#                            continue
-#                        else:
-#                            valid_lines.append(line)
-#                    
-#                    data = '\n'.join(valid_lines)
                     
                     data = data.replace('<|endoftext|>', '')
     
@@ -403,7 +370,7 @@ def clean_codellama(dataset, args):
     # Use the correct model name with the correct casing
     main_path = f"/home/codetrans/Project/data/codetlingua/{args.approach}/{dataset}/codellama-13b-instruct-hf/{source_lang}/{target_lang}/temperature_0.0"
 
-    # main_path = f"/home/scai/mtech/aib232083/AJAY/Project/dataset/{dataset}/{source_lang}/Code"
+    # main_path = f"/home/Project/dataset/{dataset}/{source_lang}/Code"
     
     # print(f"Main Path: {main_path}")  # Debug
     # print(f"Main Path exists: {os.path.exists(main_path)}")  # Debug
@@ -942,7 +909,7 @@ if __name__ == "__main__":
     main(args)
 
 '''
-python3 /home/cse/dual/cs5190439/MTP1/codetlingua/clean_generations.py --source_lang Python --target_lang Java --model starcoder --approach autocot2d --dataset avatar
+python3 /path/clean_generations.py --source_lang Python --target_lang Java --model starcoder --approach vanilla --dataset avatar
 granite-20b-code-instruct
 starcoder
 granite-8b-code-instruct
