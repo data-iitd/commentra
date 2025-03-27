@@ -24,7 +24,7 @@ self.context_window_length =max_length #4090
 '''
 
 # cache_dir = os.getcwd() + "/huggingface"
-cache_dir = "/home/codetrans/Project"+ "/huggingface"
+cache_dir = "path"+ "/huggingface"
 os.environ["TRANSFORMERS_CACHE"] = cache_dir
 
 import anthropic
