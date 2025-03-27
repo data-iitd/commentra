@@ -10,7 +10,6 @@ def main(args,diff_gen):
     print('exporting reports')
     # dataset = 'codenet'#granite-20b-code-instruct
     report_dir=f"/home/codetrans/Project/data/codetlingua/{args.approach}/{args.dataset}/{args.model}/{args.source_lang}/{args.target_lang}/temperature_0.0/reports"
-    # translation_dir = f"/home/scai/mtech/aib222684/MTP/output_cot_orig/{args.model}/{dataset}/{args.source_lang}/{args.target_lang}"
     translation_dir= f"/home/codetrans/Project/data/codetlingua/{args.approach}/{args.dataset}/{args.model}/{args.source_lang}/{args.target_lang}/temperature_0.0/{diff_gen}"
     test_dir = f"/home/codetrans/dataset/codenet/{args.source_lang}/TestCases"
     EXTENSIONS = { "C": ".c", "C++": ".cpp", "Java": ".java", "Python": ".py", "Go": ".go" }
