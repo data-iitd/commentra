@@ -16,7 +16,7 @@ def generate_comments(args, workdir: Path, model: DecoderBase, accelerator: Acce
         model = accelerator.unwrap_model(model)
 
     # Input folder path
-    in_folder = f'/home/codetrans/dataset/{args.dataset}/{args.source_lang}/Code'
+    in_folder = f'/path/dataset/{args.dataset}/{args.source_lang}/Code'
     in_files = os.listdir(in_folder)
     print(f'found {len(in_files)} inputs')
     total_time = 0
@@ -151,7 +151,7 @@ def main():
         args.n_samples = 1
         print("Greedy decoding ON (--greedy): setting batch_size=1, n_samples=1, temperature=0")
 
-    args.root = "/home/codetrans/Project/data/comment_generation/"
+    args.root = "/path/data/comment_generation/"
     
     # Make project directory for approach and dataset
     os.makedirs(args.root, exist_ok=True)
