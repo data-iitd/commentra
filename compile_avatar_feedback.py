@@ -12,7 +12,6 @@ def main(args,diff_gen):
     print('exporting reports')    
     # dataset = 'avatar'#granite-20b-code-instruct
     report_dir=f"/home/codetrans/Project/data/codetlingua/{args.approach}/{args.dataset}/{args.model}/{args.source_lang}/{args.target_lang}/temperature_0.0/reports"
-    # translation_dir = f"/home/scai/mtech/aib222684/MTP/output_cot_orig/{args.model}/{dataset}/{args.source_lang}/{args.target_lang}"
     translation_dir= f"/home/codetrans/Project/data/codetlingua/{args.approach}/{args.dataset}/{args.model}/{args.source_lang}/{args.target_lang}/temperature_0.0/{diff_gen}"
     test_dir = f"/home/codetrans/dataset/avatar/{args.source_lang}/TestCases"
     EXTENSIONS = { "C": ".c", "C++": ".cpp", "Java": ".java", "Python": ".py", "Go": ".go" }
@@ -424,9 +423,7 @@ if __name__ == "__main__":
 	    main(args,i)
 
 '''
-python3 /home/cse/dual/cs5190439/MTP1/PLTranslationEmpirical/src/test/compile_avatar_feedback.py --source_lang Java --target_lang Python --model StarCoder --report_dir /scratch/cse/dual/cs5190439/MTP1/PLTranslation_data/reports --attempt 2
-python3 /home/scai/mtech/aib222684/Lalit_files/MTP2/temp_codelingua/compile_avatar_feedback.py --source_lang Python --target_lang Java  --model StarCoder --report_dir /home/scai/mtech/aib222684/Lalit_files/MTP2/output_codelingua/vanilla/avatar/starcoder/Python/Java/temperature_0/reports --attempt 1
 
-python3 /home/cse/dual/cs5190439/MTP1/codetlingua/compile_avatar_feedback.py --source_lang Java --target_lang Python --model granite-20b-code-instruct --approach vanilla --attempt 1
+python3 /path/codetlingua/compile_avatar_feedback.py --source_lang Java --target_lang Python --model granite-20b-code-instruct --approach vanilla --attempt 1
 
 '''
