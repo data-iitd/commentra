@@ -118,8 +118,8 @@ def clean_codegen(dataset):
 
 
 def clean_starcoder(dataset):
-    main_path = f'/home/output_cot_orig_full/StarCoder/{dataset}'
-    output_path = '/home/output_cot_orig/StarCoder/'
+    main_path = f'/path/output_cot_orig_full/StarCoder/{dataset}'
+    output_path = '/path/output_cot_orig/StarCoder/'
 
     files = list_files(main_path)
 
@@ -233,7 +233,7 @@ def clean_new_models(dataset):#granite-20b-code-instruct
     source_lang = args.source_lang
     EXTENSIONS = { "C": ".c", "C++": ".cpp", "Java": ".java", "Python": ".py", "Go": ".go" }
     extn= EXTENSIONS[args.target_lang]
-    main_path = f"/home/codetrans/Project/data/codetlingua/{args.approach}/{dataset}/{args.model}/{args.source_lang}/{args.target_lang}/temperature_0.0"
+    main_path = f"/path/{args.approach}/{dataset}/{args.model}/{args.source_lang}/{args.target_lang}/temperature_0.0"
     # print(main_path)
     output_path =main_path +'/'
     cur_folder_path = main_path
@@ -368,9 +368,9 @@ def clean_codellama(dataset, args):
     # extn = EXTENSIONS[source_lang]
     
     # Use the correct model name with the correct casing
-    main_path = f"/home/codetrans/Project/data/codetlingua/{args.approach}/{dataset}/codellama-13b-instruct-hf/{source_lang}/{target_lang}/temperature_0.0"
+    main_path = f"/path/{args.approach}/{dataset}/codellama-13b-instruct-hf/{source_lang}/{target_lang}/temperature_0.0"
 
-    # main_path = f"/home/Project/dataset/{dataset}/{source_lang}/Code"
+    # main_path = f"/path/{dataset}/{source_lang}/Code"
     
     # print(f"Main Path: {main_path}")  # Debug
     # print(f"Main Path exists: {os.path.exists(main_path)}")  # Debug
@@ -451,9 +451,9 @@ def clean_starcoder(dataset, args):
     # extn = EXTENSIONS[source_lang]
     
     # Use the correct model name with the correct casing
-    main_path = f"/home/codetrans/Project/data/codetlingua/{args.approach}/{dataset}/starcoder/{source_lang}/{target_lang}/temperature_0.0"
+    main_path = f"/path/{args.approach}/{dataset}/starcoder/{source_lang}/{target_lang}/temperature_0.0"
 
-    # main_path = f"/home/codetrans/dataset/{dataset}/{source_lang}/Code"
+    # main_path = f"/path/{dataset}/{source_lang}/Code"
     
     # print(f"Main Path: {main_path}")  # Debug
     # print(f"Main Path exists: {os.path.exists(main_path)}")  # Debug
@@ -521,9 +521,9 @@ def clean_deepseek(dataset, args):
     # extn = EXTENSIONS[source_lang]
     
     # Use the correct model name with the correct casing
-    main_path = f"/home/codetrans/Project/data/codetlingua/{args.approach}/{dataset}/deepseek-coder-v2-lite-instruct/{source_lang}/{target_lang}/temperature_0.0"
+    main_path = f"/path/{args.approach}/{dataset}/deepseek-coder-v2-lite-instruct/{source_lang}/{target_lang}/temperature_0.0"
 
-    # main_path = f"/home/codetrans/dataset/{dataset}/{source_lang}/Code"
+    # main_path = f"/path/{dataset}/{source_lang}/Code"
     
     # print(f"Main Path: {main_path}")  # Debug
     # print(f"Main Path exists: {os.path.exists(main_path)}")  # Debug
@@ -635,9 +635,9 @@ def clean_mistral(dataset, args):
     extn = EXTENSIONS[source_lang]
     
     # Use the correct model name with the correct casing
-    # main_path = f"/home/codetrans/Project/data/codetlingua/{args.approach}/{dataset}/mistral-7b-instruct-v0.2/{source_lang}/{target_lang}/temperature_0.2"
+    # main_path = f"/path/{args.approach}/{dataset}/mistral-7b-instruct-v0.2/{source_lang}/{target_lang}/temperature_0.2"
 
-    main_path = f"/home/codetrans/dataset/{dataset}/{source_lang}/Code"
+    main_path = f"/path/{dataset}/{source_lang}/Code"
     
     # print(f"Main Path: {main_path}")  # Debug
     # print(f"Main Path exists: {os.path.exists(main_path)}")  # Debug
@@ -746,9 +746,9 @@ def clean_gpt_4o_mini(dataset, args):
     # extn = EXTENSIONS[source_lang]
     
     # Use the correct model name with the correct casing
-    main_path = f"/home/codetrans/Project/data/codetlingua/{args.approach}/{dataset}/gpt-4o-mini/{source_lang}/{target_lang}/temperature_0.0"
+    main_path = f"/path/{args.approach}/{dataset}/gpt-4o-mini/{source_lang}/{target_lang}/temperature_0.0"
 
-    # main_path = f"/home/codetrans/dataset/{dataset}/{source_lang}/Code"
+    # main_path = f"/path/{dataset}/{source_lang}/Code"
     
     # print(f"Main Path: {main_path}")  # Debug
     # print(f"Main Path exists: {os.path.exists(main_path)}")  # Debug
